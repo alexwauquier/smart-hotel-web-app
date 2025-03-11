@@ -1,0 +1,176 @@
+/* Reset and base styles */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+:root {
+    line-height: 1.5;
+    font-weight: 400;
+    font-synthesis: none;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f5f5f5;
+  }
+  
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .login-card {
+    background-color: white;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.05);
+    padding: 40px;
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+  }
+  
+  .login-form {
+    display: flex;
+    flex-direction: column;
+    gap: 33px;
+    margin-top:20px;
+  }
+  
+  .input-group {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 8px;
+    text-align: left;
+  }
+  
+  .input-icon {
+    width: 16px;
+    height: 16px;
+    margin-right: 10px;
+    position: relative;
+  }
+  
+  .email-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 16px;
+    height: 12px;
+    border: 1px solid #bbb;
+    border-radius: 2px;
+  }
+  
+  .email-icon::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 8px;
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-bottom: 5px solid #bbb;
+    transform: rotate(45deg);
+  }
+  
+  .lock-icon::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 3px;
+    width: 10px;
+    height: 7px;
+    border: 1px solid #bbb;
+    border-bottom: none;
+    border-radius: 5px 5px 0 0;
+  }
+  
+  .lock-icon::after {
+    content: "";
+    position: absolute;
+    top: 6px;
+    left: 1px;
+    width: 14px;
+    height: 10px;
+    background-color: #bbb;
+    border-radius: 2px;
+  }
+  
+  .input-group input {
+    border: none;
+    outline: none;
+    width: 100%;
+    font-size: 14px;
+    color: #333;
+    background: transparent;
+    padding-left: 15px;
+  }
+  
+  .input-group input::placeholder {
+    color: #bbb;
+  }
+  
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: #999;
+  }
+  
+  .remember-me {
+    display: flex;
+    gap: 5px;
+  }
+
+  .remember-me input[type="checkbox"] {
+    accent-color: #999;
+  }
+
+  .remember-me input[type="checkbox"]:checked {
+    accent-color: #666;
+  }
+  
+  .forgot-password {
+    color: #999;
+    text-decoration: none;
+  }
+
+  .forgot-password:hover {
+    color: #30A0BD;
+    transition: all 0.3s;
+  }
+  
+  .login-button {
+    background-color: white;
+    color: #999;
+    border: 1px solid #e0e0e0;
+    border-radius: 25px;
+    padding: 12px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    letter-spacing: 1px;
+  }
+  
+  .login-button:hover {
+    background-color: #f9f9f9;
+    color: #30A0BD;
+  }

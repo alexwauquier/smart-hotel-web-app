@@ -1,0 +1,110 @@
+.metrics-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    min-height: 100vh;
+}
+
+.metric-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    display: grid;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2rem;
+    width: 345px;
+}
+
+.metric-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    gap: 1rem;
+}
+
+.metric-header h2 {
+    font-size: 1.25rem;
+    color: #1a1a1a;
+    font-weight: 600;
+}
+
+.status {
+    padding: 0.5rem 1rem;
+    background: #e7f5ff;
+    color: #228be6;
+    border-radius: 20px;
+    font-size: 0.875rem;
+    font-weight: 500;
+}
+
+.status.warning {
+    background: #fff3bf;
+    color: #fab005;
+}
+
+.metric-main {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.metric-value {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+}
+
+.metric-details {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.detail-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+
+.detail-item .label {
+    font-size: 0.875rem;
+    color: #868e96;
+}
+
+.detail-item .value {
+    font-size: 1rem;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+.chart-container {
+    height: 293px;
+    width: 100%;
+}
+
+.chart-container-card {
+    background: white;
+    border-radius: 24px;
+    padding: 2rem;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    gap: 2rem;
+    margin-bottom: 2rem;
+    width: 1100px;
+}
+
+.temp-card {
+    display: flex;
+    gap: 2rem;
+}
+
+.hum-card {
+    display: flex;
+    gap: 2rem;
+}
+
+.metric-info {
+    display: grid;
+    place-items: center;  
+}
+
