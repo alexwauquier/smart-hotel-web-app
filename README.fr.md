@@ -4,6 +4,8 @@
   <h3>L'application web pour le projet Smart Hotel</h3>
 
   <h4>
+    <a href="https://github.com/alexwauquier/smart-hotel-web-app/blob/main/README.md">English README</a>
+    •
     <a href="#aperçu-du-projet">Aperçu du Projet</a>
     •
     <a href="#pour-commencer">Pour Commencer</a>
