@@ -1,3 +1,5 @@
+import config from "../config.js";
+
 document.getElementById("login-form").addEventListener("submit", async function(event) {
   event.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
@@ -13,7 +15,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
 
   try {
     // Effectuer la requête POST vers l'API
-    const response = await fetch("https://api.example.com/api/auth/login/customer", {
+    const response = await fetch(`${config.API_BASE_URL}/api/auth/login/customer`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
