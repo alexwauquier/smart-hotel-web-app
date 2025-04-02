@@ -1,6 +1,23 @@
 /* Reset and base styles */
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
 
+:root {
+    --primary-color: #4f46e5;
+    --primary-hover: #4338ca;
+    --secondary-color: #f3f4f6;
+    --text-color: #1f2937;
+    --text-light: #6b7280;
+    --border-color: #e5e7eb;
+    --danger-color: #ef4444;
+    --danger-hover: #dc2626;
+    --success-color: #10b981;
+    --success-hover: #059669;
+    --warning-color: #f59e0b;
+    --warning-hover: #d97706;
+    --info-color: #3b82f6;
+    --info-hover: #2563eb;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -16,6 +33,10 @@ body {
 .container {
     display: flex;
     min-height: 100vh;
+}
+
+.hidden {
+    display: none !important;
 }
 
 /* Sidebar styles */
