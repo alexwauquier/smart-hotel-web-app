@@ -1,21 +1,18 @@
 import config from "../config.js";
 
-document.getElementById("login-form").addEventListener("submit", async function(event) {
+document.getElementById("login-form-customer").addEventListener("submit", async function(event) {
   event.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
   // Récupérer les valeurs des champs
-  const lastName = document.getElementById("last-name").value;
-  const roomNumber = document.getElementById("space-id").value;
+  const username = document.getElementById("username").value;
+  const password = document.getElementById("password").value;
 
   // Créer l'objet à envoyer dans la requête POST
-  const credentials = {
-    last_name: lastName,
-    space_id: roomNumber
-  };    
+  const credentials = { username, password };
 
   try {
     // Effectuer la requête POST vers l'API
-    const response = await fetch(`${config.API_BASE_URL}/api/auth/login/customer`, {
+    const response = await fetch(`${config.API_BASE_URL}/api/auth/login/employee`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -37,7 +34,7 @@ document.getElementById("login-form").addEventListener("submit", async function(
         showConfirmButton: false, // Supprime le bouton
         timer: 2000 // Ferme la popup après 2 secondes (2000 ms)
       }).then(() => {
-        window.location.href = "pages/dashboard.html"; // Redirection automatique
+        window.location.href = "dashboard.html"; // Redirection automatique
       });
     } else {
       Swal.fire({

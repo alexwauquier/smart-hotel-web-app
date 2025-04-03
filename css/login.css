@@ -140,12 +140,12 @@ body {
     accent-color: #666;
 }
 
-.forgot-password {
+.change-portal {
     color: #999;
     text-decoration: none;
 }
 
-.forgot-password:hover {
+.change-portal:hover {
     color: #30A0BD;
     transition: all 0.3s;
 }
