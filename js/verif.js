@@ -1,6 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
   const token = localStorage.getItem("token");
-  console.log(token);
 
   if (!token) {
     // Si aucun token n'est trouvé, rediriger vers la page de connexion
