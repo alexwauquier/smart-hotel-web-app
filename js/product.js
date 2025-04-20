@@ -32,22 +32,4 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }
-  
-  // Handle dashboard and other non-table views
-  function handleSpecialViews(tableId) {
-    const tableContainer = document.getElementById('table-container');
-    
-    if (['dashboard', 'analytics', 'settings'].includes(tableId)) {
-      tableContainer.innerHTML = `
-        <h1>${tableData[tableId].name}</h1>
-        <div class="placeholder-content">
-          <p>This is a placeholder for the ${tableData[tableId].name} view.</p>
-          <p>In a real application, this would contain ${tableId}-specific content.</p>
-        </div>
-      `;
-      return true;
-    }
-    
-    return false;
-  }
 });
