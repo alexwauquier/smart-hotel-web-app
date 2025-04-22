@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="../css/dashboard.css">
     <link rel="icon" href="../svg/dashboard.svg" type="image/svg+xml">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="../js/verif.js"></script>
 </head>
 <body>
@@ -82,10 +83,193 @@
 
             <!-- Order Content -->
             <h1>Dashboard</h1>
-            
-            
-        </main>
-    </div>
+            <!-- Dashboard Content -->
+                <div class="content-wrapper">
+                    
+                    <!-- Summary Cards -->
+                    <div class="summary-cards">
+                    <div class="summary-card orders">
+                        <div class="card-icon">
+                        <i class="icon order-icon-large"></i>
+                        </div>
+                        <div class="card-content">
+                        <h3>Today's Orders</h3>
+                        <p class="card-value">24</p>
+                        <p class="card-trend positive">+12% from yesterday</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card temperature">
+                        <div class="card-icon">
+                        <i class="icon temperature-icon-large"></i>
+                        </div>
+                        <div class="card-content">
+                        <h3>Current Temperature</h3>
+                        <p class="card-value">22°C</p>
+                        <p class="card-status normal">Normal</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card humidity">
+                        <div class="card-icon">
+                        <i class="icon humidity-icon-large"></i>
+                        </div>
+                        <div class="card-content">
+                        <h3>Current Humidity</h3>
+                        <p class="card-value">65%</p>
+                        <p class="card-status high">High</p>
+                        </div>
+                    </div>
+                    
+                    <div class="summary-card staff">
+                        <div class="card-icon">
+                        <i class="icon employee-icon-large"></i>
+                        </div>
+                        <div class="card-content">
+                        <h3>Staff on Duty</h3>
+                        <p class="card-value">8</p>
+                        <p class="card-trend negative">-1 from yesterday</p>
+                        </div>
+                    </div>
+                    </div>
+                    
+                    <!-- Charts Row -->
+                    <div class="charts-row">
+                    <div class="chart-container">
+                        <div class="chart-header">
+                        <h3>Temperature Trend (Last 24h)</h3>
+                        <div class="chart-controls">
+                            <select id="temperatureTimeRange">
+                            <option value="24h">24 Hours</option>
+                            <option value="7d">7 Days</option>
+                            <option value="30d">30 Days</option>
+                            </select>
+                        </div>
+                        </div>
+                        <canvas id="temperatureChart"></canvas>
+                    </div>
+                    
+                    <div class="chart-container">
+                        <div class="chart-header">
+                        <h3>Humidity Trend (Last 24h)</h3>
+                        <div class="chart-controls">
+                            <select id="humidityTimeRange">
+                            <option value="24h">24 Hours</option>
+                            <option value="7d">7 Days</option>
+                            <option value="30d">30 Days</option>
+                            </select>
+                        </div>
+                        </div>
+                        <canvas id="humidityChart"></canvas>
+                    </div>
+                    </div>
+                    
+                    <!-- Recent Activities and Popular Orders -->
+                    <div class="dashboard-bottom-row">
+                    <div class="recent-activities">
+                        <div class="section-header">
+                        <h3>Recent Activities</h3>
+                        <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="activity-list">
+                        <div class="activity-item">
+                            <div class="activity-icon order"></div>
+                            <div class="activity-details">
+                            <p class="activity-title">New order received</p>
+                            <p class="activity-description">Room 302 ordered 2 cocktails</p>
+                            <p class="activity-time">10 minutes ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon alert"></div>
+                            <div class="activity-details">
+                            <p class="activity-title">Temperature alert</p>
+                            <p class="activity-description">Pool area temperature exceeded threshold</p>
+                            <p class="activity-time">45 minutes ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon employee"></div>
+                            <div class="activity-details">
+                            <p class="activity-title">Staff check-in</p>
+                            <p class="activity-description">Sophie Moreau started shift</p>
+                            <p class="activity-time">1 hour ago</p>
+                            </div>
+                        </div>
+                        
+                        <div class="activity-item">
+                            <div class="activity-icon order"></div>
+                            <div class="activity-details">
+                            <p class="activity-title">New order received</p>
+                            <p class="activity-description">Room 210 ordered breakfast</p>
+                            <p class="activity-time">2 hours ago</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    
+                    <div class="popular-orders">
+                        <div class="section-header">
+                        <h3>Popular Orders</h3>
+                        <a href="#" class="view-all">View All</a>
+                        </div>
+                        <div class="order-items">
+                        <div class="order-item">
+                            <div class="order-item-image">
+                            <img src="../images/margarita.png" alt="Margarita">
+                            </div>
+                            <div class="order-item-details">
+                            <p class="order-item-name">Margarita</p>
+                            <p class="order-item-info">12 orders today</p>
+                            </div>
+                            <div class="order-item-stats">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 80%;"></div>
+                            </div>
+                            <p class="percentage">80%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-item-image">
+                            <img src="../images/mojito.png" alt="Mojito">
+                            </div>
+                            <div class="order-item-details">
+                            <p class="order-item-name">Mojito</p>
+                            <p class="order-item-info">8 orders today</p>
+                            </div>
+                            <div class="order-item-stats">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 65%;"></div>
+                            </div>
+                            <p class="percentage">65%</p>
+                            </div>
+                        </div>
+                        
+                        <div class="order-item">
+                            <div class="order-item-image">
+                            <img src="../images/pina colada.png" alt="Piña Colada">
+                            </div>
+                            <div class="order-item-details">
+                            <p class="order-item-name">Piña Colada</p>
+                            <p class="order-item-info">6 orders today</p>
+                            </div>
+                            <div class="order-item-stats">
+                            <div class="progress-bar">
+                                <div class="progress" style="width: 45%;"></div>
+                            </div>
+                            <p class="percentage">45%</p>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+                </main>
+            </div>
+    <script src="../js/dashboard.js"></script>
     <script src="../js/logout.js"></script>
 </body>
 </html>

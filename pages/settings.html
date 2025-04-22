@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Barcelo Hotel - Settings</title>
     <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/settings.css">
     <link rel="icon" href="../svg/settings.svg" type="image/svg+xml">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/verif.js"></script>
@@ -82,10 +82,486 @@
 
             <!-- Order Content -->
             <h1>Settings</h1>
-            
-            
+            <div class="content-wrapper">
+                
+                <div class="settings-container">
+                  <!-- Settings Navigation -->
+                  <div class="settings-nav">
+                    <ul>
+                      <li class="settings-nav-item active" data-target="account-settings">
+                        <i class="icon user-icon"></i>
+                        <span>Account</span>
+                      </li>
+                      <li class="settings-nav-item" data-target="notification-settings">
+                        <i class="icon notification-icon"></i>
+                        <span>Notifications</span>
+                      </li>
+                      <li class="settings-nav-item" data-target="system-settings">
+                        <i class="icon system-icon"></i>
+                        <span>System</span>
+                      </li>
+                      <li class="settings-nav-item" data-target="sensor-settings">
+                        <i class="icon sensor-icon"></i>
+                        <span>Sensors</span>
+                      </li>
+                      <li class="settings-nav-item" data-target="appearance-settings">
+                        <i class="icon appearance-icon"></i>
+                        <span>Appearance</span>
+                      </li>
+                      <li class="settings-nav-item" data-target="export-settings">
+                        <i class="icon export-icon"></i>
+                        <span>Export Data</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <!-- Settings Content -->
+                  <div class="settings-content">
+                    <!-- Account Settings -->
+                    <div class="settings-section active" id="account-settings">
+                      <h2 class="settings-title">Account Settings</h2>
+                      
+                      <div class="settings-form">
+                        <div class="form-group">
+                          <label for="profilePicture">Profile Picture</label>
+                          <div class="profile-picture-upload">
+                            <button class="new-item-btn">Change Picture</button>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="fullName">Full Name</label>
+                          <input type="text" id="fullName" value="Administrator">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="email">Email</label>
+                          <input type="email" id="email" value="administrator@gmail.com">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="password">Password</label>
+                          <input type="password" id="password" value="••••••••••">
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="role">Role</label>
+                          <select id="role">
+                            <option value="admin" selected>Administrator</option>
+                            <option value="manager">Manager</option>
+                            <option value="staff">Staff</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                          <button class="new-item-btn">Save Changes</button>
+                          <button class="new-item-btn">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Notification Settings -->
+                    <div class="settings-section" id="notification-settings">
+                      <h2 class="settings-title">Notification Settings</h2>
+                      
+                      <div class="settings-form">
+                        <div class="form-group">
+                          <label class="toggle-label">Email Notifications</label>
+                          <div class="toggle-wrapper">
+                            <label class="toggle">
+                              <input type="checkbox" checked>
+                              <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-status">On</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="toggle-label">Browser Notifications</label>
+                          <div class="toggle-wrapper">
+                            <label class="toggle">
+                              <input type="checkbox" checked>
+                              <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-status">On</span>
+                          </div>
+                        </div>
+                        
+                        <div class="notification-categories">
+                          <h3>Notification Categories</h3>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox" checked>
+                              <span>New Orders</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox" checked>
+                              <span>Temperature Alerts</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox" checked>
+                              <span>Humidity Alerts</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox" checked>
+                              <span>Employee Check-ins</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox">
+                              <span>System Updates</span>
+                            </label>
+                          </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                          <button class="new-item-btn">Save Changes</button>
+                          <button class="new-item-btn">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- System Settings -->
+                    <div class="settings-section" id="system-settings">
+                      <h2 class="settings-title">System Settings</h2>
+                      
+                      <div class="settings-form">
+                        <div class="form-group">
+                          <label for="language">Language</label>
+                          <select id="language">
+                            <option value="en" selected>English</option>
+                            <option value="fr">Français</option>
+                            <option value="es">Español</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="dateFormat">Date Format</label>
+                          <select id="dateFormat">
+                            <option value="dmy" selected>DD/MM/YYYY</option>
+                            <option value="mdy">MM/DD/YYYY</option>
+                            <option value="ymd">YYYY/MM/DD</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="timeFormat">Time Format</label>
+                          <select id="timeFormat">
+                            <option value="24h" selected>24 Hour</option>
+                            <option value="12h">12 Hour (AM/PM)</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="temperatureUnit">Temperature Unit</label>
+                          <select id="temperatureUnit">
+                            <option value="celsius" selected>Celsius (°C)</option>
+                            <option value="fahrenheit">Fahrenheit (°F)</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="toggle-label">Automatic Updates</label>
+                          <div class="toggle-wrapper">
+                            <label class="toggle">
+                              <input type="checkbox" checked>
+                              <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-status">On</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                          <button class="new-item-btn">Save Changes</button>
+                          <button class="new-item-btn">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Sensor Settings -->
+                    <div class="settings-section" id="sensor-settings">
+                      <h2 class="settings-title">Sensor Settings</h2>
+                      
+                      <div class="settings-form">
+                        <h3>Temperature Sensors</h3>
+                        <div class="form-group">
+                          <label for="tempUpdateFrequency">Update Frequency</label>
+                          <select id="tempUpdateFrequency">
+                            <option value="1m">Every minute</option>
+                            <option value="5m" selected>Every 5 minutes</option>
+                            <option value="15m">Every 15 minutes</option>
+                            <option value="30m">Every 30 minutes</option>
+                            <option value="1h">Every hour</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="tempAlertMin">Alert Threshold (Minimum)</label>
+                          <div class="input-with-unit">
+                            <input type="number" id="tempAlertMin" value="18">
+                            <span class="unit">°C</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="tempAlertMax">Alert Threshold (Maximum)</label>
+                          <div class="input-with-unit">
+                            <input type="number" id="tempAlertMax" value="26">
+                            <span class="unit">°C</span>
+                          </div>
+                        </div>
+                        
+                        <h3>Humidity Sensors</h3>
+                        <div class="form-group">
+                          <label for="humidityUpdateFrequency">Update Frequency</label>
+                          <select id="humidityUpdateFrequency">
+                            <option value="1m">Every minute</option>
+                            <option value="5m" selected>Every 5 minutes</option>
+                            <option value="15m">Every 15 minutes</option>
+                            <option value="30m">Every 30 minutes</option>
+                            <option value="1h">Every hour</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="humidityAlertMin">Alert Threshold (Minimum)</label>
+                          <div class="input-with-unit">
+                            <input type="number" id="humidityAlertMin" value="40">
+                            <span class="unit">%</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="humidityAlertMax">Alert Threshold (Maximum)</label>
+                          <div class="input-with-unit">
+                            <input type="number" id="humidityAlertMax" value="70">
+                            <span class="unit">%</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="toggle-label">Enable Sensor Alerts</label>
+                          <div class="toggle-wrapper">
+                            <label class="toggle">
+                              <input type="checkbox" checked>
+                              <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-status">On</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                          <button class="new-item-btn">Save Changes</button>
+                          <button class="new-item-btn">Cancel</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Appearance Settings -->
+                    <div class="settings-section" id="appearance-settings">
+                      <h2 class="settings-title">Appearance Settings</h2>
+                      
+                      <div class="settings-form">
+                        <div class="form-group">
+                          <label>Theme</label>
+                          <div class="theme-options">
+                            <div class="theme-option active">
+                              <div class="theme-preview light"></div>
+                              <span>Light</span>
+                            </div>
+                            <div class="theme-option">
+                              <div class="theme-preview dark"></div>
+                              <span>Dark</span>
+                            </div>
+                            <div class="theme-option">
+                              <div class="theme-preview system"></div>
+                              <span>System</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label>Color Accent</label>
+                          <div class="color-options">
+                            <div class="color-option active" style="background-color: #1e88e5;"></div>
+                            <div class="color-option" style="background-color: #26c6da;"></div>
+                            <div class="color-option" style="background-color: #66bb6a;"></div>
+                            <div class="color-option" style="background-color: #ffb74d;"></div>
+                            <div class="color-option" style="background-color: #ef5350;"></div>
+                            <div class="color-option" style="background-color: #ab47bc;"></div>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="fontSize">Font Size</label>
+                          <select id="fontSize">
+                            <option value="small">Small</option>
+                            <option value="medium" selected>Medium</option>
+                            <option value="large">Large</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="toggle-label">Animations</label>
+                          <div class="toggle-wrapper">
+                            <label class="toggle">
+                              <input type="checkbox" checked>
+                              <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-status">On</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label class="toggle-label">Compact Mode</label>
+                          <div class="toggle-wrapper">
+                            <label class="toggle">
+                              <input type="checkbox">
+                              <span class="toggle-slider"></span>
+                            </label>
+                            <span class="toggle-status">Off</span>
+                          </div>
+                        </div>
+                        
+                        <div class="form-actions">
+                          <button class="new-item-btn">Save Changes</button>
+                          <button class="new-item-btn">Reset to Default</button>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <!-- Export Data Settings -->
+                    <div class="settings-section" id="export-settings">
+                      <h2 class="settings-title">Export Data</h2>
+                      
+                      <div class="settings-form">
+                        <div class="export-options">
+                          <h3>Select Data to Export</h3>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox" checked>
+                              <span>Orders Data</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox" checked>
+                              <span>Temperature Sensor Data</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox" checked>
+                              <span>Humidity Sensor Data</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox">
+                              <span>Employee Records</span>
+                            </label>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label class="checkbox-label">
+                              <input type="checkbox">
+                              <span>Product Inventory</span>
+                            </label>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="dateRange">Date Range</label>
+                          <select id="dateRange">
+                            <option value="today">Today</option>
+                            <option value="yesterday">Yesterday</option>
+                            <option value="last7days" selected>Last 7 Days</option>
+                            <option value="last30days">Last 30 Days</option>
+                            <option value="custom">Custom Range</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-group date-range-custom" style="display: none;">
+                          <div class="date-inputs">
+                            <div>
+                              <label for="startDate">Start Date</label>
+                              <input type="date" id="startDate">
+                            </div>
+                            <div>
+                              <label for="endDate">End Date</label>
+                              <input type="date" id="endDate">
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div class="form-group">
+                          <label for="exportFormat">Export Format</label>
+                          <select id="exportFormat">
+                            <option value="csv" selected>CSV</option>
+                            <option value="json">JSON</option>
+                            <option value="excel">Excel</option>
+                            <option value="pdf">PDF</option>
+                          </select>
+                        </div>
+                        
+                        <div class="form-actions">
+                          <button class="new-item-btn">Export Data</button>
+                        </div>
+                        
+                        <div class="previous-exports">
+                          <h3>Previous Exports</h3>
+                          <div class="export-history">
+                            <div class="export-item">
+                              <div class="export-item-info">
+                                <p class="export-name">sensor-data-2023-10-15.csv</p>
+                                <p class="export-date">15 Oct 2023, 14:30</p>
+                              </div>
+                              <button class="new-item-btn">Download</button>
+                            </div>
+                            
+                            <div class="export-item">
+                              <div class="export-item-info">
+                                <p class="export-name">orders-2023-10-10.excel</p>
+                                <p class="export-date">10 Oct 2023, 09:15</p>
+                              </div>
+                              <button class="new-item-btn">Download</button>
+                            </div>
+                            
+                            <div class="export-item">
+                              <div class="export-item-info">
+                                <p class="export-name">full-report-2023-09-30.pdf</p>
+                                <p class="export-date">30 Sep 2023, 18:45</p>
+                              </div>
+                              <button class="new-item-btn">Download</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </main>
+          </div>
         </main>
     </div>
+    <script src="../js/settings.js"></script>
     <script src="../js/logout.js"></script>
 </body>
 </html>

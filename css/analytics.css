@@ -6,9 +6,9 @@
 
 .metric-card {
     background: white;
-    border-radius: 24px;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     display: grid;
     gap: 2rem;
     align-items: center;
@@ -85,9 +85,9 @@
 
 .chart-container-card {
     background: white;
-    border-radius: 24px;
+    border-radius: 0.5rem;
+    border: 1px solid var(--border-color);
     padding: 2rem;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
     gap: 2rem;
     margin-bottom: 2rem;
     width: 1100px;
