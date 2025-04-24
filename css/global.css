@@ -57,6 +57,13 @@ body {
     flex-direction: column;
     border-right: 1px solid #e5e7eb;
     box-shadow: 0 0 15px 2px rgba(0, 0, 0, 0.05);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 250px; /* Largeur fixe */
+    height: 100vh; /* Hauteur pleine */
+    overflow-y: auto; /* Barre de défilement si nécessaire */
+    z-index: 1000; /* S'assurer que la sidebar est toujours au-dessus des autres éléments */
 }
 
 .logo {
@@ -132,7 +139,9 @@ body {
 /* Main content styles */
 .main-content {
     flex: 1;
-    padding: 24px 32px;
+    margin-left: 250px; /* Décalage à gauche pour éviter que le contenu passe sous la sidebar */
+    padding: 20px; /* Pour espacer le contenu du bord de la page */
+    z-index: 500; /* Assurez-vous que le contenu principal soit sous la sidebar mais au-dessus du fond */
 }
 
 /* Header styles */

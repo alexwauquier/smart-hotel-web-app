@@ -13,7 +13,8 @@
     gap: 2rem;
     align-items: center;
     margin-bottom: 2rem;
-    width: 345px;
+    flex: 0 0 320px; /* Taille fixe raisonnable pour le résumé */
+    width: 100%;
 }
 
 .metric-header {
@@ -90,7 +91,15 @@
     padding: 2rem;
     gap: 2rem;
     margin-bottom: 2rem;
-    width: 1100px;
+    flex: 1;
+    min-width: 500px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.chart-container-card {
+
 }
 
 .temp-card {

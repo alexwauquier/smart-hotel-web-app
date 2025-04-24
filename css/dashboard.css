@@ -368,7 +368,7 @@
     font-size: 12px;
     font-weight: 500;
     color: var(--neutral-700);
-    text-align: right;
+    text-align: left;
   }
   
   /* Responsive Styles */
