@@ -6,6 +6,7 @@
     <title>Barcelo Hotel - Analytics</title>
     <link rel="stylesheet" href="../css/global.css">
     <link rel="stylesheet" href="../css/analytics.css">
+    <link rel="stylesheet" href="../css/notification.css">
     <link rel="icon" href="../svg/analytics.svg" type="image/svg+xml">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -65,12 +66,16 @@
                 </div>
 
                 <div class="user-actions">
-                    <button class="icon-btn">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"></rect><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path></svg>
-                    </button>
                     <button class="icon-btn notification">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
-                    </button>
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
+                             viewBox="0 0 24 24" fill="none" stroke="currentColor" 
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
+                          <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
+                        </svg>
+                      </button>
+                      <div id="notif-menu" class="notif-menu hidden">
+                      </div>
                     <div class="user-profile">
                         <img src="../images/titi.png" alt="Profile">
                         <div class="user-info">
@@ -211,6 +216,7 @@
             
         </main>
     </div>
+    <script src="../js/notification.js"></script>
     <script src="../js/logout.js"></script>
 </body>
 </html>

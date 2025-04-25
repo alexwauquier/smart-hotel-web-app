@@ -98,10 +98,6 @@
     justify-content: center;
 }
 
-.chart-container-card {
-
-}
-
 .temp-card {
     display: flex;
     gap: 2rem;
