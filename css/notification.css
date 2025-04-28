@@ -1,38 +1,38 @@
 .notif-menu {
-    position: absolute;
-    top: 60px;
-    width: 240px;
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    padding: 10px 0;
-    z-index: 999;
-    /* Positionner la flèche juste au-dessus du menu */
-    padding-top: 20px;  /* Ajouter de l'espace pour la flèche */
+  position: absolute;
+  top: 60px;
+  width: 240px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 10px 0;
+  z-index: 999;
+  /* Positionner la flèche juste au-dessus du menu */
+  padding-top: 20px;  /* Ajouter de l'espace pour la flèche */
 }
 
 .notif-menu::before {
-    content: "";
-    position: absolute;
-    top: -10px;  /* Positionner la flèche juste au-dessus du menu */
-    left: 20px; /* décalé de 40px depuis le bord gauche */
-    transform: translateX(-50%);
-    border-left: 7px solid transparent;
-    border-right: 7px solid transparent;
-    border-bottom: 10px solid #fff;  /* Couleur de la flèche */
+  content: "";
+  position: absolute;
+  top: -10px;  /* Positionner la flèche juste au-dessus du menu */
+  left: 20px; /* décalé de 40px depuis le bord gauche */
+  transform: translateX(-50%);
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-bottom: 10px solid #fff;  /* Couleur de la flèche */
 }
 
 .notif-item {
-    padding: 10px 16px;
-    font-size: 14px;
-    border-bottom: 1px solid #eee;
-    cursor: default;
+  padding: 10px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid #eee;
+  cursor: default;
 }
 
 .notif-item:last-child {
-    border-bottom: none;
+  border-bottom: none;
 }
 
 .hidden {
-    display: none;
+  display: none;
 }
