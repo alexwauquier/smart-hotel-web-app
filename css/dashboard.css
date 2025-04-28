@@ -15,13 +15,12 @@
     padding: 24px;
     display: flex;
     align-items: center;
-    box-shadow: var(--box-shadow);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
   .summary-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--box-shadow-medium);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.04); /* ombre plus forte au survol */
   }
   
   .card-icon {
@@ -176,7 +175,7 @@
   
   .chart-controls select {
     padding: 6px 12px;
-    border-radius: var(--border-radius);
+    border-radius: 0.5rem;
     border: 1px solid var(--neutral-300);
     background-color: white;
     font-size: 14px;
@@ -209,7 +208,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 16px;
+    margin-bottom: 30px;
   }
   
   .section-header h3 {

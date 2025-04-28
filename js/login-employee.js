@@ -6,6 +6,7 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
   // Récupérer les valeurs des champs
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
+  const rememberMe = document.getElementById("remember").checked; // <- Nouveau
 
   // Créer l'objet à envoyer dans la requête POST
   const credentials = { username, password };
@@ -23,16 +24,23 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
     // Vérifier la réponse
     if (response.ok) {
       const data = await response.json();
-      localStorage.token = data.token;
-      console.log("Le token est ", localStorage.token);
+
+      // Selon "Remember me", stocker dans localStorage ou sessionStorage
+      if (rememberMe) {
+        localStorage.setItem("token", data.token);
+      } else {
+        sessionStorage.setItem("token", data.token);
+      }
+
+      console.log("Le token est ", rememberMe ? localStorage.token : sessionStorage.token);
 
       // Affichage de la bulle de succès
       Swal.fire({
-        title: "Successful login !",
+        title: "Successful login!",
         text: "Welcome to your space.",
         icon: "success",
-        showConfirmButton: false, // Supprime le bouton
-        timer: 2000 // Ferme la popup après 2 secondes (2000 ms)
+        showConfirmButton: false,
+        timer: 2000
       }).then(() => {
         window.location.href = "dashboard.html"; // Redirection automatique
       });

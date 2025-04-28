@@ -63,7 +63,6 @@ body {
     width: 250px; /* Largeur fixe */
     height: 100vh; /* Hauteur pleine */
     overflow-y: auto; /* Barre de défilement si nécessaire */
-    z-index: 1000; /* S'assurer que la sidebar est toujours au-dessus des autres éléments */
 }
 
 .logo {

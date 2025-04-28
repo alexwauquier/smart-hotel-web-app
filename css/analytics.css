@@ -25,13 +25,13 @@
 }
 
 .metric-header h2 {
-    font-size: 1.25rem;
-    color: #1a1a1a;
-    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--neutral-600);
+    font-weight: 500;
 }
 
 .status {
-    padding: 0.5rem 1rem;
+    padding: 0.5rem 0.7rem;
     background: #e7f5ff;
     color: #228be6;
     border-radius: 20px;

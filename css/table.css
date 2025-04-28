@@ -256,10 +256,6 @@
     padding: 4px;
 }
 
-.action-btn:hover {
-    text-decoration: underline;
-}
-
 .action-btn.delete {
     background-color: var(--danger-color);
     color: white;

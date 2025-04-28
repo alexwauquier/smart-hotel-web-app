@@ -197,18 +197,5 @@ document.addEventListener('DOMContentLoaded', function() {
       
       return data;
     }
-    
-    // Add animations for summary cards
-    const summaryCards = document.querySelectorAll('.summary-card');
-    summaryCards.forEach(card => {
-      card.addEventListener('mouseenter', function() {
-        this.style.transform = 'translateY(-5px)';
-        this.style.boxShadow = '0 8px 16px rgba(0, 0, 0, 0.1)';
-      });
-      
-      card.addEventListener('mouseleave', function() {
-        this.style.transform = 'translateY(0)';
-        this.style.boxShadow = '0 2px 4px rgba(0, 0, 0, 0.1)';
-      });
-    });
-  });
+  }
+);
