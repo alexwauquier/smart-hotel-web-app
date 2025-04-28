@@ -70,6 +70,30 @@ const tableData = {
       { id: '#SO-00012', name: 'Whiskey Sour', type: 'Alcoholic' }
     ]
   },
+  customers: {
+    id: 'customers',
+    name: 'Customer',
+    columns: [
+      { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
+      { id: 'id', label: 'Customer ID', accessor: 'id', sortable: true, filterable: true },
+      { id: 'name', label: 'Customer Name', accessor: 'name', sortable: true, filterable: true },
+      { id: 'email', label: 'Email', accessor: 'email', sortable: true, filterable: true },
+      { id: 'status', label: 'Status', accessor: 'status', sortable: true, filterable: true },
+      { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
+    ],
+    data: [
+      { id: '#CU-00001', name: 'John Doe', email: 'johndoe@example.com', status: 'Active' },
+      { id: '#CU-00002', name: 'Jane Smith', email: 'janesmith@example.com', status: 'Inactive' },
+      { id: '#CU-00003', name: 'Alice Johnson', email: 'alicej@example.com', status: 'Active' },
+      { id: '#CU-00004', name: 'Bob Brown', email: 'bobbrown@example.com', status: 'Active' },
+      { id: '#CU-00005', name: 'Charlie White', email: 'charliew@example.com', status: 'Inactive' },
+      { id: '#CU-00006', name: 'David Lee', email: 'davidlee@example.com', status: 'Active' },
+      { id: '#CU-00007', name: 'Eve Black', email: 'eveblack@example.com', status: 'Active' },
+      { id: '#CU-00008', name: 'Frank Green', email: 'frankgreen@example.com', status: 'Inactive' },
+      { id: '#CU-00009', name: 'Grace Blue', email: 'graceblue@example.com', status: 'Active' },
+      { id: '#CU-00010', name: 'Hank Grey', email: 'hankgrey@example.com', status: 'Inactive' }
+    ]
+  },
   dashboard: {
     id: 'dashboard',
     name: 'Dashboard',
