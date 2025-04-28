@@ -1,577 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Barcelo Hotel - Settings</title>
-    <link rel="stylesheet" href="../css/global.css">
-    <link rel="stylesheet" href="../css/settings.css">
-    <link rel="stylesheet" href="../css/notification.css">
-    <link rel="icon" href="../svg/settings.svg" type="image/svg+xml">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="../js/verif.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Barcelo Hotel - Settings</title>
+  <link rel="stylesheet" href="../css/global.css">
+  <link rel="stylesheet" href="../css/settings.css">
+  <link rel="stylesheet" href="../css/notification.css">
+  <link rel="icon" href="../svg/settings.svg" type="image/svg+xml">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="../js/verif.js"></script>
 </head>
 <body>
-    <div class="container">
-        <!-- Sidebar -->
-        <aside class="sidebar">
-            <!-- Logo -->
-            <div class="logo">
-                <img src="../images/logo.png" alt="Barcel Hotel">
+  <div class="container">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <!-- Logo -->
+      <div class="logo">
+        <img src="../images/logo.png" alt="Barcel Hotel">
+      </div>
+
+      <!-- Navigation Menu -->
+      <nav class="nav-menu">
+        <a href="dashboard.html" class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+          <span>Dashboard</span>
+        </a>
+        <a href="order.html" class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+          <span>Order</span>
+        </a>
+        <a href="customer.html" class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 18.0039V17C19 15.8954 18.1046 15 17 15C15.8954 15 15 15.8954 15 17V18.0039M10 21H4C4 17.134 7.13401 14 11 14C11.3395 14 11.6734 14.0242 12 14.0709M15.5 21H18.5C18.9659 21 19.1989 21 19.3827 20.9239C19.6277 20.8224 19.8224 20.6277 19.9239 20.3827C20 20.1989 20 19.9659 20 19.5C20 19.0341 20 18.8011 19.9239 18.6173C19.8224 18.3723 19.6277 18.1776 19.3827 18.0761C19.1989 18 18.9659 18 18.5 18H15.5C15.0341 18 14.8011 18 14.6173 18.0761C14.3723 18.1776 14.1776 18.3723 14.0761 18.6173C14 18.8011 14 19.0341 14 19.5C14 19.9659 14 20.1989 14.0761 20.3827C14.1776 20.6277 14.3723 20.8224 14.6173 20.9239C14.8011 21 15.0341 21 15.5 21ZM15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>                    
+          <span>Customer</span>
+        </a>
+        <a href="analytics.html" class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
+          <span>Analytics</span>
+        </a>
+        <a href="product.html" class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
+          <span>Product</span>
+        </a>
+        <a href="employee.html" class="nav-item">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+          <span>Employee</span>
+        </a>
+        <a href="settings.html" class="nav-item active">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+          <span>Settings</span>
+        </a>
+      </nav>
+
+      <!-- Logout Button -->
+      <button class="logout-btn" id="logout-btn">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
+        <span>Log out</span>
+      </button>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+      <!-- Header -->
+      <header class="header">
+        <div class="search-bar">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="text" placeholder="Search">
+        </div>
+
+        <div class="user-actions">
+          <button class="icon-btn notification">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path></svg>
+          </button>
+          <div id="notif-menu" class="notif-menu hidden"></div>
+          <div class="user-profile">
+            <img src="../images/titi.png" alt="Profile">
+            <div class="user-info">
+              <div class="user-name">Administrator</div>
+              <div class="user-email">administrator@gmail.com</div>
             </div>
+          </div>
+        </div>
+      </header>
 
-            <!-- Navigation Menu -->
-            <nav class="nav-menu">
-                <a href="dashboard.html" class="nav-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
-                    <span>Dashboard</span>
-                </a>
-                <a href="order.html" class="nav-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
-                    <span>Order</span>
-                </a>
-                <a href="customer.html" class="nav-item">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 18.0039V17C19 15.8954 18.1046 15 17 15C15.8954 15 15 15.8954 15 17V18.0039M10 21H4C4 17.134 7.13401 14 11 14C11.3395 14 11.6734 14.0242 12 14.0709M15.5 21H18.5C18.9659 21 19.1989 21 19.3827 20.9239C19.6277 20.8224 19.8224 20.6277 19.9239 20.3827C20 20.1989 20 19.9659 20 19.5C20 19.0341 20 18.8011 19.9239 18.6173C19.8224 18.3723 19.6277 18.1776 19.3827 18.0761C19.1989 18 18.9659 18 18.5 18H15.5C15.0341 18 14.8011 18 14.6173 18.0761C14.3723 18.1776 14.1776 18.3723 14.0761 18.6173C14 18.8011 14 19.0341 14 19.5C14 19.9659 14 20.1989 14.0761 20.3827C14.1776 20.6277 14.3723 20.8224 14.6173 20.9239C14.8011 21 15.0341 21 15.5 21ZM15 7C15 9.20914 13.2091 11 11 11C8.79086 11 7 9.20914 7 7C7 4.79086 8.79086 3 11 3C13.2091 3 15 4.79086 15 7Z" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>                    
-                  <span>Customer</span>
-                </a>
-                <a href="analytics.html" class="nav-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"></path><path d="m19 9-5 5-4-4-3 3"></path></svg>
-                    <span>Analytics</span>
-                </a>
-                <a href="product.html" class="nav-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path></svg>
-                    <span>Product</span>
-                </a>
-                <a href="employee.html" class="nav-item">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
-                    <span>Employee</span>
-                </a>
-                <a href="settings.html" class="nav-item active">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12.22 2h-.44a2 2 0 0 0-2 2v.18a2 2 0 0 1-1 1.73l-.43.25a2 2 0 0 1-2 0l-.15-.08a2 2 0 0 0-2.73.73l-.22.38a2 2 0 0 0 .73 2.73l.15.1a2 2 0 0 1 1 1.72v.51a2 2 0 0 1-1 1.74l-.15.09a2 2 0 0 0-.73 2.73l.22.38a2 2 0 0 0 2.73.73l.15-.08a2 2 0 0 1 2 0l.43.25a2 2 0 0 1 1 1.73V20a2 2 0 0 0 2 2h.44a2 2 0 0 0 2-2v-.18a2 2 0 0 1 1-1.73l.43-.25a2 2 0 0 1 2 0l.15.08a2 2 0 0 0 2.73-.73l.22-.39a2 2 0 0 0-.73-2.73l-.15-.08a2 2 0 0 1-1-1.74v-.5a2 2 0 0 1 1-1.74l.15-.09a2 2 0 0 0 .73-2.73l-.22-.38a2 2 0 0 0-2.73-.73l-.15.08a2 2 0 0 1-2 0l-.43-.25a2 2 0 0 1-1-1.73V4a2 2 0 0 0-2-2z"></path><circle cx="12" cy="12" r="3"></circle></svg>
-                    <span>Settings</span>
-                </a>
-            </nav>
-
-            <!-- Logout Button -->
-            <button class="logout-btn" id="logout-btn">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"></path><polyline points="16 17 21 12 16 7"></polyline><line x1="21" y1="12" x2="9" y2="12"></line></svg>
-                <span>Log out</span>
-            </button>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="main-content">
-            <!-- Header -->
-            <header class="header">
-                <div class="search-bar">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
-                    <input type="text" placeholder="Search">
-                </div>
-
-                <div class="user-actions">
-                  <button class="icon-btn notification">
-                      <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" 
-                           viewBox="0 0 24 24" fill="none" stroke="currentColor" 
-                           stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                        <path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"></path>
-                        <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
-                      </svg>
-                    </button>
-                    <div id="notif-menu" class="notif-menu hidden">
-                    </div>
-                  <div class="user-profile">
-                      <img src="../images/titi.png" alt="Profile">
-                      <div class="user-info">
-                          <div class="user-name">Administrator</div>
-                          <div class="user-email">administrator@gmail.com</div>
-                      </div>
+      <!-- Order Content -->
+      <h1>Settings</h1>
+      <div class="content-wrapper">
+        <div class="settings-container">
+          <!-- Settings Navigation -->
+          <div class="settings-nav">
+            <ul>
+              <li class="settings-nav-item active" data-target="account-settings">
+                <i class="icon user-icon"></i>
+                <span>Account</span>
+              </li>
+              <li class="settings-nav-item" data-target="notification-settings">
+                <i class="icon notification-icon"></i>
+                <span>Notifications</span>
+              </li>
+              <li class="settings-nav-item" data-target="system-settings">
+                <i class="icon system-icon"></i>
+                <span>System</span>
+              </li>
+              <li class="settings-nav-item" data-target="sensor-settings">
+                <i class="icon sensor-icon"></i>
+                <span>Sensors</span>
+              </li>
+              <li class="settings-nav-item" data-target="appearance-settings">
+                <i class="icon appearance-icon"></i>
+                <span>Appearance</span>
+              </li>
+              <li class="settings-nav-item" data-target="export-settings">
+                <i class="icon export-icon"></i>
+                <span>Export Data</span>
+              </li>
+            </ul>
+          </div>
+          
+          <!-- Settings Content -->
+          <div class="settings-content">
+            <!-- Account Settings -->
+            <div class="settings-section active" id="account-settings">
+              <h2 class="settings-title">Account Settings</h2>
+              
+              <div class="settings-form">
+                <div class="form-group">
+                  <label for="profilePicture">Profile Picture</label>
+                  <div class="profile-picture-upload">
+                    <button class="new-item-btn">Change Picture</button>
                   </div>
-              </div>
-            </header>
-
-            <!-- Order Content -->
-            <h1>Settings</h1>
-            <div class="content-wrapper">
+                </div>
                 
-                <div class="settings-container">
-                  <!-- Settings Navigation -->
-                  <div class="settings-nav">
-                    <ul>
-                      <li class="settings-nav-item active" data-target="account-settings">
-                        <i class="icon user-icon"></i>
-                        <span>Account</span>
-                      </li>
-                      <li class="settings-nav-item" data-target="notification-settings">
-                        <i class="icon notification-icon"></i>
-                        <span>Notifications</span>
-                      </li>
-                      <li class="settings-nav-item" data-target="system-settings">
-                        <i class="icon system-icon"></i>
-                        <span>System</span>
-                      </li>
-                      <li class="settings-nav-item" data-target="sensor-settings">
-                        <i class="icon sensor-icon"></i>
-                        <span>Sensors</span>
-                      </li>
-                      <li class="settings-nav-item" data-target="appearance-settings">
-                        <i class="icon appearance-icon"></i>
-                        <span>Appearance</span>
-                      </li>
-                      <li class="settings-nav-item" data-target="export-settings">
-                        <i class="icon export-icon"></i>
-                        <span>Export Data</span>
-                      </li>
-                    </ul>
+                <div class="form-group">
+                  <label for="fullName">Full Name</label>
+                  <input type="text" id="fullName" value="Administrator">
+                </div>
+                
+                <div class="form-group">
+                  <label for="email">Email</label>
+                  <input type="email" id="email" value="administrator@gmail.com">
+                </div>
+                
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="password" id="password" value="••••••••••">
+                </div>
+                
+                <div class="form-group">
+                  <label for="role">Role</label>
+                  <select id="role">
+                    <option value="admin" selected>Administrator</option>
+                    <option value="manager">Manager</option>
+                    <option value="staff">Staff</option>
+                  </select>
+                </div>
+                
+                <div class="form-actions">
+                  <button class="new-item-btn">Save Changes</button>
+                  <button class="new-item-btn">Cancel</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Notification Settings -->
+            <div class="settings-section" id="notification-settings">
+              <h2 class="settings-title">Notification Settings</h2>
+              
+              <div class="settings-form">
+                <div class="form-group">
+                  <label class="toggle-label">Email Notifications</label>
+                  <div class="toggle-wrapper">
+                    <label class="toggle">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-status">On</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="toggle-label">Browser Notifications</label>
+                  <div class="toggle-wrapper">
+                    <label class="toggle">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-status">On</span>
+                  </div>
+                </div>
+                
+                <div class="notification-categories">
+                  <h3>Notification Categories</h3>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" checked>
+                      <span>New Orders</span>
+                    </label>
                   </div>
                   
-                  <!-- Settings Content -->
-                  <div class="settings-content">
-                    <!-- Account Settings -->
-                    <div class="settings-section active" id="account-settings">
-                      <h2 class="settings-title">Account Settings</h2>
-                      
-                      <div class="settings-form">
-                        <div class="form-group">
-                          <label for="profilePicture">Profile Picture</label>
-                          <div class="profile-picture-upload">
-                            <button class="new-item-btn">Change Picture</button>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="fullName">Full Name</label>
-                          <input type="text" id="fullName" value="Administrator">
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="email">Email</label>
-                          <input type="email" id="email" value="administrator@gmail.com">
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="password">Password</label>
-                          <input type="password" id="password" value="••••••••••">
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="role">Role</label>
-                          <select id="role">
-                            <option value="admin" selected>Administrator</option>
-                            <option value="manager">Manager</option>
-                            <option value="staff">Staff</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <button class="new-item-btn">Save Changes</button>
-                          <button class="new-item-btn">Cancel</button>
-                        </div>
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" checked>
+                      <span>Temperature Alerts</span>
+                    </label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" checked>
+                      <span>Humidity Alerts</span>
+                    </label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" checked>
+                      <span>Employee Check-ins</span>
+                    </label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox">
+                      <span>System Updates</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="form-actions">
+                  <button class="new-item-btn">Save Changes</button>
+                  <button class="new-item-btn">Cancel</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- System Settings -->
+            <div class="settings-section" id="system-settings">
+              <h2 class="settings-title">System Settings</h2>
+              
+              <div class="settings-form">
+                <div class="form-group">
+                  <label for="language">Language</label>
+                  <select id="language">
+                    <option value="en" selected>English</option>
+                    <option value="fr">Français</option>
+                    <option value="es">Español</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="dateFormat">Date Format</label>
+                  <select id="dateFormat">
+                    <option value="dmy" selected>DD/MM/YYYY</option>
+                    <option value="mdy">MM/DD/YYYY</option>
+                    <option value="ymd">YYYY/MM/DD</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="timeFormat">Time Format</label>
+                  <select id="timeFormat">
+                    <option value="24h" selected>24 Hour</option>
+                    <option value="12h">12 Hour (AM/PM)</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="temperatureUnit">Temperature Unit</label>
+                  <select id="temperatureUnit">
+                    <option value="celsius" selected>Celsius (°C)</option>
+                    <option value="fahrenheit">Fahrenheit (°F)</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label class="toggle-label">Automatic Updates</label>
+                  <div class="toggle-wrapper">
+                    <label class="toggle">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-status">On</span>
+                  </div>
+                </div>
+                
+                <div class="form-actions">
+                  <button class="new-item-btn">Save Changes</button>
+                  <button class="new-item-btn">Cancel</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Sensor Settings -->
+            <div class="settings-section" id="sensor-settings">
+              <h2 class="settings-title">Sensor Settings</h2>
+              
+              <div class="settings-form">
+                <h3>Temperature Sensors</h3>
+                <div class="form-group">
+                  <label for="tempUpdateFrequency">Update Frequency</label>
+                  <select id="tempUpdateFrequency">
+                    <option value="1m">Every minute</option>
+                    <option value="5m" selected>Every 5 minutes</option>
+                    <option value="15m">Every 15 minutes</option>
+                    <option value="30m">Every 30 minutes</option>
+                    <option value="1h">Every hour</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="tempAlertMin">Alert Threshold (Minimum)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="tempAlertMin" value="18">
+                    <span class="unit">°C</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="tempAlertMax">Alert Threshold (Maximum)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="tempAlertMax" value="26">
+                    <span class="unit">°C</span>
+                  </div>
+                </div>
+                
+                <h3>Humidity Sensors</h3>
+                <div class="form-group">
+                  <label for="humidityUpdateFrequency">Update Frequency</label>
+                  <select id="humidityUpdateFrequency">
+                    <option value="1m">Every minute</option>
+                    <option value="5m" selected>Every 5 minutes</option>
+                    <option value="15m">Every 15 minutes</option>
+                    <option value="30m">Every 30 minutes</option>
+                    <option value="1h">Every hour</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label for="humidityAlertMin">Alert Threshold (Minimum)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="humidityAlertMin" value="40">
+                    <span class="unit">%</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="humidityAlertMax">Alert Threshold (Maximum)</label>
+                  <div class="input-with-unit">
+                    <input type="number" id="humidityAlertMax" value="70">
+                    <span class="unit">%</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="toggle-label">Enable Sensor Alerts</label>
+                  <div class="toggle-wrapper">
+                    <label class="toggle">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-status">On</span>
+                  </div>
+                </div>
+                
+                <div class="form-actions">
+                  <button class="new-item-btn">Save Changes</button>
+                  <button class="new-item-btn">Cancel</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Appearance Settings -->
+            <div class="settings-section" id="appearance-settings">
+              <h2 class="settings-title">Appearance Settings</h2>
+              
+              <div class="settings-form">
+                <div class="form-group">
+                  <label>Theme</label>
+                  <div class="theme-options">
+                    <div class="theme-option active">
+                      <div class="theme-preview light"></div>
+                      <span>Light</span>
+                    </div>
+                    <div class="theme-option">
+                      <div class="theme-preview dark"></div>
+                      <span>Dark</span>
+                    </div>
+                    <div class="theme-option">
+                      <div class="theme-preview system"></div>
+                      <span>System</span>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label>Color Accent</label>
+                  <div class="color-options">
+                    <div class="color-option active" style="background-color: #1e88e5;"></div>
+                    <div class="color-option" style="background-color: #26c6da;"></div>
+                    <div class="color-option" style="background-color: #66bb6a;"></div>
+                    <div class="color-option" style="background-color: #ffb74d;"></div>
+                    <div class="color-option" style="background-color: #ef5350;"></div>
+                    <div class="color-option" style="background-color: #ab47bc;"></div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="fontSize">Font Size</label>
+                  <select id="fontSize">
+                    <option value="small">Small</option>
+                    <option value="medium" selected>Medium</option>
+                    <option value="large">Large</option>
+                  </select>
+                </div>
+                
+                <div class="form-group">
+                  <label class="toggle-label">Animations</label>
+                  <div class="toggle-wrapper">
+                    <label class="toggle">
+                      <input type="checkbox" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-status">On</span>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label class="toggle-label">Compact Mode</label>
+                  <div class="toggle-wrapper">
+                    <label class="toggle">
+                      <input type="checkbox">
+                      <span class="toggle-slider"></span>
+                    </label>
+                    <span class="toggle-status">Off</span>
+                  </div>
+                </div>
+                
+                <div class="form-actions">
+                  <button class="new-item-btn">Save Changes</button>
+                  <button class="new-item-btn">Reset to Default</button>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Export Data Settings -->
+            <div class="settings-section" id="export-settings">
+              <h2 class="settings-title">Export Data</h2>
+              
+              <div class="settings-form">
+                <div class="export-options">
+                  <h3>Select Data to Export</h3>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" checked>
+                      <span>Orders Data</span>
+                    </label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" checked>
+                      <span>Temperature Sensor Data</span>
+                    </label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox" checked>
+                      <span>Humidity Sensor Data</span>
+                    </label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox">
+                      <span>Employee Records</span>
+                    </label>
+                  </div>
+                  
+                  <div class="form-group">
+                    <label class="checkbox-label">
+                      <input type="checkbox">
+                      <span>Product Inventory</span>
+                    </label>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="dateRange">Date Range</label>
+                  <select id="dateRange">
+                    <option value="today">Today</option>
+                    <option value="yesterday">Yesterday</option>
+                    <option value="last7days" selected>Last 7 Days</option>
+                    <option value="last30days">Last 30 Days</option>
+                    <option value="custom">Custom Range</option>
+                  </select>
+                </div>
+                
+                <div class="form-group date-range-custom" style="display: none;">
+                  <div class="date-inputs">
+                    <div>
+                      <label for="startDate">Start Date</label>
+                      <input type="date" id="startDate">
+                    </div>
+                    <div>
+                      <label for="endDate">End Date</label>
+                      <input type="date" id="endDate">
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="form-group">
+                  <label for="exportFormat">Export Format</label>
+                  <select id="exportFormat">
+                    <option value="csv" selected>CSV</option>
+                    <option value="json">JSON</option>
+                    <option value="excel">Excel</option>
+                    <option value="pdf">PDF</option>
+                  </select>
+                </div>
+                
+                <div class="form-actions">
+                  <button class="new-item-btn">Export Data</button>
+                </div>
+                
+                <div class="previous-exports">
+                  <h3>Previous Exports</h3>
+                  <div class="export-history">
+                    <div class="export-item">
+                      <div class="export-item-info">
+                        <p class="export-name">sensor-data-2023-10-15.csv</p>
+                        <p class="export-date">15 Oct 2023, 14:30</p>
                       </div>
+                      <button class="new-item-btn">Download</button>
                     </div>
                     
-                    <!-- Notification Settings -->
-                    <div class="settings-section" id="notification-settings">
-                      <h2 class="settings-title">Notification Settings</h2>
-                      
-                      <div class="settings-form">
-                        <div class="form-group">
-                          <label class="toggle-label">Email Notifications</label>
-                          <div class="toggle-wrapper">
-                            <label class="toggle">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-status">On</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label class="toggle-label">Browser Notifications</label>
-                          <div class="toggle-wrapper">
-                            <label class="toggle">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-status">On</span>
-                          </div>
-                        </div>
-                        
-                        <div class="notification-categories">
-                          <h3>Notification Categories</h3>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox" checked>
-                              <span>New Orders</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox" checked>
-                              <span>Temperature Alerts</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox" checked>
-                              <span>Humidity Alerts</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox" checked>
-                              <span>Employee Check-ins</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox">
-                              <span>System Updates</span>
-                            </label>
-                          </div>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <button class="new-item-btn">Save Changes</button>
-                          <button class="new-item-btn">Cancel</button>
-                        </div>
+                    <div class="export-item">
+                      <div class="export-item-info">
+                        <p class="export-name">orders-2023-10-10.excel</p>
+                        <p class="export-date">10 Oct 2023, 09:15</p>
                       </div>
+                      <button class="new-item-btn">Download</button>
                     </div>
                     
-                    <!-- System Settings -->
-                    <div class="settings-section" id="system-settings">
-                      <h2 class="settings-title">System Settings</h2>
-                      
-                      <div class="settings-form">
-                        <div class="form-group">
-                          <label for="language">Language</label>
-                          <select id="language">
-                            <option value="en" selected>English</option>
-                            <option value="fr">Français</option>
-                            <option value="es">Español</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="dateFormat">Date Format</label>
-                          <select id="dateFormat">
-                            <option value="dmy" selected>DD/MM/YYYY</option>
-                            <option value="mdy">MM/DD/YYYY</option>
-                            <option value="ymd">YYYY/MM/DD</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="timeFormat">Time Format</label>
-                          <select id="timeFormat">
-                            <option value="24h" selected>24 Hour</option>
-                            <option value="12h">12 Hour (AM/PM)</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="temperatureUnit">Temperature Unit</label>
-                          <select id="temperatureUnit">
-                            <option value="celsius" selected>Celsius (°C)</option>
-                            <option value="fahrenheit">Fahrenheit (°F)</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label class="toggle-label">Automatic Updates</label>
-                          <div class="toggle-wrapper">
-                            <label class="toggle">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-status">On</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <button class="new-item-btn">Save Changes</button>
-                          <button class="new-item-btn">Cancel</button>
-                        </div>
+                    <div class="export-item">
+                      <div class="export-item-info">
+                        <p class="export-name">full-report-2023-09-30.pdf</p>
+                        <p class="export-date">30 Sep 2023, 18:45</p>
                       </div>
-                    </div>
-                    
-                    <!-- Sensor Settings -->
-                    <div class="settings-section" id="sensor-settings">
-                      <h2 class="settings-title">Sensor Settings</h2>
-                      
-                      <div class="settings-form">
-                        <h3>Temperature Sensors</h3>
-                        <div class="form-group">
-                          <label for="tempUpdateFrequency">Update Frequency</label>
-                          <select id="tempUpdateFrequency">
-                            <option value="1m">Every minute</option>
-                            <option value="5m" selected>Every 5 minutes</option>
-                            <option value="15m">Every 15 minutes</option>
-                            <option value="30m">Every 30 minutes</option>
-                            <option value="1h">Every hour</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="tempAlertMin">Alert Threshold (Minimum)</label>
-                          <div class="input-with-unit">
-                            <input type="number" id="tempAlertMin" value="18">
-                            <span class="unit">°C</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="tempAlertMax">Alert Threshold (Maximum)</label>
-                          <div class="input-with-unit">
-                            <input type="number" id="tempAlertMax" value="26">
-                            <span class="unit">°C</span>
-                          </div>
-                        </div>
-                        
-                        <h3>Humidity Sensors</h3>
-                        <div class="form-group">
-                          <label for="humidityUpdateFrequency">Update Frequency</label>
-                          <select id="humidityUpdateFrequency">
-                            <option value="1m">Every minute</option>
-                            <option value="5m" selected>Every 5 minutes</option>
-                            <option value="15m">Every 15 minutes</option>
-                            <option value="30m">Every 30 minutes</option>
-                            <option value="1h">Every hour</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="humidityAlertMin">Alert Threshold (Minimum)</label>
-                          <div class="input-with-unit">
-                            <input type="number" id="humidityAlertMin" value="40">
-                            <span class="unit">%</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="humidityAlertMax">Alert Threshold (Maximum)</label>
-                          <div class="input-with-unit">
-                            <input type="number" id="humidityAlertMax" value="70">
-                            <span class="unit">%</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label class="toggle-label">Enable Sensor Alerts</label>
-                          <div class="toggle-wrapper">
-                            <label class="toggle">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-status">On</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <button class="new-item-btn">Save Changes</button>
-                          <button class="new-item-btn">Cancel</button>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <!-- Appearance Settings -->
-                    <div class="settings-section" id="appearance-settings">
-                      <h2 class="settings-title">Appearance Settings</h2>
-                      
-                      <div class="settings-form">
-                        <div class="form-group">
-                          <label>Theme</label>
-                          <div class="theme-options">
-                            <div class="theme-option active">
-                              <div class="theme-preview light"></div>
-                              <span>Light</span>
-                            </div>
-                            <div class="theme-option">
-                              <div class="theme-preview dark"></div>
-                              <span>Dark</span>
-                            </div>
-                            <div class="theme-option">
-                              <div class="theme-preview system"></div>
-                              <span>System</span>
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label>Color Accent</label>
-                          <div class="color-options">
-                            <div class="color-option active" style="background-color: #1e88e5;"></div>
-                            <div class="color-option" style="background-color: #26c6da;"></div>
-                            <div class="color-option" style="background-color: #66bb6a;"></div>
-                            <div class="color-option" style="background-color: #ffb74d;"></div>
-                            <div class="color-option" style="background-color: #ef5350;"></div>
-                            <div class="color-option" style="background-color: #ab47bc;"></div>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="fontSize">Font Size</label>
-                          <select id="fontSize">
-                            <option value="small">Small</option>
-                            <option value="medium" selected>Medium</option>
-                            <option value="large">Large</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label class="toggle-label">Animations</label>
-                          <div class="toggle-wrapper">
-                            <label class="toggle">
-                              <input type="checkbox" checked>
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-status">On</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label class="toggle-label">Compact Mode</label>
-                          <div class="toggle-wrapper">
-                            <label class="toggle">
-                              <input type="checkbox">
-                              <span class="toggle-slider"></span>
-                            </label>
-                            <span class="toggle-status">Off</span>
-                          </div>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <button class="new-item-btn">Save Changes</button>
-                          <button class="new-item-btn">Reset to Default</button>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <!-- Export Data Settings -->
-                    <div class="settings-section" id="export-settings">
-                      <h2 class="settings-title">Export Data</h2>
-                      
-                      <div class="settings-form">
-                        <div class="export-options">
-                          <h3>Select Data to Export</h3>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox" checked>
-                              <span>Orders Data</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox" checked>
-                              <span>Temperature Sensor Data</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox" checked>
-                              <span>Humidity Sensor Data</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox">
-                              <span>Employee Records</span>
-                            </label>
-                          </div>
-                          
-                          <div class="form-group">
-                            <label class="checkbox-label">
-                              <input type="checkbox">
-                              <span>Product Inventory</span>
-                            </label>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="dateRange">Date Range</label>
-                          <select id="dateRange">
-                            <option value="today">Today</option>
-                            <option value="yesterday">Yesterday</option>
-                            <option value="last7days" selected>Last 7 Days</option>
-                            <option value="last30days">Last 30 Days</option>
-                            <option value="custom">Custom Range</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-group date-range-custom" style="display: none;">
-                          <div class="date-inputs">
-                            <div>
-                              <label for="startDate">Start Date</label>
-                              <input type="date" id="startDate">
-                            </div>
-                            <div>
-                              <label for="endDate">End Date</label>
-                              <input type="date" id="endDate">
-                            </div>
-                          </div>
-                        </div>
-                        
-                        <div class="form-group">
-                          <label for="exportFormat">Export Format</label>
-                          <select id="exportFormat">
-                            <option value="csv" selected>CSV</option>
-                            <option value="json">JSON</option>
-                            <option value="excel">Excel</option>
-                            <option value="pdf">PDF</option>
-                          </select>
-                        </div>
-                        
-                        <div class="form-actions">
-                          <button class="new-item-btn">Export Data</button>
-                        </div>
-                        
-                        <div class="previous-exports">
-                          <h3>Previous Exports</h3>
-                          <div class="export-history">
-                            <div class="export-item">
-                              <div class="export-item-info">
-                                <p class="export-name">sensor-data-2023-10-15.csv</p>
-                                <p class="export-date">15 Oct 2023, 14:30</p>
-                              </div>
-                              <button class="new-item-btn">Download</button>
-                            </div>
-                            
-                            <div class="export-item">
-                              <div class="export-item-info">
-                                <p class="export-name">orders-2023-10-10.excel</p>
-                                <p class="export-date">10 Oct 2023, 09:15</p>
-                              </div>
-                              <button class="new-item-btn">Download</button>
-                            </div>
-                            
-                            <div class="export-item">
-                              <div class="export-item-info">
-                                <p class="export-name">full-report-2023-09-30.pdf</p>
-                                <p class="export-date">30 Sep 2023, 18:45</p>
-                              </div>
-                              <button class="new-item-btn">Download</button>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                      <button class="new-item-btn">Download</button>
                     </div>
                   </div>
                 </div>
               </div>
-            </main>
+            </div>
           </div>
-        </main>
-    </div>
-    <script src="../js/notification.js"></script>
-    <script src="../js/settings.js"></script>
-    <script src="../js/logout.js"></script>
+        </div>
+      </div>
+    </main>
+  </div>
+
+  <script src="../js/notification.js"></script>
+  <script src="../js/settings.js"></script>
+  <script src="../js/logout.js"></script>
 </body>
 </html>
