@@ -147,6 +147,52 @@
       </div>
 
       <script>
+        function updateStatus() {
+          const temperatureMin = 25;
+          const humidityMax = 60;
+      
+          const tempElement = document.querySelector('.temp-card:nth-of-type(1) .metric-value');
+          const tempStatus = document.querySelector('.temp-card:nth-of-type(1) .status');
+          const temperature = parseFloat(tempElement.textContent);
+      
+          if (temperature > temperatureMin) {
+            tempStatus.classList.remove('normal');
+            tempStatus.classList.add('warning');
+            tempStatus.textContent = 'High';
+          } else {
+            tempStatus.classList.remove('warning');
+            tempStatus.classList.add('normal');
+            tempStatus.textContent = 'Normal';
+          }
+      
+          const humidityElement = document.querySelector('.temp-card:nth-of-type(2) .metric-value');
+          const humidityStatus = document.querySelector('.temp-card:nth-of-type(2) .status');
+          const humidity = parseFloat(humidityElement.textContent);
+      
+          if (humidity > humidityMax) {
+            humidityStatus.classList.remove('normal');
+            humidityStatus.classList.add('warning');
+            humidityStatus.textContent = 'High';
+          } else {
+            humidityStatus.classList.remove('warning');
+            humidityStatus.classList.add('normal');
+            humidityStatus.textContent = 'Normal';
+          }
+        }
+      
+        function setValues(newTemp, newHumidity) {
+          document.querySelector('.temp-card:nth-of-type(1) .metric-value').textContent = newTemp + '°C';
+          document.querySelector('.temp-card:nth-of-type(2) .metric-value').textContent = newHumidity + '%';
+          updateStatus();
+        }
+      
+        setTimeout(() => {
+          setValues(32, 40);
+        },
+      );
+      </script>      
+
+      <script>
         function createChart(canvasId, label, color, fillColor) {
           const ctx = document.getElementById(canvasId).getContext('2d');
           const hours = Array.from({length: 24}, (_, i) => `${i}h`);

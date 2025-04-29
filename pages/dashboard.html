@@ -108,7 +108,7 @@
             </div>
             <div class="card-content">
               <h3>Current Temperature</h3>
-              <p class="card-value">22°C</p>
+              <p class="card-value"></p>
               <p class="card-status normal">Normal</p>
             </div>
           </div>
@@ -119,10 +119,56 @@
             </div>
             <div class="card-content">
             <h3>Current Humidity</h3>
-            <p class="card-value">65%</p>
+            <p class="card-value"></p>
             <p class="card-status high">High</p>
             </div>
           </div>
+
+          <script>
+            function updateStatus() {
+              const temperatureMin = 25;
+              const humidityMax = 60;
+          
+              const tempElement = document.querySelector('.summary-card.temperature .card-value');
+              const tempStatus = document.querySelector('.summary-card.temperature .card-status');
+              const temperature = parseFloat(tempElement.textContent);
+          
+              if (temperature > temperatureMin) {
+                tempStatus.classList.remove('normal');
+                tempStatus.classList.add('high');
+                tempStatus.textContent = 'High';
+              } else {
+                tempStatus.classList.remove('high');
+                tempStatus.classList.add('normal');
+                tempStatus.textContent = 'Normal';
+              }
+          
+              const humidityElement = document.querySelector('.summary-card.humidity .card-value');
+              const humidityStatus = document.querySelector('.summary-card.humidity .card-status');
+              const humidity = parseFloat(humidityElement.textContent);
+          
+              if (humidity > humidityMax) {
+                humidityStatus.classList.remove('normal');
+                humidityStatus.classList.add('high');
+                humidityStatus.textContent = 'High';
+              } else {
+                humidityStatus.classList.remove('high');
+                humidityStatus.classList.add('normal');
+                humidityStatus.textContent = 'Normal';
+              }
+            }
+          
+            function setValues(newTemp, newHumidity) {
+              document.querySelector('.summary-card.temperature .card-value').textContent = newTemp + '°C';
+              document.querySelector('.summary-card.humidity .card-value').textContent = newHumidity + '%';
+              updateStatus();
+            }
+          
+            setTimeout(() => {
+              setValues(32, 40);
+            },
+          );
+          </script>                  
           
           <div class="summary-card staff">
             <div class="card-icon">
