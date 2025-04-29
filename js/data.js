@@ -77,21 +77,21 @@ const tableData = {
       { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
       { id: 'id', label: 'Customer ID', accessor: 'id', sortable: true, filterable: true },
       { id: 'name', label: 'Customer Name', accessor: 'name', sortable: true, filterable: true },
-      { id: 'email', label: 'Email', accessor: 'email', sortable: true, filterable: true },
-      { id: 'status', label: 'Status', accessor: 'status', sortable: true, filterable: true },
+      { id: 'email', label: 'Arrival Date', accessor: 'arrival', sortable: true, filterable: true },
+      { id: 'status', label: 'Departure Date', accessor: 'departure', sortable: true, filterable: true },
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
     ],
     data: [
-      { id: '#CU-00001', name: 'John Doe', email: 'johndoe@example.com', status: 'Active' },
-      { id: '#CU-00002', name: 'Jane Smith', email: 'janesmith@example.com', status: 'Inactive' },
-      { id: '#CU-00003', name: 'Alice Johnson', email: 'alicej@example.com', status: 'Active' },
-      { id: '#CU-00004', name: 'Bob Brown', email: 'bobbrown@example.com', status: 'Active' },
-      { id: '#CU-00005', name: 'Charlie White', email: 'charliew@example.com', status: 'Inactive' },
-      { id: '#CU-00006', name: 'David Lee', email: 'davidlee@example.com', status: 'Active' },
-      { id: '#CU-00007', name: 'Eve Black', email: 'eveblack@example.com', status: 'Active' },
-      { id: '#CU-00008', name: 'Frank Green', email: 'frankgreen@example.com', status: 'Inactive' },
-      { id: '#CU-00009', name: 'Grace Blue', email: 'graceblue@example.com', status: 'Active' },
-      { id: '#CU-00010', name: 'Hank Grey', email: 'hankgrey@example.com', status: 'Inactive' }
+      { id: '#CU-00001', name: 'John Doe', arrival: '2025-04-01 08:45', departure: '2025-04-10 17:30' },
+      { id: '#CU-00002', name: 'Jane Smith', arrival: '2025-03-28 09:15', departure: '2025-04-02 16:50' },
+      { id: '#CU-00003', name: 'Alice Johnson', arrival: '2025-04-25 14:20', departure: '2025-04-29 18:00' },
+      { id: '#CU-00004', name: 'Bob Brown', arrival: '2025-04-27 10:00', departure: '2025-04-29 19:10' },
+      { id: '#CU-00005', name: 'Charlie White', arrival: '2025-03-30 07:30', departure: '2025-04-01 15:45' },
+      { id: '#CU-00006', name: 'David Lee', arrival: '2025-04-29 08:00', departure: '2025-04-29 17:00' },
+      { id: '#CU-00007', name: 'Eve Black', arrival: '2025-04-28 13:40', departure: '2025-04-29 17:50' },
+      { id: '#CU-00008', name: 'Frank Green', arrival: '2025-03-25 11:05', departure: '2025-03-29 14:20' },
+      { id: '#CU-00009', name: 'Grace Blue', arrival: '2025-04-26 12:10', departure: '2025-04-29 16:00' },
+      { id: '#CU-00010', name: 'Hank Grey', arrival: '2025-03-31 09:00', departure: '2025-04-03 12:30' }      
     ]
   },
   dashboard: {
