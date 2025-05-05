@@ -3,10 +3,10 @@
   position: absolute;
   top: 55px;
   right: 20px; /* Alignez selon votre layout */
-  width: 300px;
+  width: 450px;
   background-color: #fff;
   border-radius: 0.5rem;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  box-shadow: 0 0px 12px rgba(0,0,0,0.1);
   z-index: 999;
   overflow: hidden;
   animation: fadeIn 0.3s ease-in-out;
@@ -18,13 +18,36 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
+/* total width */
+.notif-list::-webkit-scrollbar {
+  background-color: #fff;
+  width: 12px;
+}
+
+/* background of the scrollbar track */
+.notif-list::-webkit-scrollbar-track {
+  background-color: #f5f5f5;
+}
+
+/* scrollbar thumb (the part you drag) */
+.notif-list::-webkit-scrollbar-thumb {
+  background-color: #ccc;
+  border-radius: 8px;
+  border: 2px solid #f5f5f5;
+}
+
+/* hide the scrollbar buttons */
+.notif-list::-webkit-scrollbar-button {
+  display: none;
+}
+
 /* En-tête du menu de notifications */
 .notif-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 12px 16px;
-  background-color: #f5f5f5;
+  background-color: #f9fafb;
   border-bottom: 1px solid #eee;
 }
 
@@ -63,7 +86,7 @@
 }
 
 .notif-item:hover {
-  background-color: #f9f9f9;
+  background-color: #f9fafb;
 }
 
 /* Style pour notification lue (après marquage) */
@@ -71,10 +94,18 @@
   opacity: 0.6;
 }
 
+.notification-item {
+  display: flex;
+  align-items: center;
+  gap: 12px; /* espacement entre l'icône et le texte */
+}
+
 /* Bouton de suppression d'une notification */
 .delete-btn-notif {
   border: none;
   cursor: pointer;
+  background: none;
+  padding: 0;
 }
 
 .delete-btn-notif svg {
@@ -99,20 +130,51 @@
   display: none;
 }
 
-.activity-title-notif {
+.notification-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 8px;
+  margin-left: 8px;
+  flex-shrink: 0;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 24px;
+}
+
+.notification-title {
   font-size: 14px;
   font-weight: 500;
   color: var(--neutral-800);
   margin-bottom: 4px;
 }
 
-.activity-description-notif {
+.notification-description {
   font-size: 13px;
   color: var(--neutral-600);
   margin-bottom: 4px;
 }
 
-.activity-time-notif {
+.notification-time{
   font-size: 12px;
   color: var(--neutral-500);
+}
+
+.notification-details {
+  flex: 1;
+}
+
+.notification-icon.order {
+  background-color: rgba(30, 136, 229, 0.1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e88e5'%3E%3Cpath d='M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z'/%3E%3C/svg%3E");
+}
+
+.notification-icon.alert {
+  background-color: rgba(255, 152, 0, 0.1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ff9800'%3E%3Cpath d='M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z'/%3E%3C/svg%3E");
+}
+
+.notification-icon.employee {
+  background-color: rgba(76, 175, 80, 0.1);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%234caf50'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
 }

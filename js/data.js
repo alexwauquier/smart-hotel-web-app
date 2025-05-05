@@ -11,16 +11,16 @@ const tableData = {
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
     ],
     data: [
-      { id: '#SO-00003', name: 'Léa Lemoine', role: 'Manager' },
-      { id: '#SO-00004', name: 'Maxime Lefevre', role: 'Concierge' },
-      { id: '#SO-00005', name: 'Emma Girard', role: 'Bartender' },
-      { id: '#SO-00006', name: 'Thomas Petit', role: 'Housekeeper' },
-      { id: '#SO-00007', name: 'Claire Martin', role: 'Front Desk Agent' },
-      { id: '#SO-00008', name: 'Louis Roux', role: 'Chef' },
-      { id: '#SO-00009', name: 'Sophie Moreau', role: 'Sous Chef' },
-      { id: '#SO-00010', name: 'Julien Bernard', role: 'Kitchen Staff' },
-      { id: '#SO-00011', name: 'Alice Lefevre', role: 'Bartender' },
-      { id: '#SO-00012', name: 'Marc Dupont', role: 'Manager' }
+      { id: '#SO-00001', name: 'Léa Lemoine', role: 'Manager' },
+      { id: '#SO-00002', name: 'Maxime Lefevre', role: 'Concierge' },
+      { id: '#SO-00003', name: 'Emma Girard', role: 'Bartender' },
+      { id: '#SO-00004', name: 'Thomas Petit', role: 'Housekeeper' },
+      { id: '#SO-00005', name: 'Claire Martin', role: 'Front Desk Agent' },
+      { id: '#SO-00006', name: 'Louis Roux', role: 'Chef' },
+      { id: '#SO-00007', name: 'Sophie Moreau', role: 'Sous Chef' },
+      { id: '#SO-00008', name: 'Julien Bernard', role: 'Kitchen Staff' },
+      { id: '#SO-00009', name: 'Alice Lefevre', role: 'Bartender' },
+      { id: '#SO-00010', name: 'Marc Dupont', role: 'Manager' }
     ]
   },
   orders: {
@@ -35,16 +35,16 @@ const tableData = {
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
     ],
     data: [
-      { id: '#SO-00003', customerName: 'Antoine Durand', orderNumber: 'ORD-2023-001', status: 'done' },
-      { id: '#SO-00004', customerName: 'Claire Lefevre', orderNumber: 'ORD-2023-002', status: 'in progress' },
-      { id: '#SO-00005', customerName: 'Julien Dupont', orderNumber: 'ORD-2023-003', status: 'canceled' },
-      { id: '#SO-00006', customerName: 'Sophie Martin', orderNumber: 'ORD-2023-004', status: 'done' },
-      { id: '#SO-00007', customerName: 'Lucas Bernard', orderNumber: 'ORD-2023-005', status: 'in progress' },
-      { id: '#SO-00008', customerName: 'Camille Dubois', orderNumber: 'ORD-2023-006', status: 'in progress' },
-      { id: '#SO-00009', customerName: 'Émilie Lefevre', orderNumber: 'ORD-2023-007', status: 'canceled' },
-      { id: '#SO-00010', customerName: 'Marc Robert', orderNumber: 'ORD-2023-008', status: 'pending' },
-      { id: '#SO-00011', customerName: 'Chloé Lemoine', orderNumber: 'ORD-2023-009', status: 'pending' },
-      { id: '#SO-00012', customerName: 'Pierre Lemoine', orderNumber: 'ORD-2023-010', status: 'done' }
+      { id: '#SO-00001', customerName: 'Antoine Durand', orderNumber: 'ORD-2023-001', status: 'done' },
+      { id: '#SO-00002', customerName: 'Claire Lefevre', orderNumber: 'ORD-2023-002', status: 'in progress' },
+      { id: '#SO-00003', customerName: 'Julien Dupont', orderNumber: 'ORD-2023-003', status: 'canceled' },
+      { id: '#SO-00004', customerName: 'Sophie Martin', orderNumber: 'ORD-2023-004', status: 'done' },
+      { id: '#SO-00005', customerName: 'Lucas Bernard', orderNumber: 'ORD-2023-005', status: 'in progress' },
+      { id: '#SO-00006', customerName: 'Camille Dubois', orderNumber: 'ORD-2023-006', status: 'in progress' },
+      { id: '#SO-00007', customerName: 'Émilie Lefevre', orderNumber: 'ORD-2023-007', status: 'canceled' },
+      { id: '#SO-00008', customerName: 'Marc Robert', orderNumber: 'ORD-2023-008', status: 'pending' },
+      { id: '#SO-00009', customerName: 'Chloé Lemoine', orderNumber: 'ORD-2023-009', status: 'pending' },
+      { id: '#SO-00010', customerName: 'Pierre Lemoine', orderNumber: 'ORD-2023-010', status: 'done' }
     ]
   },
   products: {
@@ -58,16 +58,16 @@ const tableData = {
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
     ],
     data: [
-      { id: '#SO-00003', name: 'Margarita', type: 'Alcoholic' },
-      { id: '#SO-00004', name: 'Pina Colada', type: 'Alcoholic' },
-      { id: '#SO-00005', name: 'Virgin Mojito', type: 'Non-Alcoholic' },
-      { id: '#SO-00006', name: 'Mojito', type: 'Alcoholic' },
-      { id: '#SO-00007', name: 'Lemonade Fizz', type: 'Non-Alcoholic' },
-      { id: '#SO-00008', name: 'Shirley Temple', type: 'Non-Alcoholic' },
-      { id: '#SO-00009', name: 'Iced Tea Lemonade', type: 'Non-Alcoholic' },
-      { id: '#SO-00010', name: 'Long Island Iced Tea', type: 'Alcoholic' },
-      { id: '#SO-00011', name: 'Daiquiri', type: 'Alcoholic' },
-      { id: '#SO-00012', name: 'Whiskey Sour', type: 'Alcoholic' }
+      { id: '#SO-00001', name: 'Margarita', type: 'Alcoholic' },
+      { id: '#SO-00002', name: 'Pina Colada', type: 'Alcoholic' },
+      { id: '#SO-00003', name: 'Virgin Mojito', type: 'Non-Alcoholic' },
+      { id: '#SO-00004', name: 'Mojito', type: 'Alcoholic' },
+      { id: '#SO-00005', name: 'Lemonade Fizz', type: 'Non-Alcoholic' },
+      { id: '#SO-00006', name: 'Shirley Temple', type: 'Non-Alcoholic' },
+      { id: '#SO-00007', name: 'Iced Tea Lemonade', type: 'Non-Alcoholic' },
+      { id: '#SO-00008', name: 'Long Island Iced Tea', type: 'Alcoholic' },
+      { id: '#SO-00009', name: 'Daiquiri', type: 'Alcoholic' },
+      { id: '#SO-00010', name: 'Whiskey Sour', type: 'Alcoholic' }
     ]
   },
   customers: {

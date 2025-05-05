@@ -65,13 +65,10 @@
       <!-- Header -->
       <header class="header">
         <div class="search-bar">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="11" cy="11" r="8"></circle>
-            <path d="m21 21-4.3-4.3"></path>
-          </svg>
-          <input type="text" placeholder="Search">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></svg>
+          <input type="text" placeholder="Search" id="search-input">
         </div>
-    
+
         <div class="user-actions">
           <!-- Bouton de notification -->
           <button class="icon-btn notification">
@@ -80,7 +77,7 @@
               <path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"></path>
             </svg>
           </button>
-    
+
           <!-- Menu des notifications -->
           <div id="notif-menu" class="notif-menu hidden">
             <!-- En-tête du menu -->
@@ -90,14 +87,15 @@
             </div>
             <!-- Liste des notifications fictives -->
             <div class="notif-list">
+              
               <div class="notif-item" data-id="1">
 
-              <div class="activity-item-notif">
-                <div class="activity-icon order-notif"></div>
-                <div class="activity-details-notif">
-                  <p class="activity-title-notif">New order received</p>
-                  <p class="activity-description-notif">Room 302 ordered 2 cocktails</p>
-                  <p class="activity-time-notif">10 minutes ago</p>
+              <div class="notification-item">
+                <div class="notification-icon order"></div>
+                <div class="notification-details">
+                  <p class="notification-title">New order received</p>
+                  <p class="notification-description">Room 302 ordered 2 cocktails</p>
+                  <p class="notification-time">10 minutes ago</p>
                 </div>
               </div>
 
@@ -109,14 +107,15 @@
                   </svg>
                 </button>
               </div>
+
               <div class="notif-item" data-id="2">
 
-                <div class="activity-item-notif">
-                  <div class="activity-icon alert-notif"></div>
-                  <div class="activity-details-notif">
-                    <p class="activity-title-notif">Temperature alert</p>
-                    <p class="activity-description-notif">Pool area temperature exceeded threshold</p>
-                    <p class="activity-time-notif">45 minutes ago</p>
+                <div class="notification-item">
+                  <div class="notification-icon alert"></div>
+                  <div class="notification-details">
+                    <p class="notification-title">Temperature alert</p>
+                    <p class="notification-description">Pool area temperature exceeded threshold</p>
+                    <p class="notification-time">45 minutes ago</p>
                   </div>
                 </div>
 
@@ -127,14 +126,15 @@
                   </svg>
                 </button>
               </div>
+
               <div class="notif-item" data-id="3">
 
-                <div class="activity-item-notif">
-                  <div class="activity-icon employee-notif"></div>
-                  <div class="activity-details-notif">
-                    <p class="activity-title-notif">Staff check-in</p>
-                    <p class="activity-description-notif">Sophie Moreau started shift</p>
-                    <p class="activity-time-notif">1 hour ago</p>
+                <div class="notification-item">
+                  <div class="notification-icon employee"></div>
+                  <div class="notification-details">
+                    <p class="notification-title">Staff check-in</p>
+                    <p class="notification-description">Sophie Moreau started shift</p>
+                    <p class="notification-time">1 hour ago</p>
                   </div>
                 </div>
 
@@ -174,11 +174,11 @@
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
-                  <span class="value">19°C</span>
+                  <span class="value">21°C</span>
                 </div>
                 <div class="detail-item">
                   <span class="label">Max</span>
-                  <span class="value">24°C</span>
+                  <span class="value">33°C</span>
                 </div>
               </div>
             </div>
@@ -204,11 +204,11 @@
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
-                  <span class="value">55%</span>
+                  <span class="value">40%</span>
                 </div>
                 <div class="detail-item">
                   <span class="label">Max</span>
-                  <span class="value">70%</span>
+                  <span class="value">68%</span>
                 </div>
               </div>
             </div>
