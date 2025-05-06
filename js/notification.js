@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', () => {
     notifMenu.classList.toggle('hidden');
   });
 
-  // Ferme le menu si clic en dehors
+  // Ferme le menu si clic en dehors, sauf si on clique sur un bouton de suppression
   document.addEventListener('click', (e) => {
     if (!notifMenu.contains(e.target) && !notifBtn.contains(e.target)) {
       notifMenu.classList.add('hidden');
@@ -20,6 +20,8 @@ document.addEventListener('DOMContentLoaded', () => {
     if (e.target.closest('.delete-btn-notif')) {
       const notifItem = e.target.closest('.notif-item');
       notifItem.remove();
+      // On empêche la fermeture du menu
+      e.stopPropagation();
     }
   });
 
@@ -29,6 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
     const notifItems = document.querySelectorAll('.notif-item');
     notifItems.forEach(item => item.classList.add('read'));
     // Ici vous pouvez générer une indication visuelle, par exemple :
-    alert('Toutes les notifications ont été marquées comme lues.');
+    alert('All notifications have been marked as read.');
   });
 });
