@@ -10,7 +10,8 @@ document.addEventListener('DOMContentLoaded', async () => {
   const pagination = result.meta.page;
   const links = result.links;
 
-  let tableManager = new TableManager('customers', customers, totalCustomers, pagination, links);
+  let activeTableId = 'customers';
+  let tableManager = new TableManager(activeTableId, customers, totalCustomers, pagination, links);
   
   // Set active nav item
   setActiveNavItem(activeTableId);
