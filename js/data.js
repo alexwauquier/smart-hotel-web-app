@@ -49,25 +49,14 @@ const tableData = {
   },
   products: {
     id: 'products',
-    name: 'Product',
+    name: 'Products',
     columns: [
       { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
-      { id: 'id', label: 'Product #', accessor: 'id', sortable: true, filterable: true },
-      { id: 'name', label: 'Product Name', accessor: 'name', sortable: true, filterable: true },
-      { id: 'type', label: 'Type', accessor: 'type', sortable: true, filterable: true },
+      { id: 'name', label: 'Name', accessor: 'name', sortable: true, filterable: true },
+      { id: 'unit_price', label: 'Price', accessor: 'unit_price', sortable: true, filterable: true },
+      { id: 'stock_quantity', label: 'Stock', accessor: 'stock_quantity', sortable: true, filterable: true },
+      { id: 'limit_quantity', label: 'Limit', accessor: 'limit_quantity', sortable: true, filterable: true },
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
-    ],
-    data: [
-      { id: '#SO-00001', name: 'Margarita', type: 'Alcoholic' },
-      { id: '#SO-00002', name: 'Pina Colada', type: 'Alcoholic' },
-      { id: '#SO-00003', name: 'Virgin Mojito', type: 'Non-Alcoholic' },
-      { id: '#SO-00004', name: 'Mojito', type: 'Alcoholic' },
-      { id: '#SO-00005', name: 'Lemonade Fizz', type: 'Non-Alcoholic' },
-      { id: '#SO-00006', name: 'Shirley Temple', type: 'Non-Alcoholic' },
-      { id: '#SO-00007', name: 'Iced Tea Lemonade', type: 'Non-Alcoholic' },
-      { id: '#SO-00008', name: 'Long Island Iced Tea', type: 'Alcoholic' },
-      { id: '#SO-00009', name: 'Daiquiri', type: 'Alcoholic' },
-      { id: '#SO-00010', name: 'Whiskey Sour', type: 'Alcoholic' }
     ]
   },
   customers: {
