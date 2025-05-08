@@ -1,13 +1,14 @@
 class TableManager {
-  constructor(tableId) {
+  constructor(tableId, data, itemsTotal, pagination, links) {
     this.tableId = tableId;
     this.tableConfig = tableData[tableId];
-    this.currentData = [...this.tableConfig.data];
+    this.currentData = data;
     this.filteredData = [...this.currentData];
     this.sortColumn = null;
     this.sortDirection = 'asc';
-    this.currentPage = 1;
-    this.itemsPerPage = 10;
+    this.currentPage = pagination.current;
+    this.itemsPerPage = pagination.size;
+    this.itemsTotal = itemsTotal;
     this.filter = { column: '', value: '' };
     
     // DOM elements
@@ -56,13 +57,13 @@ class TableManager {
     // Set filter button text
     this.filterBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon></svg>
-      Filter ${this.tableConfig.name.toLowerCase()}
+      Filter ${this.tableConfig.id}
     `;
     
     // Set add button text
     this.addItemBtn.innerHTML = `
       <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"></line><line x1="5" y1="12" x2="19" y2="12"></line></svg>
-      New ${this.tableConfig.id === 'orders' ? 'sales order' : this.tableConfig.id.slice(0, -1)}
+      New ${this.tableConfig.id.slice(0, -1)}
     `;
     
     // Setup filter dropdown options
@@ -131,7 +132,7 @@ class TableManager {
     this.applyFiltersAndSort();
     
     // Calculate pagination
-    const totalPages = Math.ceil(this.filteredData.length / this.itemsPerPage);
+    const totalPages = Math.ceil(this.itemsTotal / this.itemsPerPage);
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = Math.min(startIndex + this.itemsPerPage, this.filteredData.length);
     const currentPageData = this.filteredData.slice(startIndex, endIndex);
@@ -139,7 +140,7 @@ class TableManager {
     // Update pagination info
     this.pageStart.textContent = this.filteredData.length > 0 ? startIndex + 1 : 0;
     this.pageEnd.textContent = endIndex;
-    this.totalItems.textContent = this.filteredData.length;
+    this.totalItems.textContent = this.itemsTotal;
     
     // Render table rows
     this.tableBody.innerHTML = '';
@@ -574,3 +575,5 @@ class TableManager {
     return status.charAt(0).toUpperCase() + status.slice(1);
   }
 }
+
+export default TableManager;

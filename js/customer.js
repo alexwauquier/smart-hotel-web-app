@@ -1,8 +1,16 @@
+import { getCustomers } from "./api/customers.js";
+import TableManager from '../js/tableManager.js';
+
 // Initialize the application
-document.addEventListener('DOMContentLoaded', () => {
-  // Default table to show
-  let activeTableId = 'customers';
-  let tableManager = new TableManager(activeTableId);
+document.addEventListener('DOMContentLoaded', async () => {
+  const result = await getCustomers();
+
+  const customers = result.data.customers;
+  const totalCustomers = result.meta.total_items;
+  const pagination = result.meta.page;
+  const links = result.links;
+
+  let tableManager = new TableManager('customers', customers, totalCustomers, pagination, links);
   
   // Set active nav item
   setActiveNavItem(activeTableId);
