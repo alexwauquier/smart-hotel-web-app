@@ -6,6 +6,7 @@ document.getElementById("logout-btn").addEventListener("click", function() {
 function logout() {
   // Supprimer le token
   localStorage.removeItem("token");
+  sessionStorage.removeItem("token");
 
   // Afficher une alerte avec SweetAlert2
   Swal.fire({
