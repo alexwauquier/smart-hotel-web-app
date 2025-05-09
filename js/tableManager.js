@@ -10,6 +10,7 @@ class TableManager {
     this.sortDirection = 'asc';
     this.currentPage = 1;
     this.itemsPerPage = 10;
+    this.totalPages = 1
     this.itemsTotal = 10;
     this.filter = { column: '', value: '' };
     
@@ -96,10 +97,6 @@ class TableManager {
   }
   
   setupEventListeners() {
-    // Pagination
-    this.prevBtn.addEventListener('click', () => this.goToPage(this.currentPage - 1));
-    this.nextBtn.addEventListener('click', () => this.goToPage(this.currentPage + 1));
-    
     // Filter
     this.filterBtn.addEventListener('click', () => this.toggleFilterDropdown());
     this.applyFilterBtn.addEventListener('click', () => this.applyFilter());
@@ -134,20 +131,17 @@ class TableManager {
     this.applyFiltersAndSort();
     
     // Calculate pagination
-    const totalPages = Math.ceil(this.itemsTotal / this.itemsPerPage);
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
-    const endIndex = Math.min(startIndex + this.itemsPerPage, this.filteredData.length);
-    const currentPageData = this.filteredData.slice(startIndex, endIndex);
     
     // Update pagination info
-    this.pageStart.textContent = this.filteredData.length > 0 ? startIndex + 1 : 0;
-    this.pageEnd.textContent = endIndex;
+    this.pageStart.textContent = (this.currentPage - 1) * this.itemsPerPage + 1;
+    this.pageEnd.textContent = this.currentPage * this.itemsPerPage; // TODO: check if last page
     this.totalItems.textContent = this.itemsTotal;
     
     // Render table rows
     this.tableBody.innerHTML = '';
     
-    if (currentPageData.length === 0) {
+    if (this.currentData.length === 0) {
       const tr = document.createElement('tr');
       const td = document.createElement('td');
       td.colSpan = this.tableConfig.columns.length;
@@ -157,7 +151,7 @@ class TableManager {
       tr.appendChild(td);
       this.tableBody.appendChild(tr);
     } else {
-      currentPageData.forEach(item => {
+      this.currentData.forEach(item => {
         const tr = document.createElement('tr');
         
         this.tableConfig.columns.forEach(column => {
@@ -197,7 +191,7 @@ class TableManager {
     }
     
     // Render pagination
-    this.renderPagination(totalPages);
+    this.renderPagination(this.totalPages);
   }
   
   renderPagination(totalPages) {
@@ -218,7 +212,6 @@ class TableManager {
         pageBtn.classList.add('active');
       }
       pageBtn.textContent = i;
-      pageBtn.addEventListener('click', () => this.goToPage(i));
       this.pageNumbers.appendChild(pageBtn);
     }
     
@@ -270,15 +263,6 @@ class TableManager {
         return 0;
       });
     }
-  }
-  
-  goToPage(page) {
-    if (page < 1 || page > Math.ceil(this.filteredData.length / this.itemsPerPage)) {
-      return;
-    }
-    
-    this.currentPage = page;
-    this.renderTable();
   }
   
   handleSort(column) {
