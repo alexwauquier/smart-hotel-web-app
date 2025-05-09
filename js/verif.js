@@ -1,7 +1,5 @@
-document.addEventListener("DOMContentLoaded", function () {
-  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
-  if (!token) {
-    window.location.href = "../index.html";
-  }
-});
+if (!token) {
+  window.location.href = "../index.html";
+}
