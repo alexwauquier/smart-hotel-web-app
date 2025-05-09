@@ -119,3 +119,5 @@ function loadFromLocalStorage() {
 
 // Initialize data from local storage
 loadFromLocalStorage();
+
+export default tableData;

@@ -1,3 +1,5 @@
+import tableData from "./data.js";
+
 class TableManager {
   constructor(tableId) {
     this.tableId = tableId;
