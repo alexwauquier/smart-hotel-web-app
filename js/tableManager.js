@@ -1,14 +1,14 @@
 class TableManager {
-  constructor(tableId, data, itemsTotal, pagination, links) {
+  constructor(tableId) {
     this.tableId = tableId;
     this.tableConfig = tableData[tableId];
-    this.currentData = data;
+    this.currentData = [];
     this.filteredData = [...this.currentData];
     this.sortColumn = null;
     this.sortDirection = 'asc';
-    this.currentPage = pagination.current;
-    this.itemsPerPage = pagination.size;
-    this.itemsTotal = itemsTotal;
+    this.currentPage = 1;
+    this.itemsPerPage = 10;
+    this.itemsTotal = 10;
     this.filter = { column: '', value: '' };
     
     // DOM elements

@@ -3,13 +3,15 @@ import TableManager from '../js/tableManager.js';
 
 // Initialize the application
 document.addEventListener('DOMContentLoaded', async () => {
+  let activeTableId = 'customers';
+  let customersTable = new TableManager(activeTableId);
+
   const result = await getCustomers();
 
-  const customers = result.data.customers;
-  const totalCustomers = result.meta.total_items;
-  const pagination = result.meta.page;
-  const links = result.links;
-
-  let activeTableId = 'customers';
-  let tableManager = new TableManager(activeTableId, customers, totalCustomers, pagination, links);
+  customersTable.currentData = result.data.customers;
+  customersTable.currentPage = result.meta.page.current;
+  customersTable.itemsPerPage = result.meta.page.size;
+  customersTable.itemsTotal = result.meta.total_items;
+  
+  customersTable.renderTable();
 });
