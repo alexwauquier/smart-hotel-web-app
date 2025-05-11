@@ -49,55 +49,7 @@ const tableData = {
       { id: 'customerRoom', label: 'Room', accessor: 'space.id', sortable: true, filterable: true },
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
     ]
-  },
-  dashboard: {
-    id: 'dashboard',
-    name: 'Dashboard',
-    columns: [],
-    data: []
-  },
-  analytics: {
-    id: 'analytics',
-    name: 'Analytics',
-    columns: [],
-    data: []
-  },
-  settings: {
-    id: 'settings',
-    name: 'Settings',
-    columns: [],
-    data: []
   }
 };
-
-// Function to get a new ID for a table item
-function getNewId(tableId) {
-  const items = tableData[tableId].data;
-  if (items.length === 0) return '#SO-00001';
-  
-  const lastId = items[items.length - 1].id;
-  const numPart = parseInt(lastId.split('-')[1]);
-  return `#SO-${String(numPart + 1).padStart(5, '0')}`;
-}
-
-// Local storage functions
-function saveToLocalStorage() {
-  localStorage.setItem('tableData', JSON.stringify(tableData));
-}
-
-function loadFromLocalStorage() {
-  const storedData = localStorage.getItem('tableData');
-  if (storedData) {
-    const parsedData = JSON.parse(storedData);
-    Object.keys(parsedData).forEach(key => {
-      if (tableData[key]) {
-        tableData[key].data = parsedData[key].data;
-      }
-    });
-  }
-}
-
-// Initialize data from local storage
-loadFromLocalStorage();
 
 export default tableData;
