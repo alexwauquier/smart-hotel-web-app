@@ -5,22 +5,11 @@ const tableData = {
     name: 'Employee',
     columns: [
       { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
-      { id: 'id', label: 'Employee #', accessor: 'id', sortable: true, filterable: true },
-      { id: 'name', label: 'Employee Name', accessor: 'name', sortable: true, filterable: true },
-      { id: 'role', label: 'Role', accessor: 'role', sortable: true, filterable: true },
+      { id: 'employeeFirstName', label: 'First name', accessor: 'first_name', sortable: true, filterable: true },
+      { id: 'employeeLastName', label: 'Last name', accessor: 'last_name', sortable: true, filterable: true },
+      { id: 'employeeUsername', label: 'Username', accessor: 'username', sortable: true, filterable: true },
+      { id: 'employeeRole', label: 'Role', accessor: 'type.label', sortable: true, filterable: true },
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
-    ],
-    data: [
-      { id: '#SO-00001', name: 'Léa Lemoine', role: 'Manager' },
-      { id: '#SO-00002', name: 'Maxime Lefevre', role: 'Concierge' },
-      { id: '#SO-00003', name: 'Emma Girard', role: 'Bartender' },
-      { id: '#SO-00004', name: 'Thomas Petit', role: 'Housekeeper' },
-      { id: '#SO-00005', name: 'Claire Martin', role: 'Front Desk Agent' },
-      { id: '#SO-00006', name: 'Louis Roux', role: 'Chef' },
-      { id: '#SO-00007', name: 'Sophie Moreau', role: 'Sous Chef' },
-      { id: '#SO-00008', name: 'Julien Bernard', role: 'Kitchen Staff' },
-      { id: '#SO-00009', name: 'Alice Lefevre', role: 'Bartender' },
-      { id: '#SO-00010', name: 'Marc Dupont', role: 'Manager' }
     ]
   },
   orders: {
