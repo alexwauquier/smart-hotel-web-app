@@ -135,7 +135,7 @@ class TableManager {
     
     // Update pagination info
     this.pageStart.textContent = (this.currentPage - 1) * this.itemsPerPage + 1;
-    this.pageEnd.textContent = this.currentPage * this.itemsPerPage; // TODO: check if last page
+    this.pageEnd.textContent = this.currentPage * this.itemsPerPage > this.itemsTotal ? this.itemsTotal : this.currentPage * this.itemsPerPage;
     this.totalItems.textContent = this.itemsTotal;
     
     // Render table rows
