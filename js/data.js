@@ -44,8 +44,8 @@ const tableData = {
       { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
       { id: 'customerFirstName', label: 'First name', accessor: 'first_name', sortable: true, filterable: true },
       { id: 'customerLastName', label: 'Last name', accessor: 'last_name', sortable: true, filterable: true },
-      { id: 'customerArrivalDate', label: 'Last name', accessor: 'arrival_date', sortable: true, filterable: true },
-      { id: 'customerDepartureDate', label: 'Last name', accessor: 'departure_date', sortable: true, filterable: true },
+      { id: 'customerArrivalDate', label: 'Arrival date', accessor: 'arrival_date', sortable: true, filterable: true },
+      { id: 'customerDepartureDate', label: 'Departure date', accessor: 'departure_date', sortable: true, filterable: true },
       { id: 'customerRoom', label: 'Room', accessor: 'space.id', sortable: true, filterable: true },
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
     ]
