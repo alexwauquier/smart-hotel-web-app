@@ -28,23 +28,12 @@ const tableData = {
     name: 'Order',
     columns: [
       { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
-      { id: 'id', label: 'Order #', accessor: 'id', sortable: true, filterable: true },
-      { id: 'customerName', label: 'Customer Name', accessor: 'customerName', sortable: true, filterable: true },
-      { id: 'orderNumber', label: 'Order Number', accessor: 'orderNumber', sortable: true, filterable: true },
-      { id: 'status', label: 'Status', accessor: 'status', sortable: true, filterable: true },
+      { id: 'id', label: 'ID', accessor: 'id', sortable: true, filterable: true },
+      { id: 'customerName', label: 'Customer last name', accessor: 'customer.last_name', sortable: true, filterable: true },
+      { id: 'employeeName', label: 'Employee last name', accessor: 'employee.last_name', sortable: true, filterable: true },
+      { id: 'spaceId', label: 'Space ID', accessor: 'space.id', sortable: true, filterable: true },
+      { id: 'status', label: 'Status', accessor: 'status.label', sortable: true, filterable: true },
       { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
-    ],
-    data: [
-      { id: '#SO-00001', customerName: 'Antoine Durand', orderNumber: 'ORD-2023-001', status: 'done' },
-      { id: '#SO-00002', customerName: 'Claire Lefevre', orderNumber: 'ORD-2023-002', status: 'in progress' },
-      { id: '#SO-00003', customerName: 'Julien Dupont', orderNumber: 'ORD-2023-003', status: 'canceled' },
-      { id: '#SO-00004', customerName: 'Sophie Martin', orderNumber: 'ORD-2023-004', status: 'done' },
-      { id: '#SO-00005', customerName: 'Lucas Bernard', orderNumber: 'ORD-2023-005', status: 'in progress' },
-      { id: '#SO-00006', customerName: 'Camille Dubois', orderNumber: 'ORD-2023-006', status: 'in progress' },
-      { id: '#SO-00007', customerName: 'Émilie Lefevre', orderNumber: 'ORD-2023-007', status: 'canceled' },
-      { id: '#SO-00008', customerName: 'Marc Robert', orderNumber: 'ORD-2023-008', status: 'pending' },
-      { id: '#SO-00009', customerName: 'Chloé Lemoine', orderNumber: 'ORD-2023-009', status: 'pending' },
-      { id: '#SO-00010', customerName: 'Pierre Lemoine', orderNumber: 'ORD-2023-010', status: 'done' }
     ]
   },
   products: {

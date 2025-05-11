@@ -180,7 +180,7 @@ class TableManager {
             const statusValue = item[column.accessor];
             td.innerHTML = `<span class="status ${statusValue}">${this.formatStatus(statusValue)}</span>`;
           } else {
-            td.textContent = item[column.accessor] || '';
+            td.textContent = this.getNestedValue(item, column.accessor) || '';
           }
           
           tr.appendChild(td);
@@ -559,6 +559,10 @@ class TableManager {
       return 'In progress';
     }
     return status.charAt(0).toUpperCase() + status.slice(1);
+  }
+
+  getNestedValue(obj, accessor) {
+    return accessor.split('.').reduce((acc, key) => acc && acc[key], obj);
   }
 }
 
