@@ -2,6 +2,7 @@ import { loginEmployee } from "./api/auth.js";
 
 document.getElementById("login-form-customer").addEventListener("submit", async function(event) {
   event.preventDefault(); // Empêche l'envoi du formulaire par défaut
+  Swal.showLoading();
 
   // Récupérer les valeurs des champs
   const username = document.getElementById("username").value;
