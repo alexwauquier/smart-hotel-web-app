@@ -2,18 +2,29 @@ import { loginEmployee } from "./api/auth.js";
 
 document.getElementById("login-form-customer").addEventListener("submit", async function(event) {
   event.preventDefault(); // Empêche l'envoi du formulaire par défaut
-  Swal.showLoading();
 
   // Récupérer les valeurs des champs
   const username = document.getElementById("username").value;
   const password = document.getElementById("password").value;
   const rememberMe = document.getElementById("remember").checked;
 
+  // Affiche une alerte de chargement
+  Swal.fire({
+    title: "Logging in...",
+    text: "Please wait while we verify your credentials.",
+    allowOutsideClick: false,
+    didOpen: () => {
+      Swal.showLoading();
+    }
+  });
+
   try {
     const data = await loginEmployee(username, password);
     const token = data.token;
 
-    // Selon "Remember me", stocker dans localStorage ou sessionStorage
+    // Ferme l'alerte de chargement
+    Swal.close();
+
     if (rememberMe) {
       localStorage.setItem("token", token);
       sessionStorage.removeItem("token");
@@ -22,7 +33,7 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
       localStorage.removeItem("token");
     }
 
-    // Affichage de la bulle de succès
+    // Affiche l'alerte de succès
     Swal.fire({
       title: "Successful login!",
       text: "Welcome to your space.",
@@ -30,10 +41,12 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
       showConfirmButton: false,
       timer: 2000
     }).then(() => {
-      window.location.href = "dashboard.html"; // Redirection automatique
+      window.location.href = "dashboard.html";
     });
   } catch (error) {
-    // Affichage de la bulle d'erreur
+    // Ferme l'alerte de chargement avant d'afficher l'erreur
+    Swal.close();
+
     Swal.fire({
       title: "Connection failed",
       text: error.message,

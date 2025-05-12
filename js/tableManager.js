@@ -199,10 +199,10 @@ class TableManager {
     
     // Determine which page numbers to show
     let startPage = Math.max(1, this.currentPage - 2);
-    let endPage = Math.min(totalPages, startPage + 4);
+    let endPage = Math.min(totalPages, startPage + 2);
     
-    if (endPage - startPage < 4) {
-      startPage = Math.max(1, endPage - 4);
+    if (endPage - startPage < 2) {
+      startPage = Math.max(1, endPage - 2);
     }
     
     for (let i = startPage; i <= endPage; i++) {
