@@ -14,6 +14,7 @@
   <script src="../js/logout.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="../js/analytics.js"></script>
 </head>
 <body>
   <div class="container">
@@ -241,10 +242,28 @@
               updateStatus();
             }
           
-            setTimeout(() => {
-              setValues(32, 40);
-            },
-          );
+            async function mainTemp() {
+              const dataTemp = await fetchDataTemp(); // attend que la promesse soit résolue
+              const dataHum = await fetchDataHum(); // attend que la promesse soit résolue
+              console.log("temperatures:", dataTemp);
+              console.log("humidites:", dataHum);
+
+              // Exemple : afficher la température la plus récente
+              if (dataTemp && dataTemp.length > 0) {
+                const latest = dataTemp[0]; // la plus récente (par ordre décroissant)
+                const latestTemp = parseFloat(latest.temperature);
+
+                if (dataHum && dataHum.length > 0) {
+                  const latest2 = dataHum[0]; // la plus récente (par ordre décroissant)
+                  const latestHum = parseFloat(latest2.humidite);
+                  setValues(latestTemp, latestHum); // Mettre à jour les valeurs
+                }
+              } else {
+                console.error("Aucune donnée de température trouvée.");
+              }
+            }
+
+            mainTemp(); // exécuter la fonction principale
           </script>                  
           
           <div class="summary-card staff">
@@ -266,9 +285,9 @@
               <h3>Temperature Trend (Last 24h)</h3>
               <div class="chart-controls">
                 <select id="temperatureTimeRange">
-                  <option value="24h">24 Hours</option>
-                  <option value="7d">7 Days</option>
-                  <option value="30d">30 Days</option>
+                  <option value="24h">6 Hours</option>
+                  <option value="7d">12 Hours</option>
+                  <option value="30d">24 Hours</option>
                 </select>
               </div>
             </div>
@@ -280,9 +299,9 @@
             <h3>Humidity Trend (Last 24h)</h3>
             <div class="chart-controls">
               <select id="humidityTimeRange">
-                <option value="24h">24 Hours</option>
-                <option value="7d">7 Days</option>
-                <option value="30d">30 Days</option>
+                <option value="24h">6 Hours</option>
+                <option value="7d">12 Hours</option>
+                <option value="30d">24 Hours</option>
               </select>
             </div>
           </div>

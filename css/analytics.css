@@ -60,6 +60,7 @@
 .metric-details {
   display: flex;
   gap: 1.5rem;
+  justify-content: center;
 }
 
 .detail-item {
@@ -110,5 +111,5 @@
 
 .metric-info {
   display: grid;
-  place-items: center;  
+  place-items: center;
 }

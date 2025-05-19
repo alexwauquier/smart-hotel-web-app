@@ -12,7 +12,8 @@
   <script src="../js/notification.js" defer></script>
   <script src="../js/logout.js" defer></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>*
+  <script src="../js/analytics.js"></script>
 </head>
 <body>
   <div class="container">
@@ -172,7 +173,7 @@
               <span class="status">Normal</span>
             </div>
             <div class="metric-main">
-              <div class="metric-value">22°C</div>
+              <div class="metric-value">°C</div>
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
@@ -202,7 +203,7 @@
               <span class="status warning">High</span>
             </div>
             <div class="metric-main">
-              <div class="metric-value">65%</div>
+              <div class="metric-value">%</div>
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
@@ -257,82 +258,148 @@
           }
         }
       
-        function setValues(newTemp, newHumidity) {
-          document.querySelector('.temp-card:nth-of-type(1) .metric-value').textContent = newTemp + '°C';
-          document.querySelector('.temp-card:nth-of-type(2) .metric-value').textContent = newHumidity + '%';
-          updateStatus();
+                function setValues(newTempData, newHumData) {
+            // Extraire les valeurs minimales et maximales pour la température et l'humidité
+            const minTemp = Math.min(...newTempData.map(entry => parseFloat(entry.temperature)));
+            const maxTemp = Math.max(...newTempData.map(entry => parseFloat(entry.temperature)));
+
+            const minHum = Math.min(...newHumData.map(entry => parseFloat(entry.humidite)));
+            const maxHum = Math.max(...newHumData.map(entry => parseFloat(entry.humidite)));
+
+            // Mettre à jour les valeurs affichées pour la température et l'humidité
+            document.querySelector('.temp-card:nth-of-type(1) .metric-value').textContent = newTempData[0].temperature + '°C'; // Dernière température
+            document.querySelector('.temp-card:nth-of-type(2) .metric-value').textContent = newHumData[0].humidite + '%'; // Dernière humidité
+
+            // Mettre à jour les valeurs Min et Max correctement dans les éléments respectifs
+            document.querySelector('.temp-card:nth-of-type(1) .detail-item:nth-of-type(1) .value').textContent = `${minTemp}°C`; // Min Temp
+            document.querySelector('.temp-card:nth-of-type(1) .detail-item:nth-of-type(2) .value').textContent = `${maxTemp}°C`; // Max Temp
+
+            document.querySelector('.temp-card:nth-of-type(2) .detail-item:nth-of-type(1) .value').textContent = `${minHum}%`; // Min Hum
+            document.querySelector('.temp-card:nth-of-type(2) .detail-item:nth-of-type(2) .value').textContent = `${maxHum}%`; // Max Hum
+
+            updateStatus(); // Mettre à jour l'état (Normal/High) en fonction des valeurs
         }
       
-        setTimeout(() => {
-          setValues(32, 40);
-        },
-      );
-      </script>      
+        async function mainTemp() {
+          const dataTemp = await fetchDataTemp(); // attend que la promesse soit résolue
+          const dataHum = await fetchDataHum(); // attend que la promesse soit résolue
+          console.log("temperatures:", dataTemp);
+          console.log("humidites:", dataHum);
 
-      <script>
-        function createChart(canvasId, label, color, fillColor) {
-          const ctx = document.getElementById(canvasId).getContext('2d');
-          const hours = Array.from({length: 24}, (_, i) => `${i}h`);
-          
-          // Générer des données qui suivent une courbe naturelle pour la journée
-          const generateNaturalData = () => {
-            return hours.map((_, i) => {
-              const base = canvasId === 'temperatureChart' ? 22 : 65;
-              const amplitude = canvasId === 'temperatureChart' ? 3 : 5;
-              return base + Math.sin((i - 6) * Math.PI / 12) * amplitude + (Math.random() - 0.5);
-            });
-          };
+          // Exemple : afficher la température la plus récente
+          if (dataTemp && dataTemp.length > 0) {
+            const latest = dataTemp[0]; // la plus récente (par ordre décroissant)
+            const latestTemp = parseFloat(latest.temperature);
 
-          return new Chart(ctx, {
-            type: 'line',
-            data: {
-              labels: hours,
-              datasets: [{
-                label: label,
-                data: generateNaturalData(),
-                borderColor: color,
-                backgroundColor: fillColor,
-                tension: 0.4,
-                fill: true,
-                pointRadius: 0,
-                borderWidth: 2
-              }]
-            },
-            options: {
-              responsive: true,
-              maintainAspectRatio: false,
-              plugins: {
-                legend: {
-                  display: false
-                }
-              },
-              scales: {
-                x: {
-                  grid: {
-                    display: false
-                  },
-                  ticks: {
-                    maxRotation: 0,
-                    autoSkip: true,
-                    maxTicksLimit: 6
-                  }
-                },
-                y: {
-                  grid: {
-                    color: '#f0f0f0'
-                  },
-                  ticks: {
-                    maxTicksLimit: 5
-                  }
-                }
-              }
+            if (dataHum && dataHum.length > 0) {
+              const latest2 = dataHum[0]; // la plus récente (par ordre décroissant)
+              const latestHum = parseFloat(latest2.humidite);
+              setValues(latestTemp, latestHum); // Mettre à jour les valeurs
             }
-          });
+          } else {
+            console.error("Aucune donnée de température trouvée.");
+          }
         }
 
-        // Création des graphiques
-        createChart('temperatureChart', 'Température', '#FF6B6B', '#ff6b6b20');
-        createChart('humidityChart', 'Humidité', '#4DABF7', '#4dabf720');
+        mainTemp(); // exécuter la fonction principale
+      </script>   
+
+      <script>
+        async function createCharts() {
+            const tempData = await fetchDataTemp();
+            const humData = await fetchDataHum();
+
+            if (!tempData || !humData) return;
+
+            // Limiter aux 10 dernières valeurs
+            const last10TempData = tempData.slice(0, 7);
+            const last10HumData = humData.slice(0, 7);
+
+            // Labels (horaires des 10 dernières données)
+            const labels = last10TempData.map(entry => entry.timestamp.split(', ')[1]); // hh:mm:ss
+
+            // Données température et humidité
+            const temperatureValues = last10TempData.map(entry => entry.temperature);
+            console.log(last10TempData);
+            const humidityValues = last10HumData.map(entry => entry.humidite);
+
+            // Appeler la fonction setValues pour mettre à jour Min et Max
+            setValues(last10TempData, last10HumData);
+
+            // Température (line chart)
+            new Chart(document.getElementById('temperatureChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: labels.reverse(),
+                    datasets: [{
+                        label: 'Température',
+                        data: temperatureValues.reverse(),
+                        borderColor: '#FF6B6B',
+                        backgroundColor: '#ff6b6b20',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 3, // Points visibles
+                        pointBackgroundColor: '#FF6B6B', // Optionnel : couleur des points
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { maxTicksLimit: 6, autoSkip: true }
+                        },
+                        y: {
+                            grid: { color: '#f0f0f0' },
+                            ticks: { maxTicksLimit: 5 }
+                        }
+                    }
+                }
+            });
+
+            // Humidité (line chart)
+            new Chart(document.getElementById('humidityChart').getContext('2d'), {
+                type: 'line',
+                data: {
+                    labels: labels,
+                    datasets: [{
+                        label: 'Humidité',
+                        data: humidityValues.reverse(),
+                        borderColor: '#4DABF7',
+                        backgroundColor: '#4dabf720',
+                        tension: 0.4,
+                        fill: true,
+                        pointRadius: 3, // Points visibles
+                        pointBackgroundColor: '#4DABF7', // Optionnel : couleur des points
+                        borderWidth: 2
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: { display: false }
+                    },
+                    scales: {
+                        x: {
+                            grid: { display: false },
+                            ticks: { maxTicksLimit: 6, autoSkip: true }
+                        },
+                        y: {
+                            grid: { color: '#f0f0f0' },
+                            ticks: { maxTicksLimit: 5 }
+                        }
+                    }
+                }
+            });
+        }
+        // Appeler la fonction pour créer les graphiques
+        createCharts();
       </script>
     </main>
   </div>

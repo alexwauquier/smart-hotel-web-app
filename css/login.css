@@ -112,7 +112,7 @@ body {
   font-size: 14px;
   color: #333;
   background: transparent;
-  padding-left: 15px;
+  margin-left: 15px;
 }
 
 .input-group input::placeholder {

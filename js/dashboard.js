@@ -124,9 +124,9 @@ document.getElementById('humidityTimeRange').addEventListener('change', function
 // Helper functions for chart data generation
 function getHoursFromRange(range) {
   switch(range) {
-    case '24h': return 24;
-    case '7d': return 24 * 7;
-    case '30d': return 24 * 30;
+    case '6h': return 24;
+    case '12h': return 24 * 7;
+    case '24h': return 24 * 30;
     default: return 24;
   }
 }
