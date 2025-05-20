@@ -305,29 +305,35 @@
       </script>   
 
       <script>
-        async function createCharts() {
+        let temperatureChartInstance = null;
+        let humidityChartInstance = null;
+
+          async function createCharts() {
             const tempData = await fetchDataTemp();
             const humData = await fetchDataHum();
 
             if (!tempData || !humData) return;
 
-            // Limiter aux 10 dernières valeurs
             const last10TempData = tempData.slice(0, 7);
             const last10HumData = humData.slice(0, 7);
+            const labels = last10TempData.map(entry => entry.timestamp.split(', ')[1]);
 
-            // Labels (horaires des 10 dernières données)
-            const labels = last10TempData.map(entry => entry.timestamp.split(', ')[1]); // hh:mm:ss
-
-            // Données température et humidité
             const temperatureValues = last10TempData.map(entry => entry.temperature);
-            console.log(last10TempData);
             const humidityValues = last10HumData.map(entry => entry.humidite);
 
-            // Appeler la fonction setValues pour mettre à jour Min et Max
             setValues(last10TempData, last10HumData);
 
-            // Température (line chart)
-            new Chart(document.getElementById('temperatureChart').getContext('2d'), {
+            // 🔄 Détruire les anciens graphiques si existants
+            if (temperatureChartInstance) {
+                temperatureChartInstance.destroy();
+            }
+
+            if (humidityChartInstance) {
+                humidityChartInstance.destroy();
+            }
+
+            // ➕ Créer nouveaux graphiques
+            temperatureChartInstance = new Chart(document.getElementById('temperatureChart').getContext('2d'), {
                 type: 'line',
                 data: {
                     labels: labels.reverse(),
@@ -338,35 +344,26 @@
                         backgroundColor: '#ff6b6b20',
                         tension: 0.4,
                         fill: true,
-                        pointRadius: 3, // Points visibles
-                        pointBackgroundColor: '#FF6B6B', // Optionnel : couleur des points
+                        pointRadius: 3,
+                        pointBackgroundColor: '#FF6B6B',
                         borderWidth: 2
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
-                        x: {
-                            grid: { display: false },
-                            ticks: { maxTicksLimit: 6, autoSkip: true }
-                        },
-                        y: {
-                            grid: { color: '#f0f0f0' },
-                            ticks: { maxTicksLimit: 5 }
-                        }
+                        x: { grid: { display: false }, ticks: { maxTicksLimit: 6, autoSkip: true } },
+                        y: { grid: { color: '#f0f0f0' }, ticks: { maxTicksLimit: 5 } }
                     }
                 }
             });
 
-            // Humidité (line chart)
-            new Chart(document.getElementById('humidityChart').getContext('2d'), {
+            humidityChartInstance = new Chart(document.getElementById('humidityChart').getContext('2d'), {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: labels.reverse(),
                     datasets: [{
                         label: 'Humidité',
                         data: humidityValues.reverse(),
@@ -374,32 +371,32 @@
                         backgroundColor: '#4dabf720',
                         tension: 0.4,
                         fill: true,
-                        pointRadius: 3, // Points visibles
-                        pointBackgroundColor: '#4DABF7', // Optionnel : couleur des points
+                        pointRadius: 3,
+                        pointBackgroundColor: '#4DABF7',
                         borderWidth: 2
                     }]
                 },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false }
-                    },
+                    plugins: { legend: { display: false } },
                     scales: {
-                        x: {
-                            grid: { display: false },
-                            ticks: { maxTicksLimit: 6, autoSkip: true }
-                        },
-                        y: {
-                            grid: { color: '#f0f0f0' },
-                            ticks: { maxTicksLimit: 5 }
-                        }
+                        x: { grid: { display: false }, ticks: { maxTicksLimit: 6, autoSkip: true } },
+                        y: { grid: { color: '#f0f0f0' }, ticks: { maxTicksLimit: 5 } }
                     }
                 }
             });
         }
-        // Appeler la fonction pour créer les graphiques
+
+                // Appeler la fonction pour créer les graphiques
+                // Lancer la fonction une fois au chargement
         createCharts();
+
+        // Ensuite actualiser toutes les 60 secondes
+        setInterval(() => {
+            createCharts();
+        }, 60000);
+
       </script>
     </main>
   </div>
