@@ -258,7 +258,7 @@
           }
         }
       
-                function setValues(newTempData, newHumData) {
+          function setValues(newTempData, newHumData) {
             // Extraire les valeurs minimales et maximales pour la température et l'humidité
             const minTemp = Math.min(...newTempData.map(entry => parseFloat(entry.temperature)));
             const maxTemp = Math.max(...newTempData.map(entry => parseFloat(entry.temperature)));
@@ -363,7 +363,7 @@
             humidityChartInstance = new Chart(document.getElementById('humidityChart').getContext('2d'), {
                 type: 'line',
                 data: {
-                    labels: labels.reverse(),
+                    labels: labels,
                     datasets: [{
                         label: 'Humidité',
                         data: humidityValues.reverse(),
@@ -387,16 +387,14 @@
                 }
             });
         }
-
-                // Appeler la fonction pour créer les graphiques
-                // Lancer la fonction une fois au chargement
+        
+        // Appeler la fonction pour créer les graphiques au chargement de la page
         createCharts();
 
         // Ensuite actualiser toutes les 60 secondes
         setInterval(() => {
             createCharts();
         }, 60000);
-
       </script>
     </main>
   </div>
