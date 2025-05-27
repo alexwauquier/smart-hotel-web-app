@@ -81,8 +81,21 @@
 }
 
 .chart-container {
-  height: 293px;
+  height: 300px;
   width: 100%;
+}
+
+.chart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.chart-header h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--neutral-800);
 }
 
 .chart-container-card {
@@ -97,6 +110,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  padding-bottom: 4.5rem;
+}
+
+.chart-controls select {
+  padding: 6px 12px;
+  border-radius: 0.5rem;
+  border: 1px solid var(--neutral-300);
+  background-color: white;
+  font-size: 14px;
+  outline: none;
+  cursor: pointer;
 }
 
 .temp-card {

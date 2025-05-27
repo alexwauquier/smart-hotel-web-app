@@ -177,18 +177,29 @@
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
-                  <span class="value">21°C</span>
+                  <span class="value"></span>
                 </div>
                 <div class="detail-item">
                   <span class="label">Max</span>
-                  <span class="value">33°C</span>
+                  <span class="value"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
         <div class="chart-container-card">
           <div class="chart-container">
+            <div class="chart-header">
+              <h3>Temperature Trend</h3>
+              <div class="chart-controls">
+                  <select id="temperatureTimeRange">
+                      <option value="24h">7 Data</option>
+                      <option value="7d">12 Data</option>
+                      <option value="30d">16 Data</option>
+                  </select>
+              </div>
+            </div>
             <canvas id="temperatureChart"></canvas>
           </div>
         </div>
@@ -207,18 +218,29 @@
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
-                  <span class="value">40%</span>
+                  <span class="value"></span>
                 </div>
                 <div class="detail-item">
                   <span class="label">Max</span>
-                  <span class="value">68%</span>
+                  <span class="value"></span>
                 </div>
               </div>
             </div>
           </div>
         </div>
+        
         <div class="chart-container-card">
           <div class="chart-container">
+            <div class="chart-header">
+              <h3>Humidity Trend</h3>
+              <div class="chart-controls">
+                  <select id="humidityTimeRange">
+                      <option value="24h">7 Data</option>
+                      <option value="7d">12 Data</option>
+                      <option value="30d">16 Data</option>
+                  </select>
+              </div>
+            </div>
             <canvas id="humidityChart"></canvas>
           </div>
         </div>
@@ -226,31 +248,38 @@
 
       <script>
         function updateStatus() {
+          // Seuils définis pour la température et l'humidité
           const temperatureMin = 25;
           const humidityMax = 60;
-      
+
+          // Récupération de l'élément DOM contenant la valeur de température
           const tempElement = document.querySelector('.temp-card:nth-of-type(1) .metric-value');
           const tempStatus = document.querySelector('.temp-card:nth-of-type(1) .status');
-          const temperature = parseFloat(tempElement.textContent);
-      
+          const temperature = parseFloat(tempElement.textContent); // Conversion du texte en nombre
+
+          // Vérification si la température dépasse le seuil minimum
           if (temperature > temperatureMin) {
+            // Mise à jour de la classe CSS pour indiquer un état d'alerte
             tempStatus.classList.remove('normal');
             tempStatus.classList.add('warning');
-            tempStatus.textContent = 'High';
+            tempStatus.textContent = 'High'; // Texte d'état
           } else {
+            // Retour à l'état normal si la température est correcte
             tempStatus.classList.remove('warning');
             tempStatus.classList.add('normal');
             tempStatus.textContent = 'Normal';
           }
-      
+
+          // Récupération de l'élément DOM contenant la valeur d'humidité
           const humidityElement = document.querySelector('.temp-card:nth-of-type(2) .metric-value');
           const humidityStatus = document.querySelector('.temp-card:nth-of-type(2) .status');
-          const humidity = parseFloat(humidityElement.textContent);
-      
+          const humidity = parseFloat(humidityElement.textContent); // Conversion en nombre
+
+          // Vérification si l'humidité dépasse le seuil maximum
           if (humidity > humidityMax) {
             humidityStatus.classList.remove('normal');
             humidityStatus.classList.add('warning');
-            humidityStatus.textContent = 'High';
+            humidityStatus.textContent = 'High'; // Humidité trop élevée
           } else {
             humidityStatus.classList.remove('warning');
             humidityStatus.classList.add('normal');
@@ -308,35 +337,31 @@
         let temperatureChartInstance = null;
         let humidityChartInstance = null;
 
-          async function createCharts() {
+        async function createCharts(tempDataCount = 7, humDataCount = 7) {
             const tempData = await fetchDataTemp();
             const humData = await fetchDataHum();
 
             if (!tempData || !humData) return;
 
-            const last10TempData = tempData.slice(0, 7);
-            const last10HumData = humData.slice(0, 7);
-            const labels = last10TempData.map(entry => entry.timestamp.split(', ')[1]);
+            const lastTempData = tempData.slice(0, tempDataCount);
+            const lastHumData = humData.slice(0, humDataCount);
 
-            const temperatureValues = last10TempData.map(entry => entry.temperature);
-            const humidityValues = last10HumData.map(entry => entry.humidite);
+            // On utilise les labels de la température uniquement pour la première courbe
+            const labelsTemp = lastTempData.map(entry => entry.timestamp.split(', ')[1]);
+            const labelsHum = lastHumData.map(entry => entry.timestamp.split(', ')[1]);
 
-            setValues(last10TempData, last10HumData);
+            const temperatureValues = lastTempData.map(entry => entry.temperature);
+            const humidityValues = lastHumData.map(entry => entry.humidite);
 
-            // 🔄 Détruire les anciens graphiques si existants
-            if (temperatureChartInstance) {
-                temperatureChartInstance.destroy();
-            }
+            setValues(lastTempData, lastHumData);
 
-            if (humidityChartInstance) {
-                humidityChartInstance.destroy();
-            }
+            if (temperatureChartInstance) temperatureChartInstance.destroy();
+            if (humidityChartInstance) humidityChartInstance.destroy();
 
-            // ➕ Créer nouveaux graphiques
             temperatureChartInstance = new Chart(document.getElementById('temperatureChart').getContext('2d'), {
                 type: 'line',
                 data: {
-                    labels: labels.reverse(),
+                    labels: labelsTemp.reverse(),
                     datasets: [{
                         label: 'Température',
                         data: temperatureValues.reverse(),
@@ -354,16 +379,25 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { display: false }, ticks: { maxTicksLimit: 6, autoSkip: true } },
-                        y: { grid: { color: '#f0f0f0' }, ticks: { maxTicksLimit: 5 } }
-                    }
+                        x: {
+                            grid: { display: false },
+                            ticks: { maxTicksLimit: 6, autoSkip: true }
+                        },
+                        y: {
+                            grid: { color: '#f0f0f0' },
+                            ticks: { maxTicksLimit: 5 },
+                            beginAtZero: false, // facultatif, selon besoin
+                            min: Math.min(...temperatureValues) - 0.1,
+                            max: Math.max(...temperatureValues) + 0.1
+                        }
+                    },
                 }
             });
 
             humidityChartInstance = new Chart(document.getElementById('humidityChart').getContext('2d'), {
                 type: 'line',
                 data: {
-                    labels: labels,
+                    labels: labelsHum.reverse(),
                     datasets: [{
                         label: 'Humidité',
                         data: humidityValues.reverse(),
@@ -381,19 +415,70 @@
                     maintainAspectRatio: false,
                     plugins: { legend: { display: false } },
                     scales: {
-                        x: { grid: { display: false }, ticks: { maxTicksLimit: 6, autoSkip: true } },
-                        y: { grid: { color: '#f0f0f0' }, ticks: { maxTicksLimit: 5 } }
-                    }
+                        x: {
+                            grid: { display: false },
+                            ticks: { maxTicksLimit: 6, autoSkip: true }
+                        },
+                        y: {
+                            grid: { color: '#f0f0f0' },
+                            ticks: { maxTicksLimit: 5 },
+                            beginAtZero: false, // facultatif, selon besoin
+                            min: Math.min(...humidityValues) - 0.1,
+                            max: Math.max(...humidityValues) + 0.1
+                        }
+                    },
                 }
             });
         }
-        
-        // Appeler la fonction pour créer les graphiques au chargement de la page
-        createCharts();
 
-        // Ensuite actualiser toutes les 60 secondes
+        function getDataCountFromValue(value) {
+            switch (value) {
+                case '24h': return 7;
+                case '7d': return 12;
+                case '30d': return 16;
+                default: return 7;
+            }
+        }
+
+        window.addEventListener('load', () => {
+            const savedTempValue = localStorage.getItem('temperatureTimeRange') || '24h';
+            const savedHumValue = localStorage.getItem('humidityTimeRange') || '24h';
+
+            const tempSelect = document.getElementById('temperatureTimeRange');
+            const humSelect = document.getElementById('humidityTimeRange');
+
+            if (tempSelect) tempSelect.value = savedTempValue;
+            if (humSelect) humSelect.value = savedHumValue;
+
+            createCharts(
+                getDataCountFromValue(savedTempValue),
+                getDataCountFromValue(savedHumValue)
+            );
+        });
+
+        document.getElementById('temperatureTimeRange').addEventListener('change', (event) => {
+            const value = event.target.value;
+            localStorage.setItem('temperatureTimeRange', value);
+            const tempCount = getDataCountFromValue(value);
+            const humCount = getDataCountFromValue(document.getElementById('humidityTimeRange').value || '24h');
+            createCharts(tempCount, humCount);
+        });
+
+        document.getElementById('humidityTimeRange').addEventListener('change', (event) => {
+            const value = event.target.value;
+            localStorage.setItem('humidityTimeRange', value);
+            const humCount = getDataCountFromValue(value);
+            const tempCount = getDataCountFromValue(document.getElementById('temperatureTimeRange').value || '24h');
+            createCharts(tempCount, humCount);
+        });
+
         setInterval(() => {
-            createCharts();
+            const tempValue = localStorage.getItem('temperatureTimeRange') || '24h';
+            const humValue = localStorage.getItem('humidityTimeRange') || '24h';
+            createCharts(
+                getDataCountFromValue(tempValue),
+                getDataCountFromValue(humValue)
+            );
         }, 60000);
       </script>
     </main>

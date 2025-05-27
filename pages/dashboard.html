@@ -186,8 +186,8 @@
             </div>
             <div class="card-content">
               <h3>Current Temperature</h3>
-              <p class="card-value"></p>
-              <p class="card-status normal">Normal</p>
+              <p class="card-value loading-text"></p>
+              <p class="card-status normal"></p>
             </div>
           </div>
           
@@ -197,8 +197,8 @@
             </div>
             <div class="card-content">
             <h3>Current Humidity</h3>
-            <p class="card-value"></p>
-            <p class="card-status high">High</p>
+            <p class="card-value loading-text"></p>
+            <p class="card-status normal"></p>
             </div>
           </div>
 
@@ -237,26 +237,32 @@
             }
           
             function setValues(newTemp, newHumidity) {
-              document.querySelector('.summary-card.temperature .card-value').textContent = newTemp + '°C';
-              document.querySelector('.summary-card.humidity .card-value').textContent = newHumidity + '%';
+              const tempElem = document.querySelector('.summary-card.temperature .card-value');
+              const humElem = document.querySelector('.summary-card.humidity .card-value');
+
+              // Supprime la classe de chargement
+              tempElem.classList.remove('loading-text');
+              humElem.classList.remove('loading-text');
+
+              tempElem.textContent = newTemp + '°C';
+              humElem.textContent = newHumidity + '%';
+
               updateStatus();
             }
-          
-            async function mainTemp() {
-              const dataTemp = await fetchDataTemp(); // attend que la promesse soit résolue
-              const dataHum = await fetchDataHum(); // attend que la promesse soit résolue
-              console.log("temperatures:", dataTemp);
-              console.log("humidites:", dataHum);
 
-              // Exemple : afficher la température la plus récente
+            async function mainTemp() {
+              // ici, avant de recevoir les données, les balises ont la classe loading-text activée
+              const dataTemp = await fetchDataTemp(); 
+              const dataHum = await fetchDataHum();
+
               if (dataTemp && dataTemp.length > 0) {
-                const latest = dataTemp[0]; // la plus récente (par ordre décroissant)
+                const latest = dataTemp[0];
                 const latestTemp = parseFloat(latest.temperature);
 
                 if (dataHum && dataHum.length > 0) {
-                  const latest2 = dataHum[0]; // la plus récente (par ordre décroissant)
+                  const latest2 = dataHum[0];
                   const latestHum = parseFloat(latest2.humidite);
-                  setValues(latestTemp, latestHum); // Mettre à jour les valeurs
+                  setValues(latestTemp, latestHum);
                 }
               } else {
                 console.error("Aucune donnée de température trouvée.");
@@ -285,9 +291,9 @@
                   <h3>Temperature Trend</h3>
                   <div class="chart-controls">
                       <select id="temperatureTimeRange">
-                          <option value="24h">6 Hours</option>
-                          <option value="7d">12 Hours</option>
-                          <option value="30d">24 Hours</option>
+                          <option value="24h">7 Data</option>
+                          <option value="7d">12 Data</option>
+                          <option value="30d">16 Data</option>
                       </select>
                   </div>
               </div>
@@ -299,9 +305,9 @@
                   <h3>Humidity Trend</h3>
                   <div class="chart-controls">
                       <select id="humidityTimeRange">
-                          <option value="24h">6 Hours</option>
-                          <option value="7d">12 Hours</option>
-                          <option value="30d">24 Hours</option>
+                          <option value="24h">7 Data</option>
+                          <option value="7d">12 Data</option>
+                          <option value="30d">16 Data</option>
                       </select>
                   </div>
               </div>
@@ -314,34 +320,54 @@
           let temperatureChartInstance = null;
           let humidityChartInstance = null;
 
-          async function createCharts() {
-              // Récupérer les données réelles de température et d'humidité
-              const tempData = await fetchDataTemp(); // Fonction réelle
-              const humData = await fetchDataHum();  // Fonction réelle
+          window.addEventListener('load', () => {
+              // Récupérer les valeurs sauvegardées ou définir par défaut
+              const savedTempValue = localStorage.getItem('temperatureTimeRange') || '24h';
+              const savedHumValue = localStorage.getItem('humidityTimeRange') || '24h';
 
-              if (!tempData || !humData) return;
+              // Mettre à jour les sélecteurs avec les valeurs sauvegardées
+              document.getElementById('temperatureTimeRange').value = savedTempValue;
+              document.getElementById('humidityTimeRange').value = savedHumValue;
 
-              // Prendre les dernières données (7 derniers échantillons)
-              const last10TempData = tempData.slice(0, 7);
-              const last10HumData = humData.slice(0, 7);
-
-              // Extraire les labels (timestamps)
-              const labels = last10TempData.map(entry => entry.timestamp.split(', ')[1]);
-
-              // Extraire les valeurs de température et d'humidité
-              const temperatureValues = last10TempData.map(entry => entry.temperature);
-              const humidityValues = last10HumData.map(entry => entry.humidite);
-
-              // 🔄 Détruire les anciens graphiques si existants
-              if (temperatureChartInstance) {
-                  temperatureChartInstance.destroy();
+              // Fonction pour convertir la valeur en count
+              function getCount(value) {
+                  return value === '24h' ? 7 : value === '7d' ? 12 : 16;
               }
 
-              if (humidityChartInstance) {
-                  humidityChartInstance.destroy();
-              }
+              // Créer les graphiques avec les valeurs sauvegardées
+              createTemperatureChart(getCount(savedTempValue));
+              createHumidityChart(getCount(savedHumValue));
 
-              // ➕ Créer nouveaux graphiques
+              // Écouteur pour changement de la plage de temps température
+              document.getElementById('temperatureTimeRange').addEventListener('change', (event) => {
+                  const value = event.target.value;
+                  localStorage.setItem('temperatureTimeRange', value);
+                  createTemperatureChart(getCount(value));
+              });
+
+              // Écouteur pour changement de la plage de temps humidité
+              document.getElementById('humidityTimeRange').addEventListener('change', (event) => {
+                  const value = event.target.value;
+                  localStorage.setItem('humidityTimeRange', value);
+                  createHumidityChart(getCount(value));
+              });
+          });
+
+          // Fonction pour créer le graphique température
+          async function createTemperatureChart(dataCount = 7) {
+              const tempData = await fetchDataTemp();
+              if (!tempData) return;
+
+              const lastTempData = tempData.slice(0, dataCount);
+              const labels = lastTempData.map(entry => entry.timestamp.split(', ')[1]);
+              const temperatureValues = lastTempData.map(entry => entry.temperature);
+
+              if (temperatureChartInstance) temperatureChartInstance.destroy();
+
+              // Calcul min/max avec marge ±0.1
+              const minTemp = Math.min(...temperatureValues);
+              const maxTemp = Math.max(...temperatureValues);
+
               temperatureChartInstance = new Chart(document.getElementById('temperatureChart').getContext('2d'), {
                   type: 'line',
                   data: {
@@ -364,15 +390,35 @@
                       plugins: { legend: { display: false } },
                       scales: {
                           x: { grid: { display: false }, ticks: { maxTicksLimit: 6, autoSkip: true } },
-                          y: { grid: { color: '#f0f0f0' }, ticks: { maxTicksLimit: 5 } }
+                          y: { 
+                              grid: { color: '#f0f0f0' },
+                              ticks: { maxTicksLimit: 5 },
+                              min: minTemp - 0.1,
+                              max: maxTemp + 0.1
+                          }
                       }
                   }
               });
+          }
+
+          async function createHumidityChart(dataCount = 7) {
+              const humData = await fetchDataHum();
+              if (!humData) return;
+
+              const lastHumData = humData.slice(0, dataCount);
+              const labels = lastHumData.map(entry => entry.timestamp.split(', ')[1]);
+              const humidityValues = lastHumData.map(entry => entry.humidite);
+
+              if (humidityChartInstance) humidityChartInstance.destroy();
+
+              // Calcul min/max avec marge ±0.1
+              const minHum = Math.min(...humidityValues);
+              const maxHum = Math.max(...humidityValues);
 
               humidityChartInstance = new Chart(document.getElementById('humidityChart').getContext('2d'), {
                   type: 'line',
                   data: {
-                      labels: labels,
+                      labels: labels.reverse(),
                       datasets: [{
                           label: 'Humidity (%)',
                           data: humidityValues.reverse(),
@@ -391,18 +437,28 @@
                       plugins: { legend: { display: false } },
                       scales: {
                           x: { grid: { display: false }, ticks: { maxTicksLimit: 6, autoSkip: true } },
-                          y: { grid: { color: '#f0f0f0' }, ticks: { maxTicksLimit: 5 } }
+                          y: { 
+                              grid: { color: '#f0f0f0' },
+                              ticks: { maxTicksLimit: 5 },
+                              min: minHum - 0.1,
+                              max: maxHum + 0.1
+                          }
                       }
                   }
               });
           }
 
-          // Appeler la fonction pour créer les graphiques une fois au chargement
-          createCharts();
-
-          // Actualiser toutes les 60 secondes
+          // Si tu souhaites un rafraîchissement automatique, tu peux garder ce setInterval en dehors du load
           setInterval(() => {
-              createCharts();
+              const tempSelect = document.getElementById('temperatureTimeRange').value;
+              const humSelect = document.getElementById('humidityTimeRange').value;
+
+              function getCount(value) {
+                  return value === '24h' ? 7 : value === '7d' ? 12 : 16;
+              }
+
+              createTemperatureChart(getCount(tempSelect));
+              createHumidityChart(getCount(humSelect));
           }, 60000);
         </script>
         

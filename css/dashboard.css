@@ -407,3 +407,37 @@ canvas {
     width: 80px;
   }
 }
+
+.loading-text {
+  width: 60px;
+  height: 1em;
+  background: linear-gradient(90deg, #eee 25%, #ddd 37%, #eee 63%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.chart-loader {
+  width: 40px;
+  height: 40px;
+  border: 5px solid #ccc;
+  border-top-color: #bdbdbd;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin: 125px 290px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
