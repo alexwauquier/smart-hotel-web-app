@@ -170,18 +170,18 @@
           <div class="metric-info">
             <div class="metric-header">
               <h2>Temperature</h2>
-              <span class="status">Normal</span>
+              <span class="status"></span>
             </div>
             <div class="metric-main">
-              <div class="metric-value">°C</div>
+              <div class="metric-value loading-text">°C</div>
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
-                  <span class="value"></span>
+                  <span class="value loading-text"></span>
                 </div>
                 <div class="detail-item">
                   <span class="label">Max</span>
-                  <span class="value"></span>
+                  <span class="value loading-text"></span>
                 </div>
               </div>
             </div>
@@ -211,18 +211,18 @@
           <div class="metric-info">
             <div class="metric-header">
               <h2>Humidity</h2>
-              <span class="status warning">High</span>
+              <span class="status"></span>
             </div>
             <div class="metric-main">
-              <div class="metric-value">%</div>
+              <div class="metric-value loading-text">%</div>
               <div class="metric-details">
                 <div class="detail-item">
                   <span class="label">Min</span>
-                  <span class="value"></span>
+                  <span class="value loading-text"></span>
                 </div>
                 <div class="detail-item">
                   <span class="label">Max</span>
-                  <span class="value"></span>
+                  <span class="value loading-text"></span>
                 </div>
               </div>
             </div>
@@ -310,23 +310,58 @@
         }
       
         async function mainTemp() {
-          const dataTemp = await fetchDataTemp(); // attend que la promesse soit résolue
-          const dataHum = await fetchDataHum(); // attend que la promesse soit résolue
-          console.log("temperatures:", dataTemp);
-          console.log("humidites:", dataHum);
+          const tempValueElement = document.querySelector('.temp-card:nth-of-type(1) .metric-value');
+          const humValueElement = document.querySelector('.temp-card:nth-of-type(2) .metric-value');
 
-          // Exemple : afficher la température la plus récente
-          if (dataTemp && dataTemp.length > 0) {
-            const latest = dataTemp[0]; // la plus récente (par ordre décroissant)
-            const latestTemp = parseFloat(latest.temperature);
+          // Min et Max pour Temp
+          const tempMinElement = document.querySelector('.temp-card:nth-of-type(1) .detail-item:nth-of-type(1) .value');
+          const tempMaxElement = document.querySelector('.temp-card:nth-of-type(1) .detail-item:nth-of-type(2) .value');
 
-            if (dataHum && dataHum.length > 0) {
-              const latest2 = dataHum[0]; // la plus récente (par ordre décroissant)
-              const latestHum = parseFloat(latest2.humidite);
-              setValues(latestTemp, latestHum); // Mettre à jour les valeurs
+          // Min et Max pour Humidité
+          const humMinElement = document.querySelector('.temp-card:nth-of-type(2) .detail-item:nth-of-type(1) .value');
+          const humMaxElement = document.querySelector('.temp-card:nth-of-type(2) .detail-item:nth-of-type(2) .value');
+
+          // Afficher shimmer (animation loading) sur toutes ces valeurs
+          [
+            tempValueElement, humValueElement,
+            tempMinElement, tempMaxElement,
+            humMinElement, humMaxElement
+          ].forEach(el => {
+            el.textContent = '';
+            el.classList.add('loading-text');
+          });
+
+          try {
+            const dataTemp = await fetchDataTemp();
+            const dataHum = await fetchDataHum();
+
+            // Enlever shimmer après récupération
+            [
+              tempValueElement, humValueElement,
+              tempMinElement, tempMaxElement,
+              humMinElement, humMaxElement
+            ].forEach(el => el.classList.remove('loading-text'));
+
+            if (dataTemp && dataTemp.length > 0 && dataHum && dataHum.length > 0) {
+              setValues(dataTemp, dataHum);
+            } else {
+              [
+                tempValueElement, humValueElement,
+                tempMinElement, tempMaxElement,
+                humMinElement, humMaxElement
+              ].forEach(el => el.textContent = '--');
+              console.error("Aucune donnée disponible pour la température ou l'humidité.");
             }
-          } else {
-            console.error("Aucune donnée de température trouvée.");
+          } catch (error) {
+            [
+              tempValueElement, humValueElement,
+              tempMinElement, tempMaxElement,
+              humMinElement, humMaxElement
+            ].forEach(el => {
+              el.classList.remove('loading-text');
+              el.textContent = '--';
+            });
+            console.error("Erreur lors de la récupération des données :", error);
           }
         }
 
