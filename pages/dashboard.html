@@ -297,7 +297,8 @@
                       </select>
                   </div>
               </div>
-              <canvas id="temperatureChart"></canvas>
+              <div class="chart-loader"></div>
+              <canvas id="temperatureChart" style="display:none;"></canvas>
           </div>
 
           <div class="chart-container">
@@ -311,7 +312,8 @@
                       </select>
                   </div>
               </div>
-              <canvas id="humidityChart"></canvas>
+              <div class="chart-loader"></div>
+              <canvas id="humidityChart" style="display:none;"></canvas>
           </div>
         </div>
 
@@ -321,42 +323,51 @@
           let humidityChartInstance = null;
 
           window.addEventListener('load', () => {
-              // Récupérer les valeurs sauvegardées ou définir par défaut
+              // Récupération des valeurs sauvegardées
               const savedTempValue = localStorage.getItem('temperatureTimeRange') || '24h';
               const savedHumValue = localStorage.getItem('humidityTimeRange') || '24h';
 
-              // Mettre à jour les sélecteurs avec les valeurs sauvegardées
               document.getElementById('temperatureTimeRange').value = savedTempValue;
               document.getElementById('humidityTimeRange').value = savedHumValue;
 
-              // Fonction pour convertir la valeur en count
               function getCount(value) {
                   return value === '24h' ? 7 : value === '7d' ? 12 : 16;
               }
 
-              // Créer les graphiques avec les valeurs sauvegardées
-              createTemperatureChart(getCount(savedTempValue));
-              createHumidityChart(getCount(savedHumValue));
+              // Premier chargement avec loader
+              createTemperatureChart(getCount(savedTempValue), true);
+              createHumidityChart(getCount(savedHumValue), true);
 
-              // Écouteur pour changement de la plage de temps température
               document.getElementById('temperatureTimeRange').addEventListener('change', (event) => {
                   const value = event.target.value;
                   localStorage.setItem('temperatureTimeRange', value);
-                  createTemperatureChart(getCount(value));
+                  // Pas de loader au changement
+                  createTemperatureChart(getCount(value), false);
               });
 
-              // Écouteur pour changement de la plage de temps humidité
               document.getElementById('humidityTimeRange').addEventListener('change', (event) => {
                   const value = event.target.value;
                   localStorage.setItem('humidityTimeRange', value);
-                  createHumidityChart(getCount(value));
+                  // Pas de loader au changement
+                  createHumidityChart(getCount(value), false);
               });
           });
 
           // Fonction pour créer le graphique température
-          async function createTemperatureChart(dataCount = 7) {
+          async function createTemperatureChart(dataCount = 7, showLoader = true) {
+              const loader = document.querySelector('#temperatureChart').previousElementSibling;
+              const canvas = document.getElementById('temperatureChart');
+
+              if (showLoader) {
+                  loader.style.display = 'block';
+                  canvas.style.display = 'none';
+              }
+
               const tempData = await fetchDataTemp();
-              if (!tempData) return;
+              if (!tempData) {
+                  if (showLoader) loader.style.display = 'none';
+                  return;
+              }
 
               const lastTempData = tempData.slice(0, dataCount);
               const labels = lastTempData.map(entry => entry.timestamp.split(', ')[1]);
@@ -364,11 +375,10 @@
 
               if (temperatureChartInstance) temperatureChartInstance.destroy();
 
-              // Calcul min/max avec marge ±0.1
               const minTemp = Math.min(...temperatureValues);
               const maxTemp = Math.max(...temperatureValues);
 
-              temperatureChartInstance = new Chart(document.getElementById('temperatureChart').getContext('2d'), {
+              temperatureChartInstance = new Chart(canvas.getContext('2d'), {
                   type: 'line',
                   data: {
                       labels: labels.reverse(),
@@ -399,11 +409,29 @@
                       }
                   }
               });
+
+              if (showLoader) {
+                  loader.style.display = 'none';
+                  canvas.style.display = 'block';
+              } else {
+                  canvas.style.display = 'block'; // toujours afficher le canvas
+              }
           }
 
-          async function createHumidityChart(dataCount = 7) {
+          async function createHumidityChart(dataCount = 7, showLoader = true) {
+              const loader = document.querySelector('#humidityChart').previousElementSibling;
+              const canvas = document.getElementById('humidityChart');
+
+              if (showLoader) {
+                  loader.style.display = 'block';
+                  canvas.style.display = 'none';
+              }
+
               const humData = await fetchDataHum();
-              if (!humData) return;
+              if (!humData) {
+                  if (showLoader) loader.style.display = 'none';
+                  return;
+              }
 
               const lastHumData = humData.slice(0, dataCount);
               const labels = lastHumData.map(entry => entry.timestamp.split(', ')[1]);
@@ -411,11 +439,10 @@
 
               if (humidityChartInstance) humidityChartInstance.destroy();
 
-              // Calcul min/max avec marge ±0.1
               const minHum = Math.min(...humidityValues);
               const maxHum = Math.max(...humidityValues);
 
-              humidityChartInstance = new Chart(document.getElementById('humidityChart').getContext('2d'), {
+              humidityChartInstance = new Chart(canvas.getContext('2d'), {
                   type: 'line',
                   data: {
                       labels: labels.reverse(),
@@ -446,6 +473,13 @@
                       }
                   }
               });
+
+              if (showLoader) {
+                  loader.style.display = 'none';
+                  canvas.style.display = 'block';
+              } else {
+                  canvas.style.display = 'block';
+              }
           }
 
           // Si tu souhaites un rafraîchissement automatique, tu peux garder ce setInterval en dehors du load
