@@ -162,6 +162,7 @@ body {
   transition: all 0.3s;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
   letter-spacing: 1px;
+  font-family: 'Roboto', sans-serif;
 }
 
 .login-button:hover {

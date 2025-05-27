@@ -1,5 +1,5 @@
 async function fetchDataTemp() {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
   if (!token) {
     console.error("No token found in local storage.");
     return;
@@ -38,7 +38,7 @@ async function fetchDataTemp() {
 }
 
 async function fetchDataHum() {
-    const token = localStorage.getItem("token");
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
     if (!token) {
       console.error("No token found in local storage.");
       return;

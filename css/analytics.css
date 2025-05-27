@@ -163,7 +163,7 @@
   border-top-color: #bdbdbd;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 125px 450px;
+  margin: 125px 550px;
 }
 
 @keyframes spin {
