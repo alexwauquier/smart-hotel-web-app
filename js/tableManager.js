@@ -396,7 +396,6 @@ class TableManager {
           input.type = 'text';
           
           if (column.accessor === 'id') {
-            input.value = getNewId(this.tableId);
             input.disabled = true;
           }
         }

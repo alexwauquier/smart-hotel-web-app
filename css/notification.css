@@ -9,13 +9,18 @@
   box-shadow: 0 0px 12px rgba(0,0,0,0.1);
   z-index: 999;
   overflow: hidden;
-  animation: fadeIn 0.23s ease-in-out;
+  animation: dropdownReveal 0.2s ease-in-out;
 }
 
-/* Animation d'apparition */
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
+@keyframes dropdownReveal {
+  0% {
+    clip-path: inset(0 40% 100% 60%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
 }
 
 /* total width */

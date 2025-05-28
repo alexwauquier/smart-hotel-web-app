@@ -14,6 +14,17 @@
   position: relative;
 }
 
+@keyframes dropdownRevealFromTopLeft {
+  0% {
+    clip-path: inset(0 100% 50% 0);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
 .filter-dropdown {
   position: absolute;
   top: 100%;
@@ -26,7 +37,7 @@
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
   z-index: 10;
   min-width: 300px;
-  animation: fadeIn 0.23s ease-in-out;
+  animation: dropdownRevealFromTopLeft 0.2s ease-in-out;
 }
 
 .filter-form {
@@ -159,7 +170,7 @@
 }
 
 .action-btn:first-child {
-  background-color: #f9fafb;
+  background-color: #ffffff;
   border-radius: 6px;
   padding: 5px;
   transition: background-color 0.2s;
@@ -171,7 +182,7 @@
 }
 
 .action-btn:nth-child(2) {
-  background-color: #f9fafb;
+  background-color: #ffffff;
   border-radius: 6px;
   padding: 5px;
   transition: background-color 0.2s;
@@ -192,7 +203,7 @@
 }
 
 .action-btn.delete {
-  background-color: #f9fafb;
+  background-color: #ffffff;
   color: #000000;
   border-radius: 6px;
   padding: 5px;
@@ -320,6 +331,17 @@
   color: white;
 }
 
+@keyframes dropdownRevealFromTopRight {
+  0% {
+    clip-path: inset(0 0 100% 80%);
+    opacity: 0;
+  }
+  100% {
+    clip-path: inset(0 0 0 0);
+    opacity: 1;
+  }
+}
+
 #dropdown-menu {
   display: none; 
   position: absolute; 
@@ -331,5 +353,14 @@
   border-radius: 6px;
   z-index: 1000;
   min-width: 120px;
-  animation: fadeIn 0.23s ease-in-out;
+  animation: dropdownRevealFromTopRight 0.2s ease-out;
+  animation-fill-mode: both;
+}
+
+#menu-icon {
+  transition: color 0.2s;
+}
+
+#menu-icon:hover {
+  color: var(--neutral-500);
 }
