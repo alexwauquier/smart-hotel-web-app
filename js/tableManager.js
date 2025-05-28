@@ -163,10 +163,36 @@ class TableManager {
           } else if (column.accessor === 'actions') {
             td.classList.add('action-col');
             td.innerHTML = `
-              <button class="action-btn">View</button>
-              <button class="action-btn">Edit</button>
-              <button class="action-btn delete">Delete</button>
+              <div style="position: relative; display: inline-block;">
+                <svg id="menu-icon" class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer" 
+                    aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" >
+                  <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
+                </svg>
+                <div id="dropdown-menu">
+                  <button class="action-btn" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">View</button>
+                  <button class="action-btn" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">Edit</button>
+                  <button class="action-btn delete" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">Delete</button>
+                </div>
+              </div>
             `;
+
+            const icon = td.querySelector('#menu-icon');
+            const dropdown = td.querySelector('#dropdown-menu');
+
+            icon.addEventListener('click', (e) => {
+              e.stopPropagation(); // empêcher que le clic remonte et ferme le menu immédiatement
+              if (dropdown.style.display === 'none' || dropdown.style.display === '') {
+                dropdown.style.display = 'block';
+              } else {
+                dropdown.style.display = 'none';
+              }
+            });
+
+            // Fermer le menu si on clique ailleurs sur la page
+            document.addEventListener('click', () => {
+              dropdown.style.display = 'none';
+            });
+
             
             // Add event listeners to action buttons
             const viewBtn = td.querySelector('button:nth-child(1)');

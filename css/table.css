@@ -159,25 +159,53 @@
 }
 
 .action-btn:first-child {
-  background-color: var(--info-color);
-  color: white;
-  border-radius: 5px;
+  background-color: #f9fafb;
+  border-radius: 6px;
   padding: 5px;
+  transition: background-color 0.2s;
 }
 
 .action-btn:first-child:hover {
-  background-color: var(--info-hover);
+  background-color: var(--neutral-200);
+  color: rgb(0, 0, 0);
 }
 
 .action-btn:nth-child(2) {
-  background-color: var(--warning-color);
-  color: white;
-  border-radius: 5px;
+  background-color: #f9fafb;
+  border-radius: 6px;
   padding: 5px;
+  transition: background-color 0.2s;
 }
 
 .action-btn:nth-child(2):hover {
-  background-color: var(--warning-hover);
+  background-color: var(--neutral-200);
+  color: rgb(0, 0, 0);
+}
+
+.action-btn {
+  background: none;
+  border: none;
+  color: #000000;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px;
+}
+
+.action-btn.delete {
+  background-color: #f9fafb;
+  color: #000000;
+  border-radius: 6px;
+  padding: 5px;
+  transition: background-color 0.1s;
+}
+
+.action-btn.delete:hover {
+  background-color: var(--danger-hover);
+  color: #ffffff;
+}
+
+#menu-icon {
+  cursor: pointer;
 }
 
 .filter-btn {
@@ -248,26 +276,6 @@
   gap: 8px;
 }
 
-.action-btn {
-  background: none;
-  border: none;
-  color: #30A0BD;
-  font-size: 14px;
-  cursor: pointer;
-  padding: 4px;
-}
-
-.action-btn.delete {
-  background-color: var(--danger-color);
-  color: white;
-  border-radius: 5px;
-  padding: 5px;
-}
-
-.action-btn.delete:hover {
-  background-color: var(--danger-hover);
-}
-
 /* Pagination styles */
 .pagination {
   display: flex;
@@ -310,4 +318,18 @@
 .pagination-btn.active {
   background-color: #30A0BD;
   color: white;
+}
+
+#dropdown-menu {
+  display: none; 
+  position: absolute; 
+  top: 28px; 
+  right: 0; 
+  background: white; 
+  border: 1px solid #ccc; 
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+  border-radius: 6px;
+  z-index: 1000;
+  min-width: 120px;
+  animation: fadeIn 0.23s ease-in-out;
 }
