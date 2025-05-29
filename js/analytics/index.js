@@ -1,4 +1,4 @@
-import { fetchDataTemp, fetchDataHum } from "../api/sensors.js";
+import { getSensorMeasurements } from "../api/sensors.js";
 import { createCharts, getDataCountFromValue } from "./charts.js";
 
 const main = async () => {
@@ -24,8 +24,8 @@ const main = async () => {
   });
 
   try {
-    const resultTemp = await fetchDataTemp(); 
-    const resultHum = await fetchDataHum();
+    const resultTemp = await getSensorMeasurements(1); 
+    const resultHum = await getSensorMeasurements(2);
 
     const dataTemp = resultTemp.data.measurements;
     const dataHum = resultHum.data.measurements;

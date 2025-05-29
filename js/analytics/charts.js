@@ -1,4 +1,4 @@
-import { fetchDataTemp, fetchDataHum } from "../api/sensors.js";
+import { getSensorMeasurements } from "../api/sensors.js";
 import { setValues } from "./statusUpdater.js";
 
 let temperatureChartInstance = null;
@@ -17,8 +17,8 @@ const createCharts = async (tempDataCount = 7, humDataCount = 7, showLoader = tr
     humCanvas.style.display = 'none';
   }
 
-  const resultTemp = await fetchDataTemp(); 
-  const resultHum = await fetchDataHum();
+  const resultTemp = await getSensorMeasurements(1); 
+  const resultHum = await getSensorMeasurements(2);
 
   const dataTemp = resultTemp.data.measurements.map(measurement => ({
     temperature: measurement.value,

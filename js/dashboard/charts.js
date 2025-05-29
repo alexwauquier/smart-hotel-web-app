@@ -1,4 +1,4 @@
-import { fetchDataHum, fetchDataTemp } from "../api/sensors.js";
+import { getSensorMeasurements } from "../api/sensors.js";
 
 let temperatureChartInstance = null;
 let humidityChartInstance = null;
@@ -12,7 +12,7 @@ async function createHumidityChart(dataCount = 7, showLoader = true) {
     canvas.style.display = 'none';
   }
 
-  const result = await fetchDataHum();
+  const result = await getSensorMeasurements(2);
 
   const humData = result.data.measurements.map(measurement => ({
     humidity: measurement.value,
@@ -82,7 +82,7 @@ async function createTemperatureChart(dataCount = 7, showLoader = true) {
     canvas.style.display = 'none';
   }
 
-  const result = await fetchDataTemp();
+  const result = await getSensorMeasurements(1);
 
   const tempData = result.data.measurements.map(measurement => ({
     temperature: measurement.value,

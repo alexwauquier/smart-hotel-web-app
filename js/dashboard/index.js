@@ -1,10 +1,10 @@
-import { fetchDataHum, fetchDataTemp } from "../api/sensors.js";
+import { getSensorMeasurements } from "../api/sensors.js";
 import { createHumidityChart, createTemperatureChart } from "./charts.js";
 import { setValues } from "./statusUpdater.js";
 
 const main = async () => {
-  const resultTemp = await fetchDataTemp(); 
-  const resultHum = await fetchDataHum();
+  const resultTemp = await getSensorMeasurements(1); 
+  const resultHum = await getSensorMeasurements(2);
 
   const dataTemp = resultTemp.data.measurements;
   const dataHum = resultHum.data.measurements;
