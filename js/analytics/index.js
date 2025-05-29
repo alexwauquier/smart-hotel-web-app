@@ -1,6 +1,5 @@
 import { fetchDataTemp, fetchDataHum } from "../api/sensors.js";
 import { createCharts, getDataCountFromValue } from "./charts.js";
-import { setValues } from "./statusUpdater.js";
 
 const main = async () => {
   const tempValueElement = document.querySelector('.temp-card:nth-of-type(1) .metric-value');
@@ -38,15 +37,13 @@ const main = async () => {
       humMinElement, humMaxElement
     ].forEach(el => el.classList.remove('loading-text'));
 
-    if (dataTemp && dataTemp.length > 0 && dataHum && dataHum.length > 0) {
-      setValues(dataTemp, dataHum);
-    } else {
-    [
-      tempValueElement, humValueElement,
-      tempMinElement, tempMaxElement,
-      humMinElement, humMaxElement
-    ].forEach(el => el.textContent = '--');
-    console.error("Aucune donnée disponible pour la température ou l'humidité.");
+    if (dataTemp.length <= 0 && dataHum.length <= 0) {
+      [
+        tempValueElement, humValueElement,
+        tempMinElement, tempMaxElement,
+        humMinElement, humMaxElement
+      ].forEach(el => el.textContent = '--');
+      console.error("Aucune donnée disponible pour la température ou l'humidité.");
     }
   } catch (error) {
     [
