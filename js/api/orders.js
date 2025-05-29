@@ -2,32 +2,45 @@ import config from "../../config.js";
 
 const getOrders = async (url = null, page = 1, size = 10, statusId = null, employeeId = null) => {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-  const statusParam = "";
-  const employeeParam = "";
 
-  if (statusId) {
-    statusParam = `&contains_alcohol=${statusId}`;
+  if (!token) {
+    console.error("No token found in localStorage or sessionStorage.");
+    return null;
   }
 
-  if (employeeId) {
-    employeeParam = `&type_id=${employeeId}`;
+  const params = new URLSearchParams({ page, size });
+
+  if (statusId !== null) {
+    params.append("status_id", statusId);
   }
 
-  const response = await fetch(url || `${config.API_BASE_URL}/api/orders?page=${page}&size=${size}${statusParam}${employeeParam}`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json"
+  if (employeeId !== null) {
+    params.append("employee_id", employeeId);
+  }
+
+  const finalUrl = url || `${config.API_BASE_URL}/api/orders?${params.toString()}`;
+
+  try {
+    const response = await fetch(finalUrl, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+      throw new Error(errorMessage);
     }
-  });
 
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.error.message);
+    return result;
+  } catch (error) {
+    console.error("Error fetching orders:", error.message);
+    return null;
   }
-
-  return result;
 };
 
 export { getOrders };

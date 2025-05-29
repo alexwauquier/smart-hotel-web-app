@@ -2,27 +2,41 @@ import config from "../../config.js";
 
 const getCustomers = async (url = null, page = 1, size = 10, spaceId = null) => {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-  const spaceParam = "";
 
-  if (spaceId) {
-    spaceParam = `&space_id=${spaceId}`;
+  if (!token) {
+    console.error("No token found in localStorage or sessionStorage.");
+    return null;
   }
 
-  const response = await fetch(url || `${config.API_BASE_URL}/api/customers?page=${page}&size=${size}${spaceParam}`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json"
+  const params = new URLSearchParams({ page, size });
+
+  if (spaceId !== null) {
+    params.append("space_id", spaceId);
+  }
+
+  const finalUrl = url || `${config.API_BASE_URL}/api/customers?${params.toString()}`;
+
+  try {
+    const response = await fetch(finalUrl, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+      throw new Error(errorMessage);
     }
-  });
 
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.error.message);
+    return result;
+  } catch (error) {
+    console.error("Error fetching customers:", error.message);
+    return null;
   }
-
-  return result;
 };
 
 export { getCustomers };

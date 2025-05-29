@@ -19,8 +19,8 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
   });
 
   try {
-    const data = await loginCustomer(lastName, roomNumber);
-    const token = data.token;
+    const result = await loginCustomer(lastName, roomNumber);
+    const token = result.data.token;
 
     // Ferme l'alerte de chargement
     Swal.close();

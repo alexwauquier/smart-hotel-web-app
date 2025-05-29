@@ -2,32 +2,45 @@ import config from "../../config.js";
 
 const getProducts = async (url = null, page = 1, size = 10, containsAlcohol = null, typeId = null) => {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
-  const containsAlcoholParam = "";
-  const typeParam = "";
 
-  if (containsAlcohol) {
-    containsAlcoholParam = `&contains_alcohol=${containsAlcohol}`;
+  if (!token) {
+    console.error("No token found in localStorage or sessionStorage.");
+    return null;
   }
 
-  if (typeId) {
-    typeParam = `&type_id=${typeId}`;
+  const params = new URLSearchParams({ page, size });
+
+  if (containsAlcohol !== null) {
+    params.append("contains_alcohol", containsAlcohol);
   }
 
-  const response = await fetch(url || `${config.API_BASE_URL}/api/products?page=${page}&size=${size}${containsAlcoholParam}${typeParam}`, {
-    method: "GET",
-    headers: {
-      "Authorization": `Bearer ${token}`,
-      "Content-Type": "application/json"
+  if (typeId !== null) {
+    params.append("type_id", typeId);
+  }
+
+  const finalUrl = url || `${config.API_BASE_URL}/api/products?${params.toString()}`;
+
+  try {
+    const response = await fetch(finalUrl, {
+      method: "GET",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      }
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+      throw new Error(errorMessage);
     }
-  });
 
-  const result = await response.json();
-
-  if (!response.ok) {
-    throw new Error(result.error.message);
+    return result;
+  } catch (error) {
+    console.error("Error fetching products:", error.message);
+    return null;
   }
-
-  return result;
 };
 
 export { getProducts };

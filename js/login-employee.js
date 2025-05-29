@@ -19,8 +19,8 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
   });
 
   try {
-    const data = await loginEmployee(username, password);
-    const token = data.token;
+    const result = await loginEmployee(username, password);
+    const token = result.data.token;
 
     // Ferme l'alerte de chargement
     Swal.close();

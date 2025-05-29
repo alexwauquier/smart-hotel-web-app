@@ -1,38 +1,54 @@
 import config from "../../config.js";
 
 const loginCustomer = async (lastName, spaceId) => {
-  const response = await fetch(`${config.API_BASE_URL}/api/auth/login/customer`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      last_name: lastName,
-      space_id: spaceId
-    })
-  });
+  const url = `${config.API_BASE_URL}/api/auth/login/customer`;
 
-  const result = await response.json();
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        last_name: lastName,
+        space_id: spaceId
+      })
+    });
 
-  if (!response.ok) {
-    throw new Error(result.error.message);
+    const result = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+      throw new Error(errorMessage);
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Error login customer:", error.message);
+    return null;
   }
-
-  return result.data;
 };
 
 const loginEmployee = async (username, password) => {
-  const response = await fetch(`${config.API_BASE_URL}/api/auth/login/employee`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ username, password })
-  });
+  const url = `${config.API_BASE_URL}/api/auth/login/employee`;
 
-  const result = await response.json();
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ username, password })
+    });
 
-  if (!response.ok) {
-    throw new Error(result.error.message);
+    const result = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+      throw new Error(errorMessage);
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Error login employee:", error.message);
+    return null;
   }
-
-  return result.data;
 };
 
 export { loginCustomer, loginEmployee };
