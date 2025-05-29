@@ -25,8 +25,11 @@ const main = async () => {
   });
 
   try {
-    const dataTemp = await fetchDataTemp();
-    const dataHum = await fetchDataHum();
+    const resultTemp = await fetchDataTemp(); 
+    const resultHum = await fetchDataHum();
+
+    const dataTemp = resultTemp.data.measurements;
+    const dataHum = resultHum.data.measurements;
 
     // Enlever shimmer après récupération
     [

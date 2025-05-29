@@ -22,12 +22,7 @@ const fetchDataHum = async (range = "last_24_hours") => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const dataHum = await response.json();
-
-    return dataHum.data.measurements.map(measurement => ({
-      humidite: measurement.value,
-      timestamp: new Date(measurement.timestamp).toLocaleString()
-    }));
+    return await response.json();
   } catch (error) {
     console.error("Error fetching humidity data:", error);
     return;
@@ -56,12 +51,7 @@ const fetchDataTemp = async (range = "last_24_hours") => {
       throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    const dataTemp = await response.json();
-
-    return dataTemp.data.measurements.map(measurement => ({
-      temperature: measurement.value,
-      timestamp: new Date(measurement.timestamp).toLocaleString()
-    }));
+    return await response.json();
   } catch (error) {
     console.error("Error fetching temperature data:", error);
     return;

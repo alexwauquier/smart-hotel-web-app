@@ -17,10 +17,19 @@ const createCharts = async (tempDataCount = 7, humDataCount = 7, showLoader = tr
     humCanvas.style.display = 'none';
   }
 
-  const tempData = await fetchDataTemp();
-  const humData = await fetchDataHum();
+  const resultTemp = await fetchDataTemp(); 
+  const resultHum = await fetchDataHum();
 
-  if (!tempData || !humData) {
+  const dataTemp = resultTemp.data.measurements.map(measurement => ({
+    temperature: measurement.value,
+    timestamp: new Date(measurement.timestamp).toLocaleTimeString("es-ES")
+  }));
+  const dataHum = resultHum.data.measurements.map(measurement => ({
+    humidity: measurement.value,
+    timestamp: new Date(measurement.timestamp).toLocaleTimeString("es-ES")
+  }));
+
+  if (!dataTemp || !dataHum) {
     if (showLoader) {
       tempLoader.style.display = 'none';
       humLoader.style.display = 'none';
@@ -28,14 +37,14 @@ const createCharts = async (tempDataCount = 7, humDataCount = 7, showLoader = tr
     return;
   }
 
-  const lastTempData = tempData.slice(0, tempDataCount);
-  const lastHumData = humData.slice(0, humDataCount);
+  const lastTempData = dataTemp.slice(0, tempDataCount);
+  const lastHumData = dataHum.slice(0, humDataCount);
 
-  const labelsTemp = lastTempData.map(entry => entry.timestamp.split(', ')[1]);
-  const labelsHum = lastHumData.map(entry => entry.timestamp.split(', ')[1]);
+  const labelsTemp = lastTempData.map(entry => entry.timestamp);
+  const labelsHum = lastHumData.map(entry => entry.timestamp);
 
   const temperatureValues = lastTempData.map(entry => entry.temperature);
-  const humidityValues = lastHumData.map(entry => entry.humidite);
+  const humidityValues = lastHumData.map(entry => entry.humidity);
 
   setValues(lastTempData, lastHumData);
 

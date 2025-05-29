@@ -12,7 +12,12 @@ async function createHumidityChart(dataCount = 7, showLoader = true) {
     canvas.style.display = 'none';
   }
 
-  const humData = await fetchDataHum();
+  const result = await fetchDataHum();
+
+  const humData = result.data.measurements.map(measurement => ({
+    humidity: measurement.value,
+    timestamp: new Date(measurement.timestamp).toLocaleTimeString("es-ES")
+  }));
 
   if (!humData) {
     if (showLoader) loader.style.display = 'none';
@@ -20,8 +25,8 @@ async function createHumidityChart(dataCount = 7, showLoader = true) {
   }
 
   const lastHumData = humData.slice(0, dataCount);
-  const labels = lastHumData.map(entry => entry.timestamp.split(', ')[1]);
-  const humidityValues = lastHumData.map(entry => entry.humidite);
+  const labels = lastHumData.map(entry => entry.timestamp);
+  const humidityValues = lastHumData.map(entry => entry.humidity);
 
   if (humidityChartInstance) humidityChartInstance.destroy();
 
@@ -66,7 +71,7 @@ async function createHumidityChart(dataCount = 7, showLoader = true) {
   } else {
     canvas.style.display = 'block';
   }
-}
+};
 
 async function createTemperatureChart(dataCount = 7, showLoader = true) {
   const loader = document.querySelector('#temperatureChart').previousElementSibling;
@@ -77,7 +82,12 @@ async function createTemperatureChart(dataCount = 7, showLoader = true) {
     canvas.style.display = 'none';
   }
 
-  const tempData = await fetchDataTemp();
+  const result = await fetchDataTemp();
+
+  const tempData = result.data.measurements.map(measurement => ({
+    temperature: measurement.value,
+    timestamp: new Date(measurement.timestamp).toLocaleTimeString("es-ES")
+  }));
 
   if (!tempData) {
     if (showLoader) loader.style.display = 'none';
@@ -85,7 +95,7 @@ async function createTemperatureChart(dataCount = 7, showLoader = true) {
   }
 
   const lastTempData = tempData.slice(0, dataCount);
-  const labels = lastTempData.map(entry => entry.timestamp.split(', ')[1]);
+  const labels = lastTempData.map(entry => entry.timestamp);
   const temperatureValues = lastTempData.map(entry => entry.temperature);
 
   if (temperatureChartInstance) temperatureChartInstance.destroy();
@@ -131,6 +141,6 @@ async function createTemperatureChart(dataCount = 7, showLoader = true) {
   } else {
     canvas.style.display = 'block';
   }
-}
+};
 
 export { createHumidityChart, createTemperatureChart };

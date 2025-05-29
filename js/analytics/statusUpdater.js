@@ -43,12 +43,12 @@ const setValues = (newTempData, newHumData) => {
   const minTemp = Math.min(...newTempData.map(entry => parseFloat(entry.temperature)));
   const maxTemp = Math.max(...newTempData.map(entry => parseFloat(entry.temperature)));
 
-  const minHum = Math.min(...newHumData.map(entry => parseFloat(entry.humidite)));
-  const maxHum = Math.max(...newHumData.map(entry => parseFloat(entry.humidite)));
+  const minHum = Math.min(...newHumData.map(entry => parseFloat(entry.humidity)));
+  const maxHum = Math.max(...newHumData.map(entry => parseFloat(entry.humidity)));
 
   // Mettre à jour les valeurs affichées pour la température et l'humidité
   document.querySelector('.temp-card:nth-of-type(1) .metric-value').textContent = newTempData[0].temperature + '°C'; // Dernière température
-  document.querySelector('.temp-card:nth-of-type(2) .metric-value').textContent = newHumData[0].humidite + '%'; // Dernière humidité
+  document.querySelector('.temp-card:nth-of-type(2) .metric-value').textContent = newHumData[0].humidity + '%'; // Dernière humidité
 
   // Mettre à jour les valeurs Min et Max correctement dans les éléments respectifs
   document.querySelector('.temp-card:nth-of-type(1) .detail-item:nth-of-type(1) .value').textContent = `${minTemp}°C`; // Min Temp

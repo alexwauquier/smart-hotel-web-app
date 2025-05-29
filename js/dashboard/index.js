@@ -3,21 +3,16 @@ import { createHumidityChart, createTemperatureChart } from "./charts.js";
 import { setValues } from "./statusUpdater.js";
 
 const main = async () => {
-  const dataTemp = await fetchDataTemp(); 
-  const dataHum = await fetchDataHum();
+  const resultTemp = await fetchDataTemp(); 
+  const resultHum = await fetchDataHum();
 
-    if (dataTemp && dataTemp.length > 0) {
-    const latest = dataTemp[0];
-    const latestTemp = parseFloat(latest.temperature);
+  const dataTemp = resultTemp.data.measurements;
+  const dataHum = resultHum.data.measurements;
 
-    if (dataHum && dataHum.length > 0) {
-      const latest2 = dataHum[0];
-      const latestHum = parseFloat(latest2.humidite);
-      setValues(latestTemp, latestHum);
-    }
-  } else {
-    console.error("Aucune donnée de température trouvée.");
-  }
+  const latestTemp = parseFloat(dataTemp[0].value);
+  const latestHum = parseFloat(dataHum[0].value);
+
+  setValues(latestTemp, latestHum);
 };
 
 main();
