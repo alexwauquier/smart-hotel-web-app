@@ -9,6 +9,20 @@ let prevUrl, nextUrl;
 const updateTableData = async (url) => {
   const result = await getCustomers(url);
 
+  result.data.customers = result.data.customers.map(customer => ({
+    ...customer,
+    arrival_date: new Date(customer.arrival_date).toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    }),
+    departure_date: new Date(customer.departure_date).toLocaleDateString("es-ES", {
+      day: "2-digit",
+      month: "2-digit",
+      year: "numeric"
+    })
+  }));
+
   customersTable.currentData = result.data.customers;
   customersTable.currentPage = result.meta.page.current;
   customersTable.itemsPerPage = result.meta.page.size;
