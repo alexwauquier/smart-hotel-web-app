@@ -1,25 +1,13 @@
 import { getEmployees } from "./api/employees.js";
 import TableManager from '../js/tableManager.js';
 
-// Initialize the application
 let activeTableId = 'employees';
 let employeesTable = new TableManager(activeTableId);
 
-let result = await getEmployees();
+let prevUrl, nextUrl;
 
-employeesTable.currentData = result.data.employees;
-employeesTable.currentPage = result.meta.page.current;
-employeesTable.itemsPerPage = result.meta.page.size;
-employeesTable.totalPages = result.meta.page.total;
-employeesTable.itemsTotal = result.meta.total_items;
-
-employeesTable.renderTable();
-
-let prevUrl = result.links.prev;
-let nextUrl = result.links.next;
-
-employeesTable.prevBtn.addEventListener("click", async () => {
-  result = await getEmployees(prevUrl);
+const updateTableData = async (url) => {
+  const result = await getEmployees(url);
 
   employeesTable.currentData = result.data.employees;
   employeesTable.currentPage = result.meta.page.current;
@@ -31,19 +19,14 @@ employeesTable.prevBtn.addEventListener("click", async () => {
   nextUrl = result.links.next;
 
   employeesTable.renderTable();
+};
+
+await updateTableData();
+
+employeesTable.prevBtn.addEventListener("click", () => {
+  if (prevUrl) updateTableData(prevUrl);
 });
 
-employeesTable.nextBtn.addEventListener("click", async () => {
-  result = await getEmployees(nextUrl);
-
-  employeesTable.currentData = result.data.employees;
-  employeesTable.currentPage = result.meta.page.current;
-  employeesTable.itemsPerPage = result.meta.page.size;
-  employeesTable.totalPages = result.meta.page.total;
-  employeesTable.itemsTotal = result.meta.total_items;
-
-  prevUrl = result.links.prev;
-  nextUrl = result.links.next;
-
-  employeesTable.renderTable();
+employeesTable.nextBtn.addEventListener("click", () => {
+  if (nextUrl) updateTableData(nextUrl);
 });

@@ -1,25 +1,13 @@
 import { getCustomers } from "./api/customers.js";
 import TableManager from '../js/tableManager.js';
 
-// Initialize the application
 let activeTableId = 'customers';
 let customersTable = new TableManager(activeTableId);
 
-let result = await getCustomers();
+let prevUrl, nextUrl;
 
-customersTable.currentData = result.data.customers;
-customersTable.currentPage = result.meta.page.current;
-customersTable.itemsPerPage = result.meta.page.size;
-customersTable.totalPages = result.meta.page.total;
-customersTable.itemsTotal = result.meta.total_items;
-
-customersTable.renderTable();
-
-let prevUrl = result.links.prev;
-let nextUrl = result.links.next;
-
-customersTable.prevBtn.addEventListener("click", async () => {
-  result = await getCustomers(prevUrl);
+const updateTableData = async (url) => {
+  const result = await getCustomers(url);
 
   customersTable.currentData = result.data.customers;
   customersTable.currentPage = result.meta.page.current;
@@ -31,19 +19,14 @@ customersTable.prevBtn.addEventListener("click", async () => {
   nextUrl = result.links.next;
 
   customersTable.renderTable();
+};
+
+await updateTableData();
+
+customersTable.prevBtn.addEventListener("click", () => {
+  if (prevUrl) updateTableData(prevUrl);
 });
 
-customersTable.nextBtn.addEventListener("click", async () => {
-  result = await getCustomers(nextUrl);
-
-  customersTable.currentData = result.data.customers;
-  customersTable.currentPage = result.meta.page.current;
-  customersTable.itemsPerPage = result.meta.page.size;
-  customersTable.totalPages = result.meta.page.total;
-  customersTable.itemsTotal = result.meta.total_items;
-
-  prevUrl = result.links.prev;
-  nextUrl = result.links.next;
-
-  customersTable.renderTable();
+customersTable.nextBtn.addEventListener("click", () => {
+  if (nextUrl) updateTableData(nextUrl);
 });
