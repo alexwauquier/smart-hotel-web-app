@@ -24,7 +24,7 @@
 
 ## Aperçu du Projet
 
-Cette application web est le frontend pour navigateurs web du projet Smart Hotel, un projet de deuxième année en cybersécurité, informatique et réseaux. Elle utilise l'[API Smart Hotel] (https://github.com/alexwauquier/smart-hotel-api) pour récupérer et stocker les informations nécessaires à son fonctionnement. L'application fournit une interface pour gérer les commandes du bar et les capteurs environnementaux d'un l'hôtel.
+Cette application web est le frontend pour navigateurs web du projet Smart Hotel, un projet de deuxième année en cybersécurité, informatique et réseaux. Elle utilise l'[API Smart Hotel](https://github.com/alexwauquier/smart-hotel-api) pour récupérer et stocker les informations nécessaires à son fonctionnement. L'application fournit une interface pour gérer les commandes du bar et les capteurs environnementaux d'un l'hôtel.
 
 ## Technologies Utilisées
 
