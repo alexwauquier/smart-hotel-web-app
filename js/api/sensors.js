@@ -21,6 +21,8 @@ const getSensorMeasurements = async (sensorId, range = "last_24_hours") => {
 
     const result = await response.json();
 
+    console.log("Sensor measurements fetched:", result.data.measurements);
+
     if (!response.ok) {
       const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
       throw new Error(errorMessage);
@@ -32,5 +34,7 @@ const getSensorMeasurements = async (sensorId, range = "last_24_hours") => {
     return null;
   }
 };
+
+
 
 export { getSensorMeasurements };

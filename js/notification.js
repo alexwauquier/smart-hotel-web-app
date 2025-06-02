@@ -1,34 +1,49 @@
 const notifBtn = document.querySelector('.notification');
 const notifMenu = document.getElementById('notif-menu');
 
-// Afficher/masquer le menu au clic sur l'icône notification
+// --- Récupère la liste des notifications supprimées depuis le localStorage
+function getDeletedNotifications() {
+  return JSON.parse(localStorage.getItem('deletedNotifications')) || [];
+}
+
+// --- Sauvegarde une notification supprimée
+function saveDeletedNotification(id) {
+  const deleted = getDeletedNotifications();
+  if (!deleted.includes(id)) {
+    deleted.push(id);
+    localStorage.setItem('deletedNotifications', JSON.stringify(deleted));
+  }
+}
+
+// --- Supprime du DOM toutes les notifications déjà supprimées
+window.addEventListener('DOMContentLoaded', () => {
+  const deleted = getDeletedNotifications();
+  deleted.forEach(id => {
+    const item = document.querySelector(`.notif-item[data-id="${id}"]`);
+    if (item) item.remove();
+  });
+});
+
+// --- Affiche/masque le menu au clic sur l’icône notification
 notifBtn.addEventListener('click', (e) => {
   e.stopPropagation();
   notifMenu.classList.toggle('hidden');
 });
 
-// Ferme le menu si clic en dehors, sauf si on clique sur un bouton de suppression
+// --- Ferme le menu si clic en dehors
 document.addEventListener('click', (e) => {
   if (!notifMenu.contains(e.target) && !notifBtn.contains(e.target)) {
     notifMenu.classList.add('hidden');
   }
 });
 
-// Écoute le clic sur le bouton de suppression d'une notification
+// --- Supprime la notification du DOM + la sauvegarde comme supprimée
 notifMenu.addEventListener('click', (e) => {
   if (e.target.closest('.delete-btn-notif')) {
     const notifItem = e.target.closest('.notif-item');
+    const notifId = notifItem.dataset.id;
+    saveDeletedNotification(notifId);
     notifItem.remove();
-    // On empêche la fermeture du menu
-    e.stopPropagation();
+    e.stopPropagation(); // évite de fermer le menu
   }
-});
-
-// Bouton "Marquer tout comme lu" : applique la classe "read" à toutes les notifications
-const markAllBtn = document.getElementById('markAllRead');
-markAllBtn.addEventListener('click', () => {
-  const notifItems = document.querySelectorAll('.notif-item');
-  notifItems.forEach(item => item.classList.add('read'));
-  // Ici vous pouvez générer une indication visuelle, par exemple :
-  alert('All notifications have been marked as read.');
 });

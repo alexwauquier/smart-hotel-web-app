@@ -10,6 +10,8 @@
   <link rel="icon" href="../svg/analytics.svg" type="image/svg+xml">
   <script src="../js/checkAuth.js"></script>
   <script src="../js/notification.js" defer></script>
+  <script type="module" src="../js/alertHum.js" defer></script>
+  <script type="module" src="../js/alertTemp.js" defer></script>
   <script src="../js/logout.js" defer></script>
   <script type="module" src="../js/analytics/index.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -86,7 +88,6 @@
             <!-- En-tête du menu -->
             <div class="notif-header">
               <span class="notif-title">Notifications</span>
-              <button id="markAllRead" class="mark-all-btn">Read all</button>
             </div>
             <!-- Liste des notifications fictives -->
             <div class="notif-list">
@@ -112,25 +113,6 @@
               </div>
 
               <div class="notif-item" data-id="2">
-
-                <div class="notification-item">
-                  <div class="notification-icon alert"></div>
-                  <div class="notification-details">
-                    <p class="notification-title">Temperature alert</p>
-                    <p class="notification-description">Pool area temperature exceeded threshold</p>
-                    <p class="notification-time">45 minutes ago</p>
-                  </div>
-                </div>
-
-                <button class="delete-btn-notif" title="Delete">
-                  <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#FF0000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
-                    <line x1="18" y1="6" x2="6" y2="18"></line>
-                    <line x1="6" y1="6" x2="18" y2="18"></line>
-                  </svg>
-                </button>
-              </div>
-
-              <div class="notif-item" data-id="3">
 
                 <div class="notification-item">
                   <div class="notification-icon employee"></div>

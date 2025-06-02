@@ -61,18 +61,6 @@
   font-size: 16px;
 }
 
-.mark-all-btn {
-  background: none;
-  border: none;
-  color: #30A0BD;
-  cursor: pointer;
-  font-size: 14px;
-}
-
-.mark-all-btn:hover {
-  text-decoration: underline;
-}
-
 /* Liste des notifications */
 .notif-list {
   max-height: 400px;
