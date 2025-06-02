@@ -1,4 +1,4 @@
-const notifBtn = document.querySelector('.notification');
+const notifBtn = document.querySelector('.icon-btn'); // ⬅️ Ne vise plus `.notification` ici
 const notifMenu = document.getElementById('notif-menu');
 
 // --- Récupère la liste des notifications supprimées depuis le localStorage
@@ -15,6 +15,12 @@ function saveDeletedNotification(id) {
   }
 }
 
+// --- Met à jour l'affichage du badge de notification
+function updateNotificationBadge() {
+  const hasNotifications = notifMenu.querySelectorAll('.notif-item').length > 0;
+  notifBtn.classList.toggle('notification', hasNotifications);
+}
+
 // --- Supprime du DOM toutes les notifications déjà supprimées
 window.addEventListener('DOMContentLoaded', () => {
   const deleted = getDeletedNotifications();
@@ -22,6 +28,8 @@ window.addEventListener('DOMContentLoaded', () => {
     const item = document.querySelector(`.notif-item[data-id="${id}"]`);
     if (item) item.remove();
   });
+
+  updateNotificationBadge(); // ← ici
 });
 
 // --- Affiche/masque le menu au clic sur l’icône notification
@@ -44,6 +52,9 @@ notifMenu.addEventListener('click', (e) => {
     const notifId = notifItem.dataset.id;
     saveDeletedNotification(notifId);
     notifItem.remove();
+
+    updateNotificationBadge(); // ← ici
+
     e.stopPropagation(); // évite de fermer le menu
   }
 });

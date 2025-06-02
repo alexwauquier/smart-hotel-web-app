@@ -58,7 +58,9 @@ function addNotification(notifId, title, description, time) {
 
   notifItem.innerHTML = `
     <div class="notification-item">
-      <div class="notification-icon alert"></div>
+      <div class="temperature-icon-background">
+        <div class="temperature-icon"></div>
+      </div>
       <div class="notification-details">
         <p class="notification-title">${title}</p>
         <p class="notification-description">${description}</p>

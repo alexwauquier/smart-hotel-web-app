@@ -32,8 +32,8 @@ async function checkHumidityAndNotify() {
 
       addNotification(
         notifId,
-        "Humidité élevée",
-        `Humidité atteinte ${humidity}%`,
+        "Humidity alert",
+        `Humidity reached ${humidity}%`,
         time
       );
       lastHumidityNotificationTimestamp = lastOverThreshold.timestamp;
@@ -60,7 +60,9 @@ function addNotification(notifId, title, description, time) {
 
   notifItem.innerHTML = `
     <div class="notification-item">
-      <div class="notification-icon alert"></div>
+      <div class="humidity-icon-background">
+        <div class="humidity-icon"></div>
+      </div>
       <div class="notification-details">
         <p class="notification-title">${title}</p>
         <p class="notification-description">${description}</p>
