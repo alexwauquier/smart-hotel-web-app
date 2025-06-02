@@ -194,7 +194,7 @@ body::-webkit-scrollbar-button {
 .search-bar input {
   width: 100%;
   padding: 10px 12px 10px 40px;
-  border: 1px solid #e5e7eb;
+  border: 2px solid #e5e7eb;
   border-radius: 24px;
   outline: none;
   font-size: 14px;
@@ -202,7 +202,6 @@ body::-webkit-scrollbar-button {
 
 .search-bar input:focus {
   border-color: #30A0BD;
-  box-shadow: 0 0 0 2px rgba(79, 70, 229, 0.2);
 }
 
 .user-actions {

@@ -433,7 +433,7 @@ canvas {
   border-top-color: #bdbdbd;
   border-radius: 50%;
   animation: spin 1s linear infinite;
-  margin: 125px 350px;
+  margin: 125px auto;
 }
 
 @keyframes spin {
