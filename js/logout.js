@@ -4,9 +4,9 @@ document.getElementById("logout-btn").addEventListener("click", function() {
 
 // Fonction de déconnexion
 function logout() {
-  // Supprimer le token
-  localStorage.removeItem("token");
-  sessionStorage.removeItem("token");
+  // Supprimer les données
+  localStorage.clear();
+  sessionStorage.clear();
 
   // Afficher une alerte avec SweetAlert2
   Swal.fire({

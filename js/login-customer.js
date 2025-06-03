@@ -21,16 +21,37 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
   try {
     const result = await loginCustomer(lastName, roomNumber);
     const token = result.data.token;
+    const customerId = result.data.customer.id;
+    const firstName = result.data.customer.first_name;
+    const lastName = result.data.customer.last_name;
+    const arrivalDate = result.data.customer.arrival_date;
+    const departureDate = result.data.customer.departure_date;
+    const spaceId = result.data.customer.space.id;
+    const spaceName = result.data.customer.space.name;
 
     // Ferme l'alerte de chargement
     Swal.close();
 
     if (rememberMe) {
+      sessionStorage.clear();
       localStorage.setItem("token", token);
-      sessionStorage.removeItem("token");
+      localStorage.setItem("customerId", customerId);
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("lastName", lastName);
+      localStorage.setItem("arrivalDate", arrivalDate);
+      localStorage.setItem("departureDate", departureDate);
+      localStorage.setItem("spaceId", spaceId);
+      localStorage.setItem("spaceName", spaceName);
     } else {
+      localStorage.clear();
       sessionStorage.setItem("token", token);
-      localStorage.removeItem("token");
+      sessionStorage.setItem("customerId", customerId);
+      sessionStorage.setItem("firstName", firstName);
+      sessionStorage.setItem("lastName", lastName);
+      sessionStorage.setItem("arrivalDate", arrivalDate);
+      sessionStorage.setItem("departureDate", departureDate);
+      sessionStorage.setItem("spaceId", spaceId);
+      sessionStorage.setItem("spaceName", spaceName);
     }
 
     // Affiche l'alerte de succès

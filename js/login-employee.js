@@ -21,16 +21,31 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
   try {
     const result = await loginEmployee(username, password);
     const token = result.data.token;
+    const employeeId = result.data.employee.id;
+    const firstName = result.data.employee.first_name;
+    const lastName = result.data.employee.last_name;
+    const typeId = result.data.employee.type.id;
+    const spaceLabel = result.data.employee.type.label;
 
     // Ferme l'alerte de chargement
     Swal.close();
 
     if (rememberMe) {
+      sessionStorage.clear();
       localStorage.setItem("token", token);
-      sessionStorage.removeItem("token");
+      localStorage.setItem("employeeId", employeeId);
+      localStorage.setItem("firstName", firstName);
+      localStorage.setItem("lastName", lastName);
+      localStorage.setItem("typeId", typeId);
+      localStorage.setItem("spaceLabel", spaceLabel);
     } else {
+      localStorage.clear();
       sessionStorage.setItem("token", token);
-      localStorage.removeItem("token");
+      sessionStorage.setItem("employeeId", employeeId);
+      sessionStorage.setItem("firstName", firstName);
+      sessionStorage.setItem("lastName", lastName);
+      sessionStorage.setItem("typeId", typeId);
+      sessionStorage.setItem("spaceLabel", spaceLabel);
     }
 
     // Affiche l'alerte de succès
