@@ -21,7 +21,20 @@ function updateNotificationBadge() {
   notifBtn.classList.toggle('notification', hasNotifications);
 }
 
-// --- Supprime du DOM toutes les notifications déjà supprimées
+// --- Affiche ou cache le message "Vous n'avez aucune notification"
+function updateNoNotificationsMessage() {
+  const notifList = document.querySelector(".notif-list");
+  const noNotifMsg = notifList.querySelector(".no-notifications-message");
+  const notifCount = notifList.querySelectorAll(".notif-item").length;
+
+  if (notifCount === 0) {
+    noNotifMsg.style.display = "block";
+  } else {
+    noNotifMsg.style.display = "none";
+  }
+}
+
+// --- Supprime du DOM toutes les notifications déjà supprimées au chargement
 window.addEventListener('DOMContentLoaded', () => {
   const deleted = getDeletedNotifications();
   deleted.forEach(id => {
@@ -29,7 +42,8 @@ window.addEventListener('DOMContentLoaded', () => {
     if (item) item.remove();
   });
 
-  updateNotificationBadge(); // ← ici
+  updateNotificationBadge();
+  updateNoNotificationsMessage();  // ← Ajout ici
 });
 
 // --- Affiche/masque le menu au clic sur l’icône notification
@@ -53,8 +67,15 @@ notifMenu.addEventListener('click', (e) => {
     saveDeletedNotification(notifId);
     notifItem.remove();
 
-    updateNotificationBadge(); // ← ici
+    updateNotificationBadge();
+    updateNoNotificationsMessage();  // ← Ajout ici
 
     e.stopPropagation(); // évite de fermer le menu
   }
+});
+
+// Mets à jour l'affichage quand une notification est ajoutée (via événement custom)
+document.addEventListener('notificationsUpdated', () => {
+  updateNotificationBadge();
+  updateNoNotificationsMessage();
 });
