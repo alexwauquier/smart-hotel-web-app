@@ -108,7 +108,7 @@ body {
 .input-group input {
   border: none;
   outline: none;
-  width: 100%;
+  width: 75%;
   font-size: 14px;
   color: #333;
   background: transparent;
@@ -168,4 +168,12 @@ body {
 .login-button:hover {
   background-color: #f9f9f9;
   color: #30A0BD;
+}
+
+#eyeOpen {
+  margin-bottom: 8px;
+}
+
+#eyeClosed {
+  margin-bottom: 8px;
 }

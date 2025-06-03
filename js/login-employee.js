@@ -56,3 +56,22 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
     });
   }
 });
+
+const togglePassword = document.getElementById('togglePassword');
+const passwordInput = document.getElementById('password');
+const eyeOpen = document.getElementById('eyeOpen');
+const eyeClosed = document.getElementById('eyeClosed');
+
+togglePassword.addEventListener('click', () => {
+  const isPassword = passwordInput.getAttribute('type') === 'password';
+
+  if (isPassword) {
+    passwordInput.setAttribute('type', 'text');
+    eyeOpen.style.display = 'none';
+    eyeClosed.style.display = 'block';
+  } else {
+    passwordInput.setAttribute('type', 'password');
+    eyeOpen.style.display = 'block';
+    eyeClosed.style.display = 'none';
+  }
+});
