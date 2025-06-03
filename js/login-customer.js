@@ -4,8 +4,8 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
   event.preventDefault(); // Empêche l'envoi du formulaire par défaut
 
   // Récupérer les valeurs des champs
-  const lastName = document.getElementById("last-name").value;
-  const roomNumber = document.getElementById("space-id").value;
+  const customerLastName = document.getElementById("last-name").value;
+  const customerRoomNumber = document.getElementById("space-id").value;
   const rememberMe = document.getElementById("remember").checked;
 
   // Affiche une alerte de chargement
@@ -19,7 +19,7 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
   });
 
   try {
-    const result = await loginCustomer(lastName, roomNumber);
+    const result = await loginCustomer(customerLastName, customerRoomNumber);
     const token = result.data.token;
     const customerId = result.data.customer.id;
     const firstName = result.data.customer.first_name;

@@ -25,7 +25,7 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
     const firstName = result.data.employee.first_name;
     const lastName = result.data.employee.last_name;
     const typeId = result.data.employee.type.id;
-    const spaceLabel = result.data.employee.type.label;
+    const typeLabel = result.data.employee.type.label;
 
     // Ferme l'alerte de chargement
     Swal.close();
@@ -37,7 +37,7 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
       localStorage.setItem("firstName", firstName);
       localStorage.setItem("lastName", lastName);
       localStorage.setItem("typeId", typeId);
-      localStorage.setItem("spaceLabel", spaceLabel);
+      localStorage.setItem("typeLabel", typeLabel);
     } else {
       localStorage.clear();
       sessionStorage.setItem("token", token);
@@ -45,7 +45,7 @@ document.getElementById("login-form-customer").addEventListener("submit", async 
       sessionStorage.setItem("firstName", firstName);
       sessionStorage.setItem("lastName", lastName);
       sessionStorage.setItem("typeId", typeId);
-      sessionStorage.setItem("spaceLabel", spaceLabel);
+      sessionStorage.setItem("typeLabel", typeLabel);
     }
 
     // Affiche l'alerte de succès
