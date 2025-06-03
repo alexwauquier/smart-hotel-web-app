@@ -512,20 +512,26 @@ class TableManager {
     this.currentItemId = null;
   }
   
-  deleteItem() {
+  async deleteItem() {
     if (this.currentItemId) {
-      // Remove item from data
-      this.tableConfig.data = this.tableConfig.data.filter(item => item.id !== this.currentItemId);
-      
-      // Update current data
-      this.currentData = [...this.tableConfig.data];
-      
-      // Save to local storage
-      saveToLocalStorage();
-      
-      // Close modal and refresh table
-      this.closeConfirmModal();
-      this.renderTable();
+      console.log("Local data:", this.currentData);
+      try {
+        // Appel à la suppression API avec gestion du token
+        const result = await this.deleteItemFromApi(this.tableId, this.currentItemId);
+
+        if (!result) {
+          throw new Error('La suppression via API a échoué.');
+        }
+
+        this.currentData = this.currentData.filter(item => item.id !== this.currentItemId);
+
+        // Fermeture modale et rafraîchissement de la table
+        this.closeConfirmModal();
+        this.renderTable();
+      } catch (error) {
+        alert('Erreur lors de la suppression de l\'élément : ' + error.message);
+        console.error(error);
+      }
     }
   }
   
@@ -588,6 +594,39 @@ class TableManager {
 
   getNestedValue(obj, accessor) {
     return accessor.split('.').reduce((acc, key) => acc && acc[key], obj);
+  }
+
+  async deleteItemFromApi(tableId, currentItemId) {
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+    if (!token) {
+      console.error("No token found in localStorage or sessionStorage.");
+      return null;
+    }
+
+    const url = `https://smart-hotel-api.onrender.com/api/${tableId}/${currentItemId}`;
+
+    try {
+      const response = await fetch(url, {
+        method: 'DELETE',
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          'Content-Type': 'application/json'
+        }
+      });
+
+      const result = await response.json();
+
+      if (!response.ok) {
+        const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+        throw new Error(errorMessage);
+      }
+
+      return result;
+    } catch (error) {
+      console.error("Error fetching customers:", error.message);
+      return null;
+    }
   }
 }
 
