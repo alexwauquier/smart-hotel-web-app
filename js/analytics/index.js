@@ -30,31 +30,23 @@ const main = async () => {
     const dataTemp = resultTemp.data.measurements;
     const dataHum = resultHum.data.measurements;
 
-    // Enlever shimmer après récupération
-    [
-      tempValueElement, humValueElement,
-      tempMinElement, tempMaxElement,
-      humMinElement, humMaxElement
-    ].forEach(el => el.classList.remove('loading-text'));
-
-    if (dataTemp.length <= 0 && dataHum.length <= 0) {
+    // Enlever shimmer uniquement si on a des données valides
+    if (dataTemp.length > 0 || dataHum.length > 0) {
       [
         tempValueElement, humValueElement,
         tempMinElement, tempMaxElement,
         humMinElement, humMaxElement
-      ].forEach(el => el.textContent = '--');
-      console.error("Aucune donnée disponible pour la température ou l'humidité.");
+      ].forEach(el => el.classList.remove('loading-text'));
     }
+
+    if (dataTemp.length <= 0 && dataHum.length <= 0) {
+      console.error("Aucune donnée disponible pour la température ou l'humidité.");
+      // Ne rien faire pour garder le shimmer actif
+    }
+
   } catch (error) {
-    [
-      tempValueElement, humValueElement,
-      tempMinElement, tempMaxElement,
-      humMinElement, humMaxElement
-    ].forEach(el => {
-      el.classList.remove('loading-text');
-      el.textContent = '--';
-    });
     console.error("Erreur lors de la récupération des données :", error);
+    // Ne rien faire pour garder le shimmer actif
   }
 };
 
