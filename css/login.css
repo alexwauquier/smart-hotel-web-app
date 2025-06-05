@@ -108,7 +108,7 @@ body {
 .input-group input {
   border: none;
   outline: none;
-  width: 75%;
+  width: 60%;
   font-size: 14px;
   color: #333;
   background: transparent;
@@ -171,9 +171,9 @@ body {
 }
 
 #eyeOpen {
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }
 
 #eyeClosed {
-  margin-bottom: 8px;
+  margin-bottom: 7px;
 }

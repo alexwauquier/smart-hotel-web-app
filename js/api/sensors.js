@@ -1,6 +1,6 @@
 import config from "../../config.js";
 
-const getSensorMeasurements = async (sensorId, range = "last_24_hours") => {
+const getSensorMeasurements = async (sensorId, range = "last_30_days") => {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
   if (!token) {
