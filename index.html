@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Barcelo Hotel - Customer portal</title>
+  <title>Barcelo Hotel - Login</title>
   <link rel="stylesheet" href="css/login.css">
   <link rel="icon" href="svg/hotel.svg" type="image/svg+xml">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script type="module" src="js/login.js"></script>
 </head>
 <body>
   <div class="login-container">
@@ -15,15 +16,15 @@
         <img src="images/logo2.png" style="width:85%;padding:30px;" alt="Barcelo Hotel">
       </div>
       
-      <form class="login-form" id="login-form-customer">
+      <form class="login-form" id="login-form" data-user-type="customer">
         <div class="input-group">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 22 22"><path fill="none" stroke="#30A0BD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 7.5a3 3 0 1 1-6 0a3 3 0 0 1 6 0m4.5 13c-.475-9.333-14.525-9.333-15 0"/></svg>
-          <input type="text" id="last-name" placeholder="Last Name" required>
+          <input type="text" id="input1" placeholder="Last Name" required>
         </div>
         
         <div class="input-group" style="position: relative;">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 22 22"><path fill="none" stroke="#30A0BD" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="m15.362 9.065l1.32 1.32c.995.995 1.345-.84 2.734-1.07c.466-.078.877-.236 1.053-.752c.156-.456-.021-.885-.574-1.438L18.5 5.731M7.5 21a4.5 4.5 0 1 0 0-9a4.5 4.5 0 0 0 0 9m3.5-8L21 3"/></svg>
-          <input type="password" id="space-id" placeholder="Room Number" required>
+          <input type="password" id="input2" placeholder="Room Number" required>
           <span id="togglePassword" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); cursor: pointer; display: flex; align-items: center;">
             <!-- Mot de passe caché : oeil ouvert visible par défaut -->
             <svg id="eyeOpen" class="w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" viewBox="0 0 24 24">
@@ -37,20 +38,18 @@
             </svg>
           </span>
         </div>
-        
+
         <div class="form-options">
           <div class="remember-me">
             <input class="checkboxstyle" type="checkbox" id="remember">
             <label for="remember">Remember me</label>
           </div>
-          <a href="./pages/employee-portal.html" class="change-portal">Employee Portal</a>
+          <a href="#" id="switch-portal" class="change-portal">Employee Portal</a>
         </div>
-        
+
         <button type="submit" class="login-button">LOGIN</button>
       </form>
     </div>
   </div>
-
-  <script type="module" src="js/login-customer.js"></script>
 </body>
 </html>

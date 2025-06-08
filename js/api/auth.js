@@ -23,7 +23,7 @@ const loginCustomer = async (lastName, spaceId) => {
     return result;
   } catch (error) {
     console.error("Error login customer:", error.message);
-    return null;
+    throw error;
   }
 };
 
@@ -47,7 +47,7 @@ const loginEmployee = async (username, password) => {
     return result;
   } catch (error) {
     console.error("Error login employee:", error.message);
-    return null;
+    throw error;
   }
 };
 
