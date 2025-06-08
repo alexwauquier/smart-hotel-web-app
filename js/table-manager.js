@@ -181,6 +181,13 @@ class TableManager {
 
             icon.addEventListener('click', (e) => {
               e.stopPropagation(); // empêcher que le clic remonte et ferme le menu immédiatement
+
+              document.querySelectorAll('#dropdown-menu').forEach(menu => {
+                if (menu !== dropdown) {
+                  menu.style.display = 'none';
+                }
+              });
+
               if (dropdown.style.display === 'none' || dropdown.style.display === '') {
                 dropdown.style.display = 'block';
               } else {
