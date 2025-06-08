@@ -22,7 +22,7 @@ const tableData = {
       { id: 'employeeName', label: 'Employee last name', accessor: 'employee.last_name', sortable: true, filterable: true },
       { id: 'spaceId', label: 'Space ID', accessor: 'space.id', sortable: true, filterable: true },
       { id: 'status', label: 'Status', accessor: 'status.label', sortable: true, filterable: true },
-      { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false }
+      { id: 'actions', label: 'Action', accessor: 'actions', sortable: false, filterable: false, delete: false }
     ]
   },
   products: {

@@ -1,4 +1,5 @@
 import tableConfig from "./table-config.js";
+import config from "../config.js";
 
 class TableManager {
   constructor(tableId) {
@@ -162,6 +163,19 @@ class TableManager {
             td.innerHTML = '<input type="checkbox">';
           } else if (column.accessor === 'actions') {
             td.classList.add('action-col');
+
+            let dropdownHTML = '';
+
+            if (column.view !== false) {
+              dropdownHTML += `<button class="action-btn view" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">View</button>`;
+            }
+            if (column.edit !== false) {
+              dropdownHTML += `<button class="action-btn edit" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">Edit</button>`;
+            }
+            if (column.delete !== false) {
+              dropdownHTML += `<button class="action-btn delete" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">Delete</button>`;
+            }
+
             td.innerHTML = `
               <div style="position: relative; display: inline-block;">
                 <svg id="menu-icon" class="w-6 h-6 text-gray-800 dark:text-white cursor-pointer" 
@@ -169,9 +183,7 @@ class TableManager {
                   <path stroke="currentColor" stroke-linecap="round" stroke-width="2" d="M6 12h.01m6 0h.01m5.99 0h.01"/>
                 </svg>
                 <div id="dropdown-menu">
-                  <button class="action-btn" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">View</button>
-                  <button class="action-btn" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">Edit</button>
-                  <button class="action-btn delete" style="display: block; width: 100%; padding: 8px; border: none; text-align: left; cursor: pointer;">Delete</button>
+                  ${dropdownHTML}
                 </div>
               </div>
             `;
@@ -206,9 +218,15 @@ class TableManager {
             const editBtn = td.querySelector('button:nth-child(2)');
             const deleteBtn = td.querySelector('button:nth-child(3)');
             
-            viewBtn.addEventListener('click', () => this.viewItem(item));
-            editBtn.addEventListener('click', () => this.showEditModal(item));
-            deleteBtn.addEventListener('click', () => this.showDeleteConfirmation(item));
+            if (viewBtn) {
+              viewBtn.addEventListener('click', () => this.viewItem(item));
+            }
+            if (editBtn) {
+              editBtn.addEventListener('click', () => this.showEditModal(item));
+            }
+            if (deleteBtn) {
+              deleteBtn.addEventListener('click', () => this.showDeleteConfirmation(item));
+            }
           } else if (column.accessor === 'status' && this.tableId === 'orders') {
             const statusValue = item[column.accessor];
             td.innerHTML = `<span class="status ${statusValue}">${this.formatStatus(statusValue)}</span>`;
@@ -611,7 +629,7 @@ class TableManager {
       return null;
     }
 
-    const url = `https://smart-hotel-api.onrender.com/api/${tableId}/${currentItemId}`;
+    const url = `${config.API_BASE_URL}/api/${tableId}/${currentItemId}`;
 
     try {
       const response = await fetch(url, {
