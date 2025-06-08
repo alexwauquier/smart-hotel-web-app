@@ -1,9 +1,9 @@
-import tableData from "./data.js";
+import tableConfig from "./table-config.js";
 
 class TableManager {
   constructor(tableId) {
     this.tableId = tableId;
-    this.tableConfig = tableData[tableId];
+    this.tableConfig = tableConfig[tableId];
     this.currentData = [];
     this.filteredData = [...this.currentData];
     this.sortColumn = null;
