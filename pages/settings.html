@@ -86,9 +86,6 @@
               <li class="settings-nav-item" data-target="appearance-settings">
                 <span>Appearance</span>
               </li>
-              <li class="settings-nav-item" data-target="export-settings">
-                <span>Export Data</span>
-              </li>
             </ul>
           </div>
           
@@ -415,119 +412,6 @@
                 <div class="form-actions">
                   <button class="new-item-btn">Save Changes</button>
                   <button class="new-item-btn">Reset to Default</button>
-                </div>
-              </div>
-            </div>
-            
-            <!-- Export Data Settings -->
-            <div class="settings-section" id="export-settings">
-              <h2 class="settings-title">Export Data</h2>
-              
-              <div class="settings-form">
-                <div class="export-options">
-                  <h3>Select Data to Export</h3>
-                  
-                  <div class="form-group">
-                    <label class="checkbox-label">
-                      <input type="checkbox" checked>
-                      <span>Orders Data</span>
-                    </label>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="checkbox-label">
-                      <input type="checkbox" checked>
-                      <span>Temperature Sensor Data</span>
-                    </label>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="checkbox-label">
-                      <input type="checkbox" checked>
-                      <span>Humidity Sensor Data</span>
-                    </label>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="checkbox-label">
-                      <input type="checkbox">
-                      <span>Employee Records</span>
-                    </label>
-                  </div>
-                  
-                  <div class="form-group">
-                    <label class="checkbox-label">
-                      <input type="checkbox">
-                      <span>Product Inventory</span>
-                    </label>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="dateRange">Date Range</label>
-                  <select id="dateRange">
-                    <option value="today">Today</option>
-                    <option value="yesterday">Yesterday</option>
-                    <option value="last7days" selected>Last 7 Days</option>
-                    <option value="last30days">Last 30 Days</option>
-                    <option value="custom">Custom Range</option>
-                  </select>
-                </div>
-                
-                <div class="form-group date-range-custom" style="display: none;">
-                  <div class="date-inputs">
-                    <div>
-                      <label for="startDate">Start Date</label>
-                      <input type="date" id="startDate">
-                    </div>
-                    <div>
-                      <label for="endDate">End Date</label>
-                      <input type="date" id="endDate">
-                    </div>
-                  </div>
-                </div>
-                
-                <div class="form-group">
-                  <label for="exportFormat">Export Format</label>
-                  <select id="exportFormat">
-                    <option value="csv" selected>CSV</option>
-                    <option value="json">JSON</option>
-                    <option value="excel">Excel</option>
-                    <option value="pdf">PDF</option>
-                  </select>
-                </div>
-                
-                <div class="form-actions">
-                  <button class="new-item-btn">Export Data</button>
-                </div>
-                
-                <div class="previous-exports">
-                  <h3>Previous Exports</h3>
-                  <div class="export-history">
-                    <div class="export-item">
-                      <div class="export-item-info">
-                        <p class="export-name">sensor-data-2023-10-15.csv</p>
-                        <p class="export-date">15 Oct 2023, 14:30</p>
-                      </div>
-                      <button class="new-item-btn">Download</button>
-                    </div>
-                    
-                    <div class="export-item">
-                      <div class="export-item-info">
-                        <p class="export-name">orders-2023-10-10.excel</p>
-                        <p class="export-date">10 Oct 2023, 09:15</p>
-                      </div>
-                      <button class="new-item-btn">Download</button>
-                    </div>
-                    
-                    <div class="export-item">
-                      <div class="export-item-info">
-                        <p class="export-name">full-report-2023-09-30.pdf</p>
-                        <p class="export-date">30 Sep 2023, 18:45</p>
-                      </div>
-                      <button class="new-item-btn">Download</button>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
