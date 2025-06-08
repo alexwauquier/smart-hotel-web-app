@@ -1,5 +1,5 @@
 import { getCustomers } from "./api/customers.js";
-import TableManager from '../js/tableManager.js';
+import TableManager from '../js/table-manager.js';
 
 let activeTableId = 'customers';
 let customersTable = new TableManager(activeTableId);

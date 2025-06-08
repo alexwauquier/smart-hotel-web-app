@@ -1,6 +1,6 @@
 import { getSensorMeasurements } from "../api/sensors.js";
 import { createHumidityChart, createTemperatureChart } from "./charts.js";
-import { setValues } from "./statusUpdater.js";
+import { setValues } from "./status-updater.js";
 
 const main = async () => {
   const resultTemp = await getSensorMeasurements(1); 

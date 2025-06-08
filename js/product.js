@@ -1,5 +1,5 @@
 import { getProducts } from "./api/products.js";
-import TableManager from "./tableManager.js";
+import TableManager from "./table-manager.js";
 
 let activeTableId = 'products';
 let productsTable = new TableManager(activeTableId);

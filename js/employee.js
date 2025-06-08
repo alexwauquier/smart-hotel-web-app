@@ -1,5 +1,5 @@
 import { getEmployees } from "./api/employees.js";
-import TableManager from '../js/tableManager.js';
+import TableManager from '../js/table-manager.js';
 
 let activeTableId = 'employees';
 let employeesTable = new TableManager(activeTableId);

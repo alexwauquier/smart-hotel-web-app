@@ -1,5 +1,5 @@
 import { getSensorMeasurements } from "../api/sensors.js";
-import { setValues } from "./statusUpdater.js";
+import { setValues } from "./status-updater.js";
 
 let temperatureChartInstance = null;
 let humidityChartInstance = null;
