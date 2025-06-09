@@ -84,6 +84,10 @@ class TableManager {
     // Setup table headers
     this.tableHeaders.innerHTML = '';
     this.tableConfig.columns.forEach(column => {
+      if (column.showInTable === false) {
+        return;
+      }
+      
       const th = document.createElement('th');
       th.textContent = column.label;
       
@@ -156,6 +160,10 @@ class TableManager {
         const tr = document.createElement('tr');
         
         this.tableConfig.columns.forEach(column => {
+          if (column.showInTable === false) {
+            return;
+          }
+
           const td = document.createElement('td');
           
           if (column.accessor === 'checkbox') {
