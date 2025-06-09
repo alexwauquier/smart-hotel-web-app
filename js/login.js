@@ -18,6 +18,8 @@ function updateForm() {
     input2.id = "password";
     form.dataset.userType = "employee";
     switchPortal.textContent = "Customer Portal";
+    input1.setAttribute("autocomplete", "username");
+    input2.setAttribute("autocomplete", "current-password");
   } else {
     input1.placeholder = "Last Name";
     input2.placeholder = "Room Number";
@@ -25,6 +27,8 @@ function updateForm() {
     input2.id = "space-id";
     form.dataset.userType = "customer";
     switchPortal.textContent = "Employee Portal";
+    input1.setAttribute("autocomplete", "family-name");
+    input2.setAttribute("autocomplete", "off");
   }
 }
 
@@ -107,8 +111,6 @@ form.addEventListener("submit", async (event) => {
     for (const [key, value] of Object.entries(data.storage)) {
       storage.setItem(key, value);
     }
-
-    console.log(localStorage);
 
     Swal.fire({
       title: "Successful login!",
