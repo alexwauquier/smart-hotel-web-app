@@ -2,9 +2,8 @@
 const tableData = {
   employees: {
     id: 'employees',
-    name: 'Employee',
+    name: 'Employees',
     columns: [
-      { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
       { id: 'employeeFirstName', label: 'First name', accessor: 'first_name', sortable: true, filterable: true },
       { id: 'employeeLastName', label: 'Last name', accessor: 'last_name', sortable: true, filterable: true },
       { id: 'employeeUsername', label: 'Username', accessor: 'username', sortable: true, filterable: true },
@@ -14,9 +13,8 @@ const tableData = {
   },
   orders: {
     id: 'orders',
-    name: 'Order',
+    name: 'Orders',
     columns: [
-      { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
       { id: 'id', label: 'ID', accessor: 'id', sortable: true, filterable: true },
       { id: 'customerName', label: 'Customer last name', accessor: 'customer.last_name', sortable: true, filterable: true },
       { id: 'employeeName', label: 'Employee last name', accessor: 'employee.last_name', sortable: true, filterable: true },
@@ -29,7 +27,6 @@ const tableData = {
     id: 'products',
     name: 'Products',
     columns: [
-      { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
       { id: 'name', label: 'Name', accessor: 'name', sortable: true, filterable: true },
       { id: 'unit_price', label: 'Price', accessor: 'unit_price', sortable: true, filterable: true },
       { id: 'stock_quantity', label: 'Stock', accessor: 'stock_quantity', sortable: true, filterable: true },
@@ -41,7 +38,6 @@ const tableData = {
     id: 'customers',
     name: 'Customers',
     columns: [
-      { id: 'checkbox', label: '', accessor: 'checkbox', sortable: false, filterable: false },
       { id: 'customerFirstName', label: 'First name', accessor: 'first_name', sortable: true, filterable: true },
       { id: 'customerLastName', label: 'Last name', accessor: 'last_name', sortable: true, filterable: true },
       { id: 'customerArrivalDate', label: 'Arrival date', accessor: 'arrival_date', sortable: true, filterable: true },
