@@ -35,7 +35,7 @@ if (isTokenValid(token)) {
   });
 }
 
-import { loginCustomer, loginEmployee } from "./api/auth.js";
+import { loginCustomer, loginEmployee } from "../api/auth.js";
 
 const form = document.getElementById("login-form");
 const input1 = document.getElementById("input1");
