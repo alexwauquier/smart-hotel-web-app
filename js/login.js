@@ -1,3 +1,40 @@
+const isTokenValid = (token) => {
+  if (!token) return false;
+
+  try {
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const exp = payload.exp;
+    if (!exp) return false;
+
+    const now = Math.floor(Date.now() / 1000);
+    return exp > now;
+  } catch (e) {
+    return false;
+  }
+}
+
+const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+if (isTokenValid(token)) {
+  Swal.fire({
+    title: "Active session detected",
+    text: "You are already logged in. Do you want to continue or log in again?",
+    icon: "question",
+    showCancelButton: true,
+    confirmButtonText: "Continue",
+    cancelButtonText: "Log in again",
+    confirmButtonColor: "#30A0BD",
+    cancelButtonColor: "#d33"
+  }).then((result) => {
+    if (result.isConfirmed) {
+      window.location.href = "../pages/dashboard.html";
+    } else {
+      localStorage.clear();
+      sessionStorage.clear();
+    }
+  });
+}
+
 import { loginCustomer, loginEmployee } from "./api/auth.js";
 
 const form = document.getElementById("login-form");
@@ -17,7 +54,7 @@ function updateForm() {
     input1.id = "username";
     input2.id = "password";
     form.dataset.userType = "employee";
-    switchPortal.textContent = "Customer Portal";
+    switchPortal.textContent = "Customer ?";
     input1.setAttribute("autocomplete", "username");
     input2.setAttribute("autocomplete", "current-password");
   } else {
@@ -26,7 +63,7 @@ function updateForm() {
     input1.id = "last-name";
     input2.id = "space-id";
     form.dataset.userType = "customer";
-    switchPortal.textContent = "Employee Portal";
+    switchPortal.textContent = "Employee ?";
     input1.setAttribute("autocomplete", "family-name");
     input2.setAttribute("autocomplete", "off");
   }
