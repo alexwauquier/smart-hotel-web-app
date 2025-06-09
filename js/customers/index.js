@@ -1,10 +1,13 @@
 import { getCustomers } from "../api/customers.js";
 import TableManager from '../table-manager.js';
+import saveCustomer from "./modal.js";
+
+const saveBtn = document.getElementById('save-btn');
 
 let activeTableId = 'customers';
 let customersTable = new TableManager(activeTableId);
 
-let prevUrl, nextUrl;
+let prevUrl, nextUrl, currentUrl;
 
 const updateTableData = async (url) => {
   const result = await getCustomers(url);
@@ -39,8 +42,18 @@ await updateTableData();
 
 customersTable.prevBtn.addEventListener("click", () => {
   if (prevUrl) updateTableData(prevUrl);
+  currentUrl = prevUrl;
 });
 
 customersTable.nextBtn.addEventListener("click", () => {
   if (nextUrl) updateTableData(nextUrl);
+  currentUrl = nextUrl;
+});
+
+saveBtn.addEventListener('click', async () => {
+  await saveCustomer(customersTable.currentItemId);
+
+  customersTable.closeModal();
+
+  await updateTableData(currentUrl);
 });

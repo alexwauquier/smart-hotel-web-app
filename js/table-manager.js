@@ -37,7 +37,6 @@ class TableManager {
     this.itemForm = document.getElementById('item-form');
     this.closeModalBtn = document.getElementById('close-modal');
     this.cancelBtn = document.getElementById('cancel-btn');
-    this.saveBtn = document.getElementById('save-btn');
     this.confirmModal = document.getElementById('confirm-modal');
     this.closeConfirmModalBtn = document.getElementById('close-confirm-modal');
     this.cancelDeleteBtn = document.getElementById('cancel-delete-btn');
@@ -111,7 +110,6 @@ class TableManager {
     this.addItemBtn.addEventListener('click', () => this.showAddModal());
     this.closeModalBtn.addEventListener('click', () => this.closeModal());
     this.cancelBtn.addEventListener('click', () => this.closeModal());
-    this.saveBtn.addEventListener('click', () => this.saveItem());
     
     // Delete confirmation
     this.closeConfirmModalBtn.addEventListener('click', () => this.closeConfirmModal());
@@ -499,40 +497,6 @@ class TableManager {
   closeModal() {
     this.modal.classList.add('hidden');
     this.currentItemId = null;
-  }
-  
-  saveItem() {
-    // Collect form data
-    const formData = {};
-    this.tableConfig.columns.forEach(column => {
-      if (column.accessor !== 'checkbox' && column.accessor !== 'actions') {
-        const input = document.getElementById(column.accessor);
-        if (input) {
-          formData[column.accessor] = input.value;
-        }
-      }
-    });
-    
-    if (this.currentItemId) {
-      // Edit existing item
-      const index = this.tableConfig.data.findIndex(item => item.id === this.currentItemId);
-      if (index !== -1) {
-        this.tableConfig.data[index] = { ...formData };
-      }
-    } else {
-      // Add new item
-      this.tableConfig.data.push({ ...formData });
-    }
-    
-    // Update current data
-    this.currentData = [...this.tableConfig.data];
-    
-    // Save to local storage
-    saveToLocalStorage();
-    
-    // Close modal and refresh table
-    this.closeModal();
-    this.renderTable();
   }
   
   showDeleteConfirmation(item) {
