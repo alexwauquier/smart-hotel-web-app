@@ -1,4 +1,5 @@
 import { getSensorMeasurements } from "../api/sensors.js";
+import { getOrders } from "../api/orders.js";
 import { createHumidityChart, createTemperatureChart } from "./charts.js";
 import { setValues } from "./status-updater.js";
 
@@ -12,7 +13,11 @@ const main = async () => {
   const latestTemp = parseFloat(dataTemp[0].value);
   const latestHum = parseFloat(dataHum[0].value);
 
-  setValues(latestTemp, latestHum);
+  const today = new Date().toISOString().slice(0, 10);
+  const todayOrders = await getOrders(null, 1, 1000, null, null, today);
+  const todayOrderCount = todayOrders.data.orders.length;
+  
+  setValues(latestTemp, latestHum, todayOrderCount);
 };
 
 main();

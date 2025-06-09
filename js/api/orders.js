@@ -1,6 +1,6 @@
 import config from "../../config.js";
 
-const getOrders = async (url = null, page = 1, size = 10, statusId = null, employeeId = null) => {
+const getOrders = async (url = null, page = 1, size = 10, statusId = null, employeeId = null, date = null) => {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
   if (!token) {
@@ -16,6 +16,10 @@ const getOrders = async (url = null, page = 1, size = 10, statusId = null, emplo
 
   if (employeeId !== null) {
     params.append("employee_id", employeeId);
+  }
+
+  if (date !== null) {
+    params.append("date", date);
   }
 
   const finalUrl = url || `${config.API_BASE_URL}/api/orders?${params.toString()}`;

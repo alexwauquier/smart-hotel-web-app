@@ -29,18 +29,24 @@ const updateStatus = () => {
     humidityStatus.classList.add('normal');
     humidityStatus.textContent = 'Normal';
   }
+
+  const todayOrdersElement = document.querySelector('.summary-card.orders .card-value');
+  const todayOrdersStatus = document.querySelector('.summary-card.orders .card-trend');
 };
 
-function setValues(newTemp, newHumidity) {
+function setValues(newTemp, newHumidity, newOrderCount) {
   const tempElem = document.querySelector('.summary-card.temperature .card-value');
   const humElem = document.querySelector('.summary-card.humidity .card-value');
+  const todayOrdersElem = document.querySelector('.summary-card.orders .card-value');
 
   // Supprime la classe de chargement
   tempElem.classList.remove('loading-text');
   humElem.classList.remove('loading-text');
+  todayOrdersElem.classList.remove('loading-text');
 
   tempElem.textContent = newTemp + '°C';
   humElem.textContent = newHumidity + '%';
+  todayOrdersElem.textContent = newOrderCount;
 
   updateStatus();
 };
