@@ -43,4 +43,38 @@ const getProducts = async (url = null, page = 1, size = 10, containsAlcohol = nu
   }
 };
 
-export { getProducts };
+const updateProduct = async (productId, updatedData) => {
+  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+  if (!token) {
+    console.error("No token found in localStorage or sessionStorage.");
+    return null;
+  }
+
+  const url = `${config.API_BASE_URL}/api/products/${productId}`;
+
+  try {
+    const response = await fetch(url, {
+      method: "PATCH",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(updatedData)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+      throw new Error(errorMessage);
+    }
+
+    return result;
+  } catch (error) {
+    console.error(`Error updating product ${productId}:`, error.message);
+    throw error;
+  }
+};
+
+export { getProducts, updateProduct };
