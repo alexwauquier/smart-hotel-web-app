@@ -229,7 +229,7 @@ class TableManager {
             }
           } else if (column.accessor === 'status' && this.tableId === 'orders') {
             const statusValue = item[column.accessor];
-            td.innerHTML = `<span class="status ${statusValue}">${this.formatStatus(statusValue)}</span>`;
+            td.innerHTML = `<span class="status ${statusValue}">${this.statusValue}</span>`;
           } else {
             td.textContent = this.getNestedValue(item, column.accessor) || '';
           }
@@ -413,7 +413,7 @@ class TableManager {
           options.forEach(option => {
             const optionEl = document.createElement('option');
             optionEl.value = option;
-            optionEl.textContent = this.formatStatus(option);
+            optionEl.textContent = this.option;
             input.appendChild(optionEl);
           });
         } else {
@@ -460,7 +460,7 @@ class TableManager {
           options.forEach(option => {
             const optionEl = document.createElement('option');
             optionEl.value = option;
-            optionEl.textContent = this.formatStatus(option);
+            optionEl.textContent = this.option;
             if (item[column.accessor] === option) {
               optionEl.selected = true;
             }
@@ -564,43 +564,37 @@ class TableManager {
     // For simplicity, we'll just show the edit modal in read-only mode
     this.modalTitle.textContent = `View ${this.getSingularName()}`;
     this.currentItemId = null;
-    
+
     // Create form fields based on table columns and fill with item data
     this.itemForm.innerHTML = '';
     this.tableConfig.columns.forEach(column => {
       if (column.accessor !== 'checkbox' && column.accessor !== 'actions') {
         const formGroup = document.createElement('div');
         formGroup.classList.add('form-group');
-        
+
         const label = document.createElement('label');
         label.setAttribute('for', column.accessor);
         label.textContent = column.label;
-        
-        let input;
-        
-        if (column.accessor === 'status' && this.tableId === 'orders') {
-          input = document.createElement('input');
-          input.type = 'text';
-          input.value = this.formatStatus(item[column.accessor] || '');
-        } else {
-          input = document.createElement('input');
-          input.type = 'text';
-          input.value = item[column.accessor] || '';
-        }
-        
+
+        let input = document.createElement('input');
+        input.type = 'text';
+
+        // Utiliser getNestedValue pour les champs imbriqués
+        let value = this.getNestedValue(item, column.accessor) || '';
+
+        input.value = value;
         input.id = column.accessor;
         input.name = column.accessor;
         input.disabled = true;
-        
+
         formGroup.appendChild(label);
         formGroup.appendChild(input);
         this.itemForm.appendChild(formGroup);
       }
     });
-    
     this.modal.classList.remove('hidden');
   }
-  
+
   getSingularName() {
     const name = this.tableConfig.name;
     // Simple French singularization (not comprehensive)
@@ -608,13 +602,6 @@ class TableManager {
       return name.slice(0, -1);
     }
     return name;
-  }
-  
-  formatStatus(status) {
-    if (status === 'in progress') {
-      return 'In progress';
-    }
-    return status.charAt(0).toUpperCase() + status.slice(1);
   }
 
   getNestedValue(obj, accessor) {
