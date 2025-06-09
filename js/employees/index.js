@@ -1,10 +1,13 @@
 import { getEmployees } from "../api/employees.js";
 import TableManager from '../table-manager.js';
+import saveEmployee from "./modal.js";
+
+const saveBtn = document.getElementById('save-btn');
 
 let activeTableId = 'employees';
 let employeesTable = new TableManager(activeTableId);
 
-let prevUrl, nextUrl;
+let prevUrl, nextUrl, currentUrl;
 
 const updateTableData = async (url) => {
   const result = await getEmployees(url);
@@ -25,8 +28,18 @@ await updateTableData();
 
 employeesTable.prevBtn.addEventListener("click", () => {
   if (prevUrl) updateTableData(prevUrl);
+  currentUrl = prevUrl;
 });
 
 employeesTable.nextBtn.addEventListener("click", () => {
   if (nextUrl) updateTableData(nextUrl);
+  currentUrl = nextUrl;
+});
+
+saveBtn.addEventListener('click', async () => {
+  await saveEmployee(employeesTable.currentItemId);
+
+  employeesTable.closeModal();
+
+  await updateTableData(currentUrl);
 });
