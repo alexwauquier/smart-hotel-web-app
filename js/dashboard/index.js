@@ -15,9 +15,9 @@ const main = async () => {
 
   const today = new Date().toISOString().slice(0, 10);
   const todayOrders = await getOrders(null, 1, 1000, null, null, today);
-  const todayOrderCount = todayOrders.data.orders.length;
-  
-  setValues(latestTemp, latestHum, todayOrderCount);
+  const todayOrdersCount = todayOrders ? todayOrders.data.orders.length : 0;
+ 
+  setValues(latestTemp, latestHum, todayOrdersCount);
 };
 
 main();
