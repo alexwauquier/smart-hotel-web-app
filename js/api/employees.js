@@ -39,6 +39,40 @@ const getEmployees = async (url = null, page = 1, size = 10, typeId = null) => {
   }
 };
 
+const createEmployee = async (data) => {
+  const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+
+  if (!token) {
+    console.error("No token found in localStorage or sessionStorage.");
+    return null;
+  }
+
+  const url = `${config.API_BASE_URL}/api/employees`;
+
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Authorization": `Bearer ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json();
+
+    if (!response.ok) {
+      const errorMessage = result?.error?.message || `HTTP error! status: ${response.status}`;
+      throw new Error(errorMessage);
+    }
+
+    return result;
+  } catch (error) {
+    console.error("Error creating employee:", error.message);
+    return null;
+  }
+};
+
 const updateEmployee = async (employeeId, updatedData) => {
   const token = localStorage.getItem("token") || sessionStorage.getItem("token");
 
@@ -73,4 +107,4 @@ const updateEmployee = async (employeeId, updatedData) => {
   }
 };
 
-export { getEmployees, updateEmployee };
+export { getEmployees, createEmployee, updateEmployee };

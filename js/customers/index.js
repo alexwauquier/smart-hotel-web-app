@@ -1,6 +1,6 @@
 import { getCustomers } from "../api/customers.js";
 import TableManager from '../table-manager.js';
-import saveCustomer from "./modal.js";
+import { addCustomer, saveCustomer } from "./modal.js";
 
 const saveBtn = document.getElementById('save-btn');
 
@@ -51,7 +51,9 @@ customersTable.nextBtn.addEventListener("click", () => {
 });
 
 saveBtn.addEventListener('click', async () => {
-  await saveCustomer(customersTable.currentItemId);
+  if (customersTable.currentModal === "add") await addCustomer();
+  if (customersTable.currentModal === "view") customersTable.closeModal();
+  if (customersTable.currentModal === "edit") await saveCustomer(customersTable.currentItemId);
 
   customersTable.closeModal();
 

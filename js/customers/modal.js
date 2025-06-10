@@ -1,9 +1,41 @@
-import { updateCustomer } from "../api/customers.js";
+import { createCustomer, updateCustomer } from "../api/customers.js";
 
 const formatDate = (dateStr) => {
   const [day, month, year] = dateStr.split('/');
   if (!day || !month || !year) return '';
   return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+};
+
+const addCustomer = async () => {
+  const data = {
+    first_name: document.getElementById('first_name').value,
+    last_name: document.getElementById('last_name').value,
+    arrival_date: formatDate(document.getElementById('arrival_date').value),
+    departure_date: formatDate(document.getElementById('departure_date').value),
+    space_id: parseInt(document.getElementById('space.id').value)
+  };
+
+  try {
+    const result = await createCustomer(data);
+
+    Swal.fire({
+      icon: 'success',
+      title: 'Customer added',
+      text: 'The customer has been successfully added.',
+      timer: 2000,
+      showConfirmButton: false
+    });
+
+    return result;
+  } catch (error) {
+    Swal.fire({
+      icon: 'error',
+      title: 'Add failed',
+      text: `An error occurred while adding the customer: ${error.message}`,
+    });
+
+    return null;
+  }
 };
 
 const saveCustomer = async (customerId) => {
@@ -38,4 +70,4 @@ const saveCustomer = async (customerId) => {
   }
 };
 
-export default saveCustomer;
+export { addCustomer, saveCustomer };

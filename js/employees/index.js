@@ -1,6 +1,6 @@
 import { getEmployees } from "../api/employees.js";
 import TableManager from '../table-manager.js';
-import saveEmployee from "./modal.js";
+import { addEmployee, saveEmployee } from "./modal.js";
 
 const saveBtn = document.getElementById('save-btn');
 
@@ -37,7 +37,9 @@ employeesTable.nextBtn.addEventListener("click", () => {
 });
 
 saveBtn.addEventListener('click', async () => {
-  await saveEmployee(employeesTable.currentItemId);
+  if (employeesTable.currentModal === "add") await addEmployee();
+  if (employeesTable.currentModal === "view") employeesTable.closeModal();
+  if (employeesTable.currentModal === "edit") await saveEmployee(employeesTable.currentItemId);
 
   employeesTable.closeModal();
 

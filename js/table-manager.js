@@ -44,6 +44,7 @@ class TableManager {
     this.confirmDeleteBtn = document.getElementById('confirm-delete-btn');
     
     this.currentItemId = null;
+    this.currentModal = null;
     
     this.init();
   }
@@ -399,6 +400,7 @@ class TableManager {
   
   async showAddModal() {
     this.modalTitle.textContent = `Add New ${this.getSingularName()}`;
+    this.currentModal = "add";
 
     await this.renderFormFields();
 
@@ -407,6 +409,7 @@ class TableManager {
   
   async showEditModal(item) {
     this.modalTitle.textContent = `Edit ${this.getSingularName()}`;
+    this.currentModal = "edit";
 
     await this.renderFormFields(item);
 
@@ -416,6 +419,7 @@ class TableManager {
   closeModal() {
     this.modal.classList.add('hidden');
     this.currentItemId = null;
+    this.currentModal = null;
   }
   
   showDeleteConfirmation(item) {
@@ -455,6 +459,7 @@ class TableManager {
     // For simplicity, we'll just show the edit modal in read-only mode
     this.modalTitle.textContent = `View ${this.getSingularName()}`;
     this.currentItemId = null;
+    this.currentModal = "view";
 
     // Create form fields based on table columns and fill with item data
     this.itemForm.innerHTML = '';
