@@ -458,32 +458,19 @@ class TableManager {
         label.setAttribute('for', column.accessor);
         label.textContent = column.label;
         
-        let input;
-        
-        if (column.accessor === 'status' && this.tableId === 'orders') {
-          input = document.createElement('select');
-          const options = ['pending', 'in progress', 'done', 'canceled'];
-          options.forEach(option => {
-            const optionEl = document.createElement('option');
-            optionEl.value = option;
-            optionEl.textContent = this.option;
-            if (item[column.accessor] === option) {
-              optionEl.selected = true;
-            }
-            input.appendChild(optionEl);
-          });
-        } else {
-          input = document.createElement('input');
-          input.type = 'text';
-          input.value = item[column.accessor] || '';
-          
-          if (column.accessor === 'id') {
-            input.disabled = true;
-          }
-        }
-        
+        let input = document.createElement('input');
+        input.type = 'text';
+
+        // Utiliser getNestedValue pour les champs imbriqués
+        let value = this.getNestedValue(item, column.accessor) || '';
+
+        input.value = value;
         input.id = column.accessor;
         input.name = column.accessor;
+
+        if (column.accessor === 'id') {
+          input.disabled = true;
+        }
         
         formGroup.appendChild(label);
         formGroup.appendChild(input);
