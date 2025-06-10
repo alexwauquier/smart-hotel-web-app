@@ -43,3 +43,14 @@ saveBtn.addEventListener('click', async () => {
 
   await updateTableData(currentUrl);
 });
+
+const dropdownConfig = {
+  "type.label": {
+    apiPath: "/api/products/types",
+    responseDataPath: ['data', 'product_types'],
+    valueField: "id",
+    labelField: "label"
+  }
+};
+
+productsTable.dropdownConfig = dropdownConfig;

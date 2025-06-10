@@ -14,6 +14,7 @@ class TableManager {
     this.totalPages = 1
     this.itemsTotal = 10;
     this.filter = { column: '', value: '' };
+    this.dropdownConfig = {};
     
     // DOM elements
     this.tableTitle = document.getElementById('table-title');
@@ -396,88 +397,19 @@ class TableManager {
     this.renderTable();
   }
   
-  showAddModal() {
+  async showAddModal() {
     this.modalTitle.textContent = `Add New ${this.getSingularName()}`;
-    this.currentItemId = null;
-    
-    // Create form fields based on table columns
-    this.itemForm.innerHTML = '';
-    this.tableConfig.columns.forEach(column => {
-      if (column.accessor !== 'checkbox' && column.accessor !== 'actions') {
-        const formGroup = document.createElement('div');
-        formGroup.classList.add('form-group');
-        
-        const label = document.createElement('label');
-        label.setAttribute('for', column.accessor);
-        label.textContent = column.label;
-        
-        let input;
-        
-        if (column.accessor === 'status' && this.tableId === 'orders') {
-          input = document.createElement('select');
-          const options = ['pending', 'in progress', 'done', 'canceled'];
-          options.forEach(option => {
-            const optionEl = document.createElement('option');
-            optionEl.value = option;
-            optionEl.textContent = this.option;
-            input.appendChild(optionEl);
-          });
-        } else {
-          input = document.createElement('input');
-          input.type = 'text';
-          
-          if (column.accessor === 'id') {
-            input.disabled = true;
-          }
-        }
-        
-        input.id = column.accessor;
-        input.name = column.accessor;
-        
-        formGroup.appendChild(label);
-        formGroup.appendChild(input);
-        this.itemForm.appendChild(formGroup);
-      }
-    });
-    
+
+    await this.renderFormFields();
+
     this.modal.classList.remove('hidden');
   }
   
-  showEditModal(item) {
+  async showEditModal(item) {
     this.modalTitle.textContent = `Edit ${this.getSingularName()}`;
-    this.currentItemId = item.id;
-    
-    // Create form fields based on table columns and fill with item data
-    this.itemForm.innerHTML = '';
-    this.tableConfig.columns.forEach(column => {
-      if (column.accessor !== 'checkbox' && column.accessor !== 'actions') {
-        const formGroup = document.createElement('div');
-        formGroup.classList.add('form-group');
-        
-        const label = document.createElement('label');
-        label.setAttribute('for', column.accessor);
-        label.textContent = column.label;
-        
-        let input = document.createElement('input');
-        input.type = 'text';
 
-        // Utiliser getNestedValue pour les champs imbriqués
-        let value = this.getNestedValue(item, column.accessor) || '';
+    await this.renderFormFields(item);
 
-        input.value = value;
-        input.id = column.accessor;
-        input.name = column.accessor;
-
-        if (column.accessor === 'id') {
-          input.disabled = true;
-        }
-        
-        formGroup.appendChild(label);
-        formGroup.appendChild(input);
-        this.itemForm.appendChild(formGroup);
-      }
-    });
-    
     this.modal.classList.remove('hidden');
   }
   
@@ -554,6 +486,84 @@ class TableManager {
     this.modal.classList.remove('hidden');
   }
 
+  async fetchDropdownOptions(apiPath) {
+    const token = localStorage.getItem("token") || sessionStorage.getItem("token");
+    if (!token) {
+      console.error("No token found in localStorage or sessionStorage.");
+      return [];
+    }
+
+    const url = `${config.API_BASE_URL}${apiPath}`;
+
+    try {
+      const response = await fetch(url, {
+        headers: {
+          "Authorization": `Bearer ${token}`,
+          "Content-Type": "application/json",
+        },
+      });
+      if (!response.ok) {
+        throw new Error(`Failed to fetch options: ${response.statusText}`);
+      }
+      const result = await response.json();
+
+      return result;
+    } catch (error) {
+      console.error("Error fetching dropdown options:", error);
+      return [];
+    }
+  }
+
+  async renderFormFields(item = {}) {
+    this.currentItemId = item.id || null;
+    this.itemForm.innerHTML = '';
+
+    for (const column of this.tableConfig.columns) {
+      if (['checkbox', 'actions'].includes(column.accessor)) continue;
+
+      const formGroup = document.createElement('div');
+      formGroup.classList.add('form-group');
+
+      const label = document.createElement('label');
+      label.setAttribute('for', column.accessor);
+      label.textContent = column.label;
+
+      let input;
+
+      if (this.dropdownConfig && this.dropdownConfig[column.accessor]) {
+        const result = await this.fetchDropdownOptions(this.dropdownConfig[column.accessor].apiPath, this.dropdownConfig[column.accessor].responseDataPath);
+
+        const options = this.getDataByPath(result, this.dropdownConfig[column.accessor].responseDataPath);
+        input = document.createElement('select');
+
+        options.forEach(({ id, label }) => {
+          const option = document.createElement('option');
+          option.value = id;
+          option.textContent = label;
+          input.appendChild(option);
+        });
+
+        input.value = this.getNestedValue(item, column.accessor.replace(/\.label$/, ".id")) || '';
+      } else if (column.accessor === 'id') {
+        input = document.createElement('input');
+        input.type = 'text';
+        input.disabled = true;
+        input.value = this.getNestedValue(item, column.accessor) || '';
+      } else {
+        input = document.createElement('input');
+        input.type = 'text';
+        input.value = this.getNestedValue(item, column.accessor) || '';
+      }
+
+      input.id = column.accessor;
+      input.name = column.accessor;
+
+      formGroup.appendChild(label);
+      formGroup.appendChild(input);
+      this.itemForm.appendChild(formGroup);
+    }
+  }
+
   getSingularName() {
     const name = this.tableConfig.name;
     // Simple French singularization (not comprehensive)
@@ -561,6 +571,10 @@ class TableManager {
       return name.slice(0, -1);
     }
     return name;
+  }
+  
+  getDataByPath(obj, pathArray) {
+    return pathArray.reduce((acc, key) => acc && acc[key], obj);
   }
 
   getNestedValue(obj, accessor) {

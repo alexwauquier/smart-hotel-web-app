@@ -5,6 +5,7 @@ const saveEmployee = async (employeeId) => {
     first_name: document.getElementById('first_name').value,
     last_name: document.getElementById('last_name').value,
     username: document.getElementById('username').value,
+    type_id: document.getElementById('type.label').value
   };
 
   console.log(updatedData);

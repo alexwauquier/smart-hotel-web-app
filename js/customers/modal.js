@@ -12,6 +12,7 @@ const saveCustomer = async (customerId) => {
     last_name: document.getElementById('last_name').value,
     arrival_date: formatDate(document.getElementById('arrival_date').value),
     departure_date: formatDate(document.getElementById('departure_date').value),
+    space_id: parseInt(document.getElementById('space.id').value)
   };
 
   try {

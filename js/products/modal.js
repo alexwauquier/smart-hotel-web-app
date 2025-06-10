@@ -5,11 +5,12 @@ const saveProduct = async (productId) => {
     name: document.getElementById('name').value,
     description: document.getElementById('description').value,
     ingredients: document.getElementById('ingredients').value,
+    type_id: document.getElementById('type.label').value,
     contains_alcohol: document.getElementById('contains_alcohol').value,
     unit_price: document.getElementById('unit_price').value,
     stock_quantity: document.getElementById('stock_quantity').value,
     limit_quantity: document.getElementById('limit_quantity').value,
-    useimage_urlrname: document.getElementById('image_url').value
+    image_url: document.getElementById('image_url').value
   };
 
   console.log(updatedData);
